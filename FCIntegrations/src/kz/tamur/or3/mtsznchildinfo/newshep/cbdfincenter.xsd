@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="cbdRequest" type="CBDRequest"/>
+
+  <xs:element name="cbdResponse" type="CBDResponse"/>
+
+  <xs:element name="responseInfo" type="responseInfo"/>
+
+  <xs:complexType name="CBDRequest">
+    <xs:sequence>
+      <xs:element name="orgCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="sender" type="xs:string" minOccurs="0"/>
+      <xs:element name="paymentType" type="xs:string" minOccurs="0"/>
+      <xs:element name="recipientIin" type="xs:string" minOccurs="0"/>
+      <xs:element name="dependentIin" type="xs:string" minOccurs="0"/>
+      <xs:element name="periodFrom" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="periodTo" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CBDResponse">
+    <xs:sequence>
+      <xs:element name="responseInfos" type="responseInfo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="responseInfo">
+    <xs:sequence>
+      <xs:element name="iin" type="xs:string" minOccurs="0"/>
+      <xs:element name="surname" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstname" type="xs:string" minOccurs="0"/>
+      <xs:element name="patronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="birthDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="currentSumm" type="xs:string" minOccurs="0"/>
+      <xs:element name="previousSumm" type="xs:string" minOccurs="0"/>
+      <xs:element name="summ" type="xs:string" minOccurs="0"/>
+      <xs:element name="paymentType" type="xs:string" minOccurs="0"/>
+      <xs:element name="paymentName" type="xs:string" minOccurs="0"/>
+      <xs:element name="paymentStartDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="paymentEndDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="closeDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="closeAct" type="xs:string" minOccurs="0"/>
+	  <xs:element name="status" type="xs:string" minOccurs="0"/>
+	  <xs:element name="description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

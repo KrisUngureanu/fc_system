@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOSK (SHOCK) -->
+<xs:schema xmlns:tns="http://newshep.gbdulsignupactualdata.gbdul.tamur.kz" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://newshep.gbdulsignupactualdata.gbdul.tamur.kz" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="Request" type="tns:RequestMessage">
+		<xs:annotation>
+			<xs:documentation>Актуализация регистрационных данных субъектов по подписке</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Response" type="tns:ResponseMessage">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="RequestMessage">
+		<xs:annotation>
+			<xs:documentation>Формат бизнес-данных запроса</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BusinessData" type="tns:RequestType">
+				<xs:annotation>
+					<xs:documentation>Бизнес-данные запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Signature" type="ds:SignatureType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подпись бизнес-данных запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponseMessage">
+		<xs:annotation>
+			<xs:documentation>Формат бизнес-данных ответа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BusinessData" type="tns:ResponseType">
+				<xs:annotation>
+					<xs:documentation>Бизнес-данные ответа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Signature" type="ds:SignatureType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подпись бизнес-данных ответа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RequestType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий бизнес-данные запроса со сведениями о субъекте</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BIN" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>БИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegOrgan" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation>Регистрирующий орган</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код статуса субъекта: 1 - зарегистрирвоан; 2 - ликвидирован; 3 - реорганизован с прекращением деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormOrg" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation>Форма организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrgLowForm" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Организационно-правовая форма</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrivateEnterpriseType" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип частного предпринимательства</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusOO" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Статус общественного или религиозного объединения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PolitPart" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>true если является политической партией</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountryFac" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>true если ИПс является  крестьянским хозяйством</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullNameKZ" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полное наименование на казахкском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullNameRU" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полное наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullNameEN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полное наименование на английском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameKZ" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование на казахкском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameRU" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameEN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование на английском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата (пере)регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReestrDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата записи в Национальный Реестр БИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Leader" type="tns:LeaderType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о руководителе. Не заполняется при отстранении от должности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Address" type="tns:AddressType">
+				<xs:annotation>
+					<xs:documentation>Адрес субъекта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AuthCapital" type="tns:AuthCapitalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения об уставном капитале юридического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Founders" type="tns:FoundersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Список учредителей юридического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FounderCount" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество участников юридического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HeaderOrganization" type="tns:HeadType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о головной организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Services" type="tns:ServicesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Виды деятельности юридического лица, филиала, представительства</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LiquidationInfo" type="tns:LiquidationInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о прекращении деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponseType">
+		<xs:annotation>
+			<xs:documentation>Формат ответа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Status" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation>Статус ответа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Errors" type="tns:ErrorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ds:Signature"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AddressType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные об адресе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PostCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Почтовый индекс</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RKA" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный код адреса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ATE" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор АТЕ с ИС АР</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KatoCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код КАТО - 9 знаков</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeonimCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код геонима по ИС АР</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Building" type="tns:BuildingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация о строении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Room" type="tns:RoomType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер квартиры/офиса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddressRU" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полный адрес на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddressKZ" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полный адрес на каз языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contacts" type="tns:ContactType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Контактная информация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий сведения о контактной информации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Phone" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>телефон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fax" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>факс</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Email" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BuildingType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий сведения о ПО (строении)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип строения по ИС АР. По ИПс и нерезидентам РК данных нет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Number" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер строения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Corpus" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер корпуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Block" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер блока</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Apartment" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер комнаты, офиса. Не путать с ВО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RoomType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий сведения о ВО (помещении)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип ВО (помещения) по ИС АР. По ИПс и нерезидентам РК данных нет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Number" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер ВО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LeaderType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий сведения о руководителе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IIN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Position" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Должность руководителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MiddleName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Страна местопроживания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CitizenShipType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отношение к гражданству: 1 - гражданин РК; 2-иностранный гражданин; 3- лицо без гражданства</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Citizenship" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Гражданство (отсутствует у лиц без гражданства)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий сведения о учредителе физическом лице</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IIN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MiddleName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation>Страна местопроживания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CitizenShipType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отношение к гражданству: 1 - гражданин РК; 2-иностранный гражданин; 3- лицо без гражданства</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Citizenship" type="tns:DictionaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Страна гражданства гражданства (отсутствует у лиц без гражданства)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TaxNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Налоговый номер в стране гражданства. Передается при отсутствии ИИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CompanyType">
+		<xs:annotation>
+			<xs:documentation>Основной тип, описывающий учредителя-юрлицо</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BIN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>БИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation>Страна инкорпорации </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер в стране инкорпорации для нерезидента РК</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TaxNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Налоговый номер в стране инкорпорации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationLastDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата последней перерегистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полное наименование организации </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Activity" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вид деятельности  для иностранных лиц</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FounderType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные учредителя</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Ratio" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Доля учредителя в уставном капитале. Данные предоставляются по согласованию с МЮ РК</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CapitalSum" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма учредителя в уставном капитале. Данные предоставляются по согласованию с МЮ РК</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FounderData" type="tns:FounderDataType">
+				<xs:annotation>
+					<xs:documentation>Данные об учредителе (ФЛ или ЮЛ)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FoundersType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные учредителей юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Founder" type="tns:FounderType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FounderDataType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные об учредителе (ФЛ или ЮЛ)</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Company" type="tns:CompanyType">
+				<xs:annotation>
+					<xs:documentation>Юридическое лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Person" type="tns:PersonType">
+				<xs:annotation>
+					<xs:documentation>Физическое лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="AuthCapitalType">
+		<xs:annotation>
+			<xs:documentation>Сведения об уставном капитале</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ValueAll" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Уставной капитал всего в тенге</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ValueGov" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Доля государственного в тенге</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PercentGov" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Доля государственного в %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ValuePrivate" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Доля частного в тенге</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PercentPrivate" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Доля частного в %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HeadType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий головную организацию</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BIN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>БИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation>Страна инкорпорации </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер в стране инкорпорации для нерезидента РК</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationLastDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата последней перерегистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование организации </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Activity" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вид деятельности  для иностранных лиц</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServicesType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий виды деятельности юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Service" type="tns:ServiceType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий вид деятельности юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Oked" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation>Вид деятельности ОКЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Main" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Признак основного вида деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LiquidationInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий сведения о прекращении деятельности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LiquidationType" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation> Тип ликвидации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LiquidationBase" type="tns:DictionaryType">
+				<xs:annotation>
+					<xs:documentation>Основание ликвидации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Date" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата ликвидации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AssigneeBIN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>БИН правоприемника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DictionaryType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные справочника</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Значение на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameKz" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Значение на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ErrorType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий ошибку</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ErrorNameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Спецификация ошибки на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorNameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Спецификация ошибки на государственном языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

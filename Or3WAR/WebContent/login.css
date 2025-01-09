@@ -1,0 +1,89 @@
+td.error {font-size:11px; FONT-FAMILY: Tahoma; color: red; font-weight: bold; BACKGROUND-COLOR: transparent; text-decoration: none;}
+
+.Label-Default {
+    margin: 1px 0 1px 0;
+    padding: 2px 0 2px 0;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 8.25pt;
+    color: #003;
+    line-height: normal;
+    text-align: left;
+    cursor: default;
+}
+
+.Label-Default1 {
+    margin: 1px 0 1px 0;
+    padding: 2px 0 2px 0;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    color: navy;
+    line-height: normal;
+    text-align: left;
+    cursor: default;
+}
+
+.errLabel {
+    font-size: 8pt;
+    font-family: tahoma, sans-serif;
+    font-style: normal;
+    color: Red;
+}
+
+.infofont {
+    font-size: 8pt;
+    font-family: tahoma, sans-serif;
+    font-style: normal;
+    color: #4B0082;
+}
+
+.auth_form {
+    background-attachment: fixed;
+    background-image: url( "login_back.gif" );
+    background-repeat: repeat-x;
+    border-color: azure;
+}
+
+.Form-Default {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.fieldsets {
+    font-size: 10px;
+    font-family: tahoma, sans-serif;
+    font-weight: bolder;
+    color: #1E90FF;
+}
+
+.button {
+    font-size: 12px;
+    font-family: Arial,tahoma;
+    font-weight: bold;
+    color: #1E90FF;
+}
+
+.input {
+    margin: 0 1px 0 0;
+    padding: 0px 1px 0px 1px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 8.25pt;
+    color: ButtonText;
+    line-height: normal;
+    text-align: left;
+    height: 20px;
+    width: 150px;
+    border-width: 1px;
+    border-color: #66ccff;
+}
+
+.label {
+    margin: 1px 0 1px 0;
+    padding: 1px 0 1px 0;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color: navy;
+    line-height: normal;
+    text-align: left;
+    cursor: default;
+}

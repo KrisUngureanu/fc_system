@@ -1,0 +1,101 @@
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://notification-v2.egov.bee.kz/" version="1.0" xmlns:tns="http://notification-v2.egov.bee.kz/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="notificationRequest" type="tns:NotificationRequest"/>
+    <xs:complexType name="NotificationRequest">
+        <xs:sequence>
+            <xs:element name="senderInfo" type="tns:SenderInfo"/>
+            <xs:element name="notificationInfo" type="tns:Notification"/>
+            <xs:element name="notificationData" type="xs:anyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SenderInfo">
+        <xs:sequence>
+            <xs:element name="senderId" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Notification">
+        <xs:sequence>
+            <xs:element name="notificationId" type="xs:string"/>
+            <xs:element name="sentDate" type="xs:dateTime"/>
+            <xs:element name="eventDate" type="xs:dateTime"/>
+            <xs:element name="broadCastType" type="tns:BroadCastType"/>
+            <xs:element name="managed" type="tns:Managed"/>
+            <xs:element name="notificationType" type="xs:string"/>
+            <xs:element name="notificationVersion" type="xs:string"/>
+            <xs:element name="iinbin" type="xs:string"/>
+            <xs:element name="needCallBack" type="tns:CallBack"/>
+            <xs:element minOccurs="0" name="properties">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="property" nillable="true" type="tns:Property"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="resources" type="tns:Resources"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Property">
+        <xs:sequence>
+            <xs:element name="key" type="xs:anyType"/>
+            <xs:element name="value" type="xs:anyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Resources">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="resource" nillable="true" type="tns:Resource"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Resource">
+        <xs:sequence>
+            <xs:element name="type" type="tns:ResourceType"/>
+            <xs:element name="link" type="xs:string"/>
+            <xs:element name="expirationDate" type="xs:dateTime"/>
+            <xs:element name="nameKk" type="xs:string"/>
+            <xs:element name="nameRu" type="xs:string"/>
+            <xs:element minOccurs="0" name="nameEn" type="xs:string"/>
+            <xs:element name="repository" type="tns:ResourceRepository"/>
+            <xs:element name="mimeType" type="tns:ResourceMimeType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BroadCastType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BROADCAST"/>
+            <xs:enumeration value="NOTIFICATION"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Managed">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CallBack">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ResourceType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RESULT"/>
+            <xs:enumeration value="STATUS"/>
+            <xs:enumeration value="ATTACHMENT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ResourceRepository">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EDS"/>
+            <xs:enumeration value="SHEP"/>
+            <xs:enumeration value="OTHER"/>
+            <xs:enumeration value="NONE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ResourceMimeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PDF"/>
+            <xs:enumeration value="DOC"/>
+            <xs:enumeration value="PAGE"/>
+            <xs:enumeration value="OTHER"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOSK (SHOCK) -->
+<xs:schema xmlns:tns="http://newshep.gbdulsignupspisokbin.gbdul.tamur.kz" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://newshep.gbdulsignupspisokbin.gbdul.tamur.kz" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="Request" type="tns:RequestMessage">
+		<xs:annotation>
+			<xs:documentation>Запрос на передачу списка БИН для актуализации по подписке</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Response" type="tns:ResponseMessage">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="RequestMessage">
+		<xs:annotation>
+			<xs:documentation>Формат запроса</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RequestorBIN" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>БИН владельца ИС ГО, отправившей запрос</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BINList" type="tns:BINListType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>БИН для включения/исключения из списка актуализации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponseMessage">
+		<xs:annotation>
+			<xs:documentation>Формат ответа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Status" type="tns:DirectoryType">
+				<xs:annotation>
+					<xs:documentation>Статус ответа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorList" type="tns:ErrorListType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Ошибки выявленные в запросе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ds:Signature"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DirectoryType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные справочника</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>код</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>значение на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>значение нагосударственном языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ErrorListType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий ошибки в данных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BIN" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>БИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Error" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Спецификация ошибки </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ErrorType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий ошибку</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ErrorNameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Спецификация ошибки на государственном языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BINListType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий список БИН</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BIN" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>БИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Flag" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>1 - включить в список; 2 - исключить из списка</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

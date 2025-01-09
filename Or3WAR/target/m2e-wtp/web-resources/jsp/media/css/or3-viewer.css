@@ -1,0 +1,100 @@
+/*.or3-img-panel img {
+	width: 100px;
+	height: 100px;
+}*/
+
+.or3-img-panel {
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+}
+
+.or3-img-panel-vertical {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.imgListItem {
+	margin: 0 5px 5px 5px;
+	display: inline-block;
+}
+
+.imgListItemVertical {
+	margin: 0 5px 5px 5px;
+	display: block;
+}
+
+.imageSelectionRing {
+	border-radius: 5px;
+	padding: 5px;
+	text-align: center;
+}
+
+.listImage {
+	border: 1px solid transparent;
+	box-shadow: 0 0 0 1px	#89BDF2, 0 2px 8px #0081c2;
+	opacity: 0.8;
+	z-index: 99;
+	background-color: white;
+	background-clip: content-box;
+}
+
+.or3-img-panel > a:active,
+.or3-img-panel > a:focus {
+  outline: 0;
+}
+
+.or3-img-panel > a:last-of-type > .imgListItem,
+.or3-img-panel > a:last-of-type > .imgListItemVertical, {
+  margin-bottom: 10px;
+}
+
+.or3-img-panel > a:last-of-type > .imgListItem:not([data-loaded]),
+.or3-img-panel > a:last-of-type > .imgListItemVertical:not([data-loaded]) {
+  margin-bottom: 9px;
+}
+
+/*.imgListItem:not([data-loaded]) {
+  border: 1px dashed rgba(255, 255, 255, 0.5);
+  margin: -1px 9px 4px 9px;
+}*/
+
+
+a:focus > .imgListItem > .imageSelectionRing > .listImage,
+.imgListItem:hover > .imageSelectionRing > .listImage,
+a:focus > .imgListItemVertical > .imageSelectionRing > .listImage,
+.imgListItemVertical:hover > .imageSelectionRing > .listImage {
+  opacity: .9;
+}
+
+a:focus > .imgListItem > .imageSelectionRing,
+.imgListItem:hover > .imageSelectionRing,
+a:focus > .imgListItemVertical > .imageSelectionRing,
+.imgListItemVertical:hover > .imageSelectionRing {
+  background-color: #A9DDFC;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
+  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-clip: padding-box;
+  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
+              0 0 1px hsla(0,0%,100%,.2) inset,
+              0 0 1px hsla(0,0%,0%,.2);
+  color: hsla(0,0%,100%,.9);
+}
+
+.imgListItem.selected > .imageSelectionRing > .listImage,
+.imgListItemVertical.selected > .imageSelectionRing > .listImage {
+  box-shadow: 0 0 0 1px #A9DDFC;
+  opacity: 1;
+}
+
+.imgListItem.selected > .imageSelectionRing,
+.imgListItemVertical.selected > .imageSelectionRing {
+  background-color: #A9DDFC;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(0,0%,100%,.05)), to(hsla(0,0%,100%,0)));
+  background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+  background-clip: padding-box;
+  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
+              0 0 1px hsla(0,0%,100%,.1) inset,
+              0 0 1px hsla(0,0%,0%,.2);
+  color: hsla(0,0%,100%,1);
+}

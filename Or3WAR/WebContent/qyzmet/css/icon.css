@@ -1,0 +1,237 @@
+.icon-arrow-right {
+	background:url('icons/icon-arrow-right.png') no-repeat center center;
+}
+.icon-arrow-down {
+	background:url('icons/icon-arrow-down.png') no-repeat center center;
+}
+.icon-arrows-up {
+	background-image: url('icons/icon-arrows-up.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.icon-arrows-down {
+	background-image: url('icons/icon-arrows-down.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.icon-arrows-left {
+	background-image: url('icons/icon-arrows-left.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.icon-arrows-right {
+	background-image: url('icons/icon-arrows-right.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+.icon-help {
+	background:url('icons/icon-help.png') no-repeat center center;
+}
+
+.icon-eye-opened {
+	background:url('icons/icon-eye-opened.png') no-repeat center center;
+}
+.icon-location {
+	background:url('icons/icon-location.png') no-repeat center center;
+}
+
+.icon-vacation {
+	background:url('icons/icon-vacation.png') no-repeat center center;
+}
+.icon-my-docs {
+	background:url('icons/icon-my-docs.png') no-repeat center center;
+}
+.icon-business-trip {
+	background:url('icons/icon-business-trip.png') no-repeat center center;
+}
+.icon-material-aid {
+	background:url('icons/icon-material-aid.png') no-repeat center center;
+}
+
+.icon-menu-main {
+	background-image: url('icons/icon-menu-main.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+li.selected .icon-menu-main, li:hover .icon-menu-main {
+	background-image: url('icons/icon-menu-main-selected.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.icon-menu-monitor {
+	background-image: url('icons/icon-menu-monitor.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+li.selected .icon-menu-monitor, li:hover .icon-menu-monitor {
+	background-image: url('icons/icon-menu-monitor-selected.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.icon-menu-task {
+	background-image: url('icons/icon-menu-task.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+li.selected .icon-menu-task, li:hover .icon-menu-task {
+	background-image: url('icons/icon-menu-task-selected.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.icon-menu-notification {
+	background-image: url('icons/icon-menu-notification.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+li.selected .icon-menu-notification, li:hover .icon-menu-notification {
+	background-image: url('icons/icon-menu-notification-selected.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.icon-menu-process {
+	background-image: url('icons/icon-menu-process.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+li.selected .icon-menu-process, li:hover .icon-menu-process {
+	background-image: url('icons/icon-menu-process-selected.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.icon-menu-shtat {
+	background-image: url('icons/icon-menu-shtat.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+li.selected .icon-menu-shtat, li:hover .icon-menu-shtat {
+	background-image: url('icons/icon-menu-shtat-selected.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.icon-menu-archive {
+	background-image: url('icons/icon-menu-archive.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+li.selected .icon-menu-archive, li:hover .icon-menu-archive {
+	background-image: url('icons/icon-menu-archive-selected.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.icon-menu-dicts {
+	background-image: url('icons/icon-menu-dicts.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+li.selected .icon-menu-dicts, li:hover .icon-menu-dicts {
+	background-image: url('icons/icon-menu-dicts-selected.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+.icon-text-search {
+	background:url('icons/icon-text-search.png') no-repeat center center;
+}
+.icon-page-main {
+	background:url('icons/icon-page-main.svg') no-repeat center center;
+}
+.icon-type-in {
+	background:url('icons/icon-type-in.png') no-repeat center center;
+}
+.icon-type-out {
+	background:url('icons/icon-type-out.png') no-repeat center center;
+}
+.icon-orders-my {
+	background:url('icons/icon-orders-my.svg') no-repeat center center;
+}
+.icon-orders-in {
+	background:url('icons/icon-orders-in.svg') no-repeat center center;
+}
+.icon-orders-out {
+	background:url('icons/icon-orders-out.svg') no-repeat center center;
+}
+
+.icon-save {
+ 	background: url('icons/icon-save.png') no-repeat center center;
+}
+.icon-undo {
+  background: url('icons/icon-cancel.png') no-repeat center center;
+}
+.icon-rept {
+  background: url('icons/icon-print.png') no-repeat center center;
+}
+.icon-close {
+  background: url('icons/icon-close.svg') no-repeat center center;
+}
+
+.icon-add {
+  background-position:-408px -96px;
+}
+.icon-remove {
+  background-position: -312px 0;
+}
+
+.process-tree .tree-folder.tree-folder-open {
+  background: url('icons/process-folder-open.png') no-repeat center center;
+}
+.process-tree .tree-folder {
+  background: url('icons/process-folder-closed.png') no-repeat center center;
+}
+
+.archive-tree .tree-folder.tree-folder-open {
+  background: url('icons/archive-folder-open.png') no-repeat center center;
+}
+.archive-tree .tree-folder {
+  background: url('icons/archive-folder-closed.png') no-repeat center center;
+}
+
+.dicts-tree .tree-folder.tree-folder-open {
+  background: url('icons/dicts-folder-open.png') no-repeat center center;
+}
+.dicts-tree .tree-folder {
+  background: url('icons/dicts-folder-closed.png') no-repeat center center;
+}
+
+[class^="fam-"],
+[class*=" fam-"] {
+	display:inline-block;
+	width:17px;
+	height:16px;
+	*margin-right:.3em;
+	line-height:14px;
+	vertical-align:text-top;
+	background-image:url("icons/famfamfam-icons.png");
+	background-position:14px 14px;
+	background-repeat:no-repeat;
+}
+[class^="fam-"]:last-child,
+[class*=" fam-"]:last-child {
+	*margin-left:0;
+}
+.btn-large [class^="fam-"] {
+	margin-top:1px;
+}
+.fam-bullet-green{background-position:-820px -20px}
+
+.icon-expandAll{
+	background:url('icons/expandAll.png') no-repeat center center;
+}
+.icon-expand{
+	background:url('icons/expand.png') no-repeat center center;
+}
+.icon-collapseAll{
+	background:url('icons/collapseAll.png') no-repeat center center;
+}
+.icon-collapse{
+	background:url('icons/collapse.png') no-repeat center center;
+}

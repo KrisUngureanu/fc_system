@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://record.bank.fc.tamur.kz" targetNamespace="http://record.bank.fc.tamur.kz" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="checkFlRequest" type="tns:checkFlRequestType"/>
+	<xsd:element name="checkFlResponse" type="tns:responseType"/>
+	<xsd:element name="createRecordRequest" type="tns:createRecordRequestType"/>
+	<xsd:element name="createRecordResponse" type="tns:createRecordResponseType"/>
+	<xsd:element name="getStatusRequest" type="tns:getStatusRequestType"/>
+	<xsd:element name="getStatusResponse" type="tns:statusResponseType"/>
+	<xsd:element name="closeRecordRequest" type="tns:closeRecordRequestType"/>
+	<xsd:element name="closeRecordResponse" type="tns:closeRecordResponseType"/>
+	<xsd:element name="getPermitTransmitRequest" type="tns:getPermitTransmitType"/>
+	<xsd:element name="getPermitTransmitResponse" type="tns:responsePermitType"/>
+	<xsd:element name="getTransmitRequest" type="tns:getTransmitRequestType"/>
+	<xsd:element name="getTransmitResponse" type="tns:getTransmitResponseType"/>
+	<xsd:element name="getTransmitRecordRequest" type="tns:getTransmitRecordType"/>
+	<xsd:element name="getTransmitRecordResponse" type="tns:responseType"/>
+	<xsd:element name="getConfirmTransmitRecordRequest" type="tns:getConfirmTransmitRecordType"/>
+	<xsd:element name="getConfirmTransmitRecordResponse" type="tns:responseType"/>
+	<xsd:element name="transmitFromRequest" type="tns:transmitFromRequestType"/>
+	<xsd:element name="transmitFromResponse" type="tns:responseType"/>
+	<xsd:element name="transmitRequest" type="tns:transmitRequestType"/>
+	<xsd:element name="transmitResponse" type="tns:responseType"/>
+	<xsd:element name="summRequest" type="tns:summRequestType"/>
+	<xsd:element name="summResponse" type="tns:summResponseType"/>
+	<xsd:element name="summReestrRequest" type="tns:summReestrRequestType"/>
+	<xsd:element name="summReestrResponse" type="tns:summReestrResponseType"/>
+	<xsd:element name="transferReestrRequest" type="tns:transferReestrRequestType"/>
+	<xsd:element name="transferReestrResponse" type="tns:transferReestrResponseType"/>
+	<xsd:element name="filePropertyRequest" type="tns:filePropertyType"/>
+	<xsd:element name="filePropertyResponse" type="tns:responseType"/>
+	<xsd:element name="getFilePropertyRequest" type="tns:filePropertyRequestType"/>
+	<xsd:element name="getFilePropertyResponse" type="tns:filePropertyResponseType"/>
+	<xsd:element name="educationOrgRequest" type="tns:educationOrgRequestType"/>
+	<xsd:element name="educationOrgResponse" type="tns:educationOrgResponseType"/>
+	<xsd:complexType name="SystemInfo">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="ru">Заголовок</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="messageID" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">ID сообщения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="cheinID" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">ID цепочки сообщений</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="messageDateTime" type="xsd:dateTime" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата и время формирования сообщения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="messageType" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Тип сообщения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeBank" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="responseCode" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код возврата</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sysInfo" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дополнительная информация</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="digiSign" type="xsd:base64Binary" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">ЭЦП</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="checkFlRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для проверки наличия вкладчика</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="data" type="tns:PersonType" form="qualified"/>
+			<xsd:element name="reason" type="tns:DictionaryType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="createRecordRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для создания записи депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="data" type="tns:DataType" form="qualified"/>
+			<xsd:element name="isTransmit" type="xsd:boolean" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="createRecordResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос об открытии депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="data" type="tns:RecordResponseType" form="qualified"/>
+			<xsd:element name="dataFile" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="getStatusRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос к ИС ГОНС на получение статуса и реквизитов запрашиваемой информации</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="regRrecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="scanDoct" type="tns:DictionaryType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Код сканированного документа</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="requestDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата запроса</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="getPermitTransmitType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  на разрешенине перевода депозита в другой банк</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="IIN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="regRecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>регистрационный номер депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="schetNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>номер текущего счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="responsePermitType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="codeBank" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>код банка получателя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="regRecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="schetNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>номер текущего счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="getTransmitType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос к ИС ГОНС на передачу/контроль реквизитов для перевода депозита из одного банка в другой</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="data" type="tns:TransmitRecordType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="getTransmitRecordType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  на передачу реквизитов перевода депозита в пользу третьего лица</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="regRecordNumberFrom" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>регистрационный номер депозита отправителя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="regRecordNumberTo" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>регистрационный номер депозита получателя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeBankFrom" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>код банка отправителя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeBankTo" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>код банка получателя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="schetNumberFrom" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>номер текущего счета отправителя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="schetNumberTo" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>номер текущего счета получателя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="schetNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>номер сберегательного счета получателя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sumDepozitFrom" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма вклада депозита отправителя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="processDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата перевода суммы вклада</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="getConfirmTransmitRecordType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос к ИС ГОНС на подтверждение перевода депозита в пользу третьего лица</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="regRecordNumberTo" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeBankTo" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>БИК банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="schetNumberTo" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер сберегательного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sumDepozi" type="xsd:double" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма перевода</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="processDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата транзакции</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="responseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="data" type="tns:TransmitRecordType" form="qualified"/>
+			<xsd:element name="info" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Примечание</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="statusResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ ИС ГОНС на получение статуса и реквизитов запрашиваемой информации</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="info" type="xsd:string" form="qualified" minOccurs="0"/>
+			<xsd:element name="summ" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="data" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="closeRecordRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос к ИС ГОНС для передачи данных о закрытии депозита вкладчика ГОНС</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="regRecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="data" type="tns:DataType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="closeRecordResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос о закрытии депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="info" type="xsd:string" form="qualified"/>
+			<xsd:element name="data" type="tns:RecordResponseType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="transmitFromRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для  перевода депозита из одного банка в другой</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="recordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeBank" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер сберегательного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="trasitNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер транзитного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transitDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия транзитного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="transmitRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для  перевода депозита из одного банка в другой</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="data" type="tns:TransmitDataType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="summRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос к ИС ГОНС для расчета возврата суммы премии государства</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="regRecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер сберегательного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sumDepozit" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма вклада</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sumInvest" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма вознаграждения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sumEducation" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма перечисленная на образование</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sumBalans" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма фактического остатка по договору вклада</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="type" type="tns:DictionaryType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код сканированного документа</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="summResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос  для  получения справки о сумме премии государства</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер сберегательного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="moneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма премии государства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="info" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Примечание</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dateFile" type="tns:BaseDoc" form="qualified" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="summReestrRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для  предоставление сумм начисления премии государства</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="count" type="xsd:long" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Количество депозитов</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="moneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Общая сумма</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="date" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="flag" type="xsd:boolean" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Признак</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="reestr" type="tns:ReestrType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Реестр депозитов</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="summReestrResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос  для предоставление сумм начисления премии государства</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="count" type="xsd:long" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Количество депозитов</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="moneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Общая сумма</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="errors" type="tns:ReestrType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Реестр ошибок</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="transferReestrRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос ИС ГОНС не перечисление средств в органы образования</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="regRecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>
+						Регистрационный номер
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>
+						номер сберегательного счета
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">
+						Дата перевода
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="moneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">
+						Сумма
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BINOO" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>
+						БИН органа образования
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="docums" type="tns:DictionaryType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>
+						Код сканированного документа
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="docNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="dateVal" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="summ" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="valuta" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="transferReestrResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ ИС ГОНС о получении данных на перечисление средств в органы образования</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="filePropertyType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для передачи реквизитов загружаемого файла</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="data" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="filePropertyRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  на получение реквизитов загружаемого файла</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="typeFile" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="dateFile" type="xsd:date" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="filePropertyResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ с реквизитами загружаемого файла</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="data" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="educationOrgRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос к ИС ГОНС о получении реквизитов организации образования</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="regRecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>БИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIKOO" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИК органа образования</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="educationOrgResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ ИС ГОНС о наличии организации образования и ее реквизиты Банка</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo" form="qualified"/>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="BIN" type="xsd:string" form="qualified"/>
+			<xsd:element name="fullName" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="account" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Счет</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeBank" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>БИК банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="KBe" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>КБе</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PersonType">
+		<xsd:annotation>
+			<xsd:documentation>Вкладчик/вноситель</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="lastName" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Фамилия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="name" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Имя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="secondName" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Отчество</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DocTypeCode" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Код типа документа удостоверяющего личность</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DocNumber" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер документа удостоверяющего личность</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="birthDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата рождения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="personAddress" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RecordType">
+		<xsd:annotation>
+			<xsd:documentation>Данные депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="dogovorNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер договора</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер сберегательного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeBank" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeKato" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код като</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="district" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Область</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="moneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="term" type="xsd:long" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Срок депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="priority" type="tns:DictionaryType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код принадлежность к приоритетной категории</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="closeDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата закрытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="closeReason" type="tns:DictionaryType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Причина запрытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transitNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер транзитного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transitCurrNumber" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>номер транзитного текущего счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transitDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия транзитного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="info" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Примечание</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="srokDog" type="xsd:long" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RecordResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Данные в ответе при открытии депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="regRrecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>регистрационный номер депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН вкладчика</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>номер сберегательного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="moneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="term" type="xsd:long" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Срок депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="returnMoneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма возврата в бюджет</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="info" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Примечание</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DataType">
+		<xsd:annotation>
+			<xsd:documentation>Передача данных для создания депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="person" type="tns:PersonType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные вкладчика</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deposit" type="tns:RecordType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="docums" type="tns:DictionaryType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Перечень прилагаемых документов</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReestrType">
+		<xsd:annotation>
+			<xsd:documentation>Передача данных для начисления премии государства</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="person" type="tns:PersonType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные вкладчика</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deposit" type="tns:RecordType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="error" type="tns:DictionaryType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Описание ошибки</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TransferReestrType">
+		<xsd:annotation>
+			<xsd:documentation>Передача данных для перечисления средств в органы образования</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="person" type="tns:PersonType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные вкладчика</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deposit" type="tns:RecordType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BINOO" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Бин органа образования</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="foreign" type="xsd:boolean" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Иностранный орган образования</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="foreignName" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Наименование иностранного органа образования</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="error" type="tns:DictionaryType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Описание ошибки</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TransmitRecordType">
+		<xsd:annotation>
+			<xsd:documentation>Реквизиты для перевода  депозита из одного банка в другой</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="regRecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeBank" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>БИК банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="schetNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер сберегательного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер текущего счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transitNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>номер транзитного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transitCurrNumber" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>номер транзитного текущего счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transitDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия транзитного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TransmitDataType">
+		<xsd:annotation>
+			<xsd:documentation>Передача данных для перевода депозита из одного банка в другой</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="depositTo" type="tns:RecordType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные депозита куда предполагается перевести</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="docums" type="tns:DictionaryType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Перечень прилагаемых документов</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DictionaryType">
+		<xsd:annotation>
+			<xsd:documentation>Справочное значение</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description_ru" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Наименование на русском</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description_kz" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Наименование на казахском</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BaseDoc">
+		<xsd:annotation>
+			<xsd:documentation>Прилагаемые документы</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="type" type="tns:DictionaryType" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">
+						Код сканированного документа
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordNumber" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">
+						Регистрационный номер
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="date" type="xsd:date" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">
+						Дата документа
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fileId" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">
+						Имя файла без расширения
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fileType" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">
+						Расширение файла
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fileHash" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">
+						Хэш функция файла
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="content" type="xsd:base64Binary" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="getTransmitRequestType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="ru">Запрос к ИС ГОНС на подтверждение перевода депозита из одного банка в другой</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo"/>
+			<xsd:element name="data" type="tns:transmitReqType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="transmitReqType">
+		<xsd:sequence>
+			<xsd:element name="IIN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="regRecordNumber" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordNumber" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Номер сберегательного счета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transferAmount" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма перевода</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transitDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата поступления платежа</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="getTransmitResponseType">
+		<xsd:sequence>
+			<xsd:element name="head" type="tns:SystemInfo"/>
+			<xsd:element name="result" type="tns:DictionaryType"/>
+			<xsd:element name="data" type="tns:transmitRespType"/>
+			<xsd:element name="dataFile" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="transmitRespType">
+		<xsd:sequence>
+			<xsd:element name="IIN" type="xsd:string"/>
+			<xsd:element name="regRecordNumber" type="xsd:string"/>
+			<xsd:element name="type" type="tns:DictionaryType"/>
+			<xsd:element name="fileId" type="xsd:string"/>
+			<xsd:element name="fileHash" type="xsd:string"/>
+			<xsd:element name="fileType" type="xsd:string"/>
+			<xsd:element name="info" type="xsd:string"/>
+			<xsd:element name="content" type="xsd:base64Binary" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

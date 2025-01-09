@@ -1,0 +1,6 @@
+#Properties
+#Wed May 06 12:35:51 ALMT 2020
+project.reporting.outputEncoding=UTF-8
+build.number=2024
+project.build.sourceEncoding=UTF-8
+profile.id=jboss

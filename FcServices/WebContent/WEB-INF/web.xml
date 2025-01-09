@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.1"
+ xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd">
+ <display-name>FcServices</display-name>
+ <context-param>
+  <param-name>dataSourceName</param-name>
+  <param-value>fc_sys</param-value>
+ </context-param>
+ <context-param>
+  <param-name>user</param-name>
+  <param-value>sys</param-value>
+ </context-param>
+ <filter>
+  <filter-name>forceUTF8CharSet</filter-name>
+  <filter-class>kz.tamur.util.filters.SetCharacterEncodingFilter</filter-class>
+  <init-param>
+   <param-name>encoding</param-name>
+   <param-value>utf-8</param-value>
+  </init-param>
+ </filter>
+ <filter-mapping>
+  <filter-name>forceUTF8CharSet</filter-name>
+  <url-pattern>*</url-pattern>
+ </filter-mapping>
+ <servlet>
+  <servlet-name>BankService</servlet-name>
+  <servlet-class>kz.tamur.fc.impl.BankService</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>BankService</servlet-name>
+  <url-pattern>/bank</url-pattern>
+ </servlet-mapping>
+  <servlet>
+    <servlet-name>SynchronousChannel</servlet-name>
+    <servlet-class>kz.tamur.fc.scc.SynchronousChannel</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SynchronousChannel</servlet-name>
+    <url-pattern>/scc</url-pattern>
+  </servlet-mapping>
+ <welcome-file-list>
+  <welcome-file>index.html</welcome-file>
+  <welcome-file>index.htm</welcome-file>
+  <welcome-file>index.jsp</welcome-file>
+  <welcome-file>default.html</welcome-file>
+  <welcome-file>default.htm</welcome-file>
+  <welcome-file>default.jsp</welcome-file>
+ </welcome-file-list>
+</web-app>

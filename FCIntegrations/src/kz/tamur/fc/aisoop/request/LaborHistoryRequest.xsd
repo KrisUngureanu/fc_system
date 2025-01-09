@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://aisOOP.kz" targetNamespace="http://aisOOP.kz" elementFormDefault="unqualified">
+	<xs:element name="request" type="tns:request"/>
+	<xs:element name="response" type="tns:response"/>
+	<xs:complexType name="request">
+		<xs:sequence>
+			<xs:element name="senderId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор отправителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tokenKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Токен безопасности КИБТокен безопасности КИБ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeRequest" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОСО (OSO) определение типа запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iin" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИИН ФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="response">
+		<xs:sequence>
+			<xs:element name="MainMessage" type="tns:MainMessage"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MainMessage">
+		<xs:sequence>
+			<xs:element name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Текст сообщения о статусе запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeRequest" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОСО (OSO) определение типа запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор заявки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Текст сообщения о статусе запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

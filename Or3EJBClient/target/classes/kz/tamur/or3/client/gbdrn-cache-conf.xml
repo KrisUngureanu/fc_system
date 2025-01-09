@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LocalCacheConfig>
+	<Langs>
+		<Object id="1" clsId="147" uid="0.1"/>
+		<Object id="2" clsId="147" uid="0.2"/>
+	</Langs>
+	<Classes>
+		<Class name="Language"/>
+		<Class name="UserFolder"/>
+		<Class name="App"/>
+		<Class name="MenuItemsDesc"/>
+		<Class name="UI"/>
+		<Class name="ReportPrinter"/>
+		<Class name="ProcessDef"/>
+		<Class name="ProcessDefFolder"/>
+		<Class name="ProcessDefRoot"/>
+		<Class name="HiperTree"/>
+		<Class name="HiperFolder"/>
+		<Class name="MainTree"/>
+		<Class name="Note"/>
+		<Class name="NoteFolder"/>
+		<Class name="NoteRoot"/>
+		<Class name="Структура баз"/>
+		<Class name="Корень структуры баз"/>
+		<Class name="Регион"/>
+		<Class name="Функциональное назначение"/>
+	</Classes>
+</LocalCacheConfig>

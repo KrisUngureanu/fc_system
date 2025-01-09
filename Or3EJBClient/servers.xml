@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root name="Серверы"><node name="kadry" isLeaf="true" url="localhost:1099" baseName="kdr_akm_sys" login="Assem" dlogin="sys_admin" serverType="JBossServer" /><node name="gbdul" isLeaf="true" url="localhost:1099" baseName="ods_ul_cu" login="Assem" dlogin="sys_admin" serverType="JBossServer" /></root>

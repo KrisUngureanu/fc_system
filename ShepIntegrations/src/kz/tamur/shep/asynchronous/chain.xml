@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+  <handler-chain>  	
+     <handler>
+      <handler-name>DumpMessageHandler</handler-name>
+      <handler-class>kz.tamur.shep.handler.DumpMessageHandler</handler-class>
+    </handler>
+    <handler>
+      <handler-name>AsyncDataSignatureHandlerOut</handler-name>
+      <handler-class>kz.tamur.shep.handler.AsyncDataSignatureHandlerOut</handler-class>
+    </handler>
+  </handler-chain>
+</handler-chains>

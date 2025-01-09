@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Built-By: user
+Build-Jdk: 22.0.1
+Created-By: Maven Integration for Eclipse
+Dependencies: com.oracle.ojdbc14,com.sun.xml.bind,org.jboss.remote-nam
+ ing,org.hornetq,javax.jcr
+Class-Path: Or3EJBClient.jar activation.jar bcprov-jdk15-133.jar com.i
+ bm.mq.jar commons-collections-3.1.jar commons-dbcp-1.2.1.jar commons-
+ pool-1.2.jar connector.jar dbswing.jar gef.jar gnu-regexp-1.1.4.jar h
+ elp.jar jacob.jar jbcl.jar jhall.jar jnet.jar joda-time-1.3.jar maila
+ pi.jar navigator.jar pop3.jar saxpath.jar smtp.jar sqljdbc.jar tnames
+ erv.jar velocity-1.4.jar wrapper.jar xalan.jar xmldsig.jar xmlsec.jar
+  CacheDB.jar com.ibm.mqjms.jar sign-applet.jar jcalendar.jar Notes.ja
+ r Or3Client.jar crypto.gammaprov.jar jbosscache-core.jar jgroups.jar 
+ docx4j-2.8.1.jar commons-io-1.4.jar commons-dbutils-1.4.jar EKyzmetIn
+ tegrations.jar lucene-analyzers-common-4.5.1.jar lucene-core-4.5.1.ja
+ r lucene-highlighter-4.5.1.jar lucene-memory-4.5.1.jar lucene-queries
+ -4.5.1.jar lucene-queryparser-4.5.1.jar lucene-sandbox-4.5.1.jar itex
+ tpdf-5.5.0.jar httpclient-4.3.5.jar httpcore-4.3.2.jar jlibs-xml.jar
+

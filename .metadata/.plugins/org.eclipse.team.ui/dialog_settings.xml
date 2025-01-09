@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SynchronizeViewSettings">
+		<item key="linkWithEditor" value="false"/>
+		<item key="lastactiveparticipant_id" value="org.eclipse.team.cvs.ui.workspace-participant"/>
+		<item key="lastactiveparticipant_sec_id" value="1726221634114"/>
+		<section name="org.eclipse.team.cvs.ui.workspace-participant.1716191020317">
+			<item key="org.eclipse.team.ui.activeModelProvider" value="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+		<section name="org.eclipse.team.cvs.ui.workspace-participant.1719918129158">
+		</section>
+		<section name="org.eclipse.team.cvs.ui.workspace-participant.1719918268358">
+		</section>
+		<section name="org.eclipse.team.cvs.ui.workspace-participant.1719918315404">
+			<item key="org.eclipse.team.ui.activeModelProvider" value="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+		<section name="org.eclipse.team.cvs.ui.workspace-participant.1719919273417">
+			<item key="org.eclipse.team.ui.activeModelProvider" value="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+		<section name="org.eclipse.team.cvs.ui.workspace-participant.1726220301766">
+			<item key="org.eclipse.team.ui.activeModelProvider" value="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+		<section name="org.eclipse.team.cvs.ui.workspace-participant.1726221634114">
+			<item key="org.eclipse.team.ui.activeModelProvider" value="org.eclipse.team.ui.activeModelProvider"/>
+		</section>
+	</section>
+</section>

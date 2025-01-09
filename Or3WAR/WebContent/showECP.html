@@ -1,0 +1,92 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Укажите ЭЦП</title>
+    <link href="login.css" rel="StyleSheet" type="text/css">
+</head>
+<script language="JavaScript">
+window.returnValue = null;
+</script>
+
+<body bgcolor="#F0F8FF" style="margin:0">
+<form name="logonForm">
+<table style="width:100%;height:100%;" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td style="height:100%;" align="center" valign="middle">
+            <table border="0" cellpadding="0" cellspacing="5" class="designLoginPageForm"
+                   style="width:300px;height: 212px; background-image:url(loginBox.png);background-repeat:no-repeat;">
+                <tr>
+                    <td valign="middle" style="height:140px">
+                            <table width="100%" border="0" cellpadding="2" cellspacing="1">
+                                <tr height="40">
+                                    <td width="30%" rowspan="6" align="center" valign="middle" nowrap>
+                                    	<img src="key2.png" width="60" height="82" border="0" alt="" align="bottom" />
+                                    </td>
+                                    <td align="center" valign="middle" nowrap>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  	<td align="left" valign="bottom" nowrap><label class="label">Путь к ключу ЭЦП:</label></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+                                    	<input type="text" name="file" value="" class="input" id="file"/>
+                                    	<input name="sel" type="button" class="button" value="..." 
+                                    					onclick="selectFile(document.getElementById('file').value);"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><label class="label">Пароль:</label></td>
+                                </tr>
+                                <tr>
+                                  <td align="left" valign="middle"><input type="password" name="passwd" id="passwd" class="input"/></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="middle"><input name="submit" type="submit" class="button" value="OK" onclick="window.close();"/><input name="reset" type="button" class="button" value="Отмена" onclick="window.onunload = null; opener.signStringCommonEnd(); window.close();"/></td>
+                                </tr>
+																<TR valign="bottom" height="40">
+																	<td id="error" colspan="2" align="center" class="error"></td>
+																</TR>
+                            </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+<!--
+        <td align="center" valign="bottom" class="infofont"> (c) ТОО "Тамур" 2009. Все права защищены.</td>
+-->
+    </tr>
+</table>
+</form>
+<script language="JavaScript" type="text/javascript">
+<!--
+var newwin;
+
+window.onunload = function() {
+	opener.signStringCommonEnd(document.getElementById('file').value + ';' + document.getElementById('passwd').value);
+	window.onunload = null;
+};
+
+document.forms["logonForm"].elements["file"].value = (opener.keyPath) ? opener.keyPath : "";
+document.forms["logonForm"].elements["passwd"].focus();
+
+function selectFile(path) {
+	
+  var f = opener.document.getElementById('ECPApplet').selectFile("p12", "Файлы ключей ЭЦП в формате PKCS12", path);
+  if (f != null) {
+  	if (f.length > 7 && "[ERROR: " == f.substring(0, 8)) {
+    	document.getElementById("error").innerHTML = f.substring(8, f.length - 1);  	    	
+		document.forms["logonForm"].elements["submit"].disabled = false;
+  	} else {
+		document.getElementById("error").innerHTML = "";
+		document.getElementById('file').value = f;
+  	}
+  }
+}
+
+
+// -->
+</script>
+</BODY>
+</HTML>

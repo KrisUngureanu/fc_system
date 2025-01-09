@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SearchServiceService" targetNamespace="http://webservice.request.universal.interactive.nat" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.request.universal.interactive.nat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://webservice.request.universal.interactive.nat" xmlns:ns1="http://message.persistence.interactive.nat" xmlns:ns2="http://dictionaries.persistence.interactive.nat" xmlns:ns3="http://person.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://message.persistence.interactive.nat"/>
+      <xs:import namespace="http://dictionaries.persistence.interactive.nat"/>
+      <xs:import namespace="http://person.persistence.interactive.nat"/>
+      <xs:import namespace="http://document.persistence.interactive.nat"/>
+      <xs:element name="findPerson" type="tns:findPerson"/>
+      <xs:element name="findPersonByDoc" type="tns:findPersonByDoc"/>
+      <xs:element name="findPersonByDocResponse" type="tns:findPersonByDocResponse"/>
+      <xs:element name="findPersonByFio" type="tns:findPersonByFio"/>
+      <xs:element name="findPersonByFioResponse" type="tns:findPersonByFioResponse"/>
+      <xs:element name="findPersonByIin" type="tns:findPersonByIin"/>
+      <xs:element name="findPersonByIinResponse" type="tns:findPersonByIinResponse"/>
+      <xs:element name="findPersonResponse" type="tns:findPersonResponse"/>
+      <xs:element name="request" type="ns1:Request"/>
+      <xs:element name="requestDoc" type="ns1:RequestDoc"/>
+      <xs:element name="requestIin" type="ns1:RequestIin"/>
+      <xs:element name="requestSearchFio" type="ns1:RequestSearchFio"/>
+      <xs:element name="response" type="ns1:Response"/>
+      <xs:complexType name="findPersonByFio">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="requestFio" type="ns1:RequestSearchFio"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findPersonByFioResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findPerson">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:request"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findPersonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findPersonByIin">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:requestIin"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findPersonByIinResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findPersonByDoc">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:requestDoc"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findPersonByDocResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:Response"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Exception" type="tns:Exception"/>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://person.persistence.interactive.nat" version="1.0" xmlns:ns1="http://dictionaries.persistence.interactive.nat" xmlns:ns2="http://document.persistence.interactive.nat" xmlns:tns="http://person.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://dictionaries.persistence.interactive.nat"/>
+      <xs:import namespace="http://document.persistence.interactive.nat"/>
+      <xs:complexType name="Person">
+        <xs:sequence>
+          <xs:element name="iin" type="xs:string"/>
+          <xs:element name="fio" type="tns:Fio"/>
+          <xs:element name="birthDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="deathDate" type="xs:date"/>
+          <xs:element name="sex" type="ns1:Sex"/>
+          <xs:element name="nationality" type="ns1:Nationality"/>
+          <xs:element name="citizenship" type="ns1:Country"/>
+          <xs:element name="personStatus" type="ns1:PersonStatus"/>
+          <xs:element minOccurs="0" name="addDocs" type="tns:AddDocs"/>
+          <xs:element minOccurs="0" name="regAddress" type="tns:RegAddress"/>
+          <xs:element minOccurs="0" name="birthPlace" type="tns:BirthPlace"/>
+          <xs:element minOccurs="0" name="personCapableStatus" type="tns:PersonCapableStatus"/>
+          <xs:element minOccurs="0" name="missingStatus" type="tns:MissingStatus"/>
+          <xs:element minOccurs="0" name="absentStatus" type="tns:AbsentStatus"/>
+          <xs:element minOccurs="0" name="disappearStatus" type="tns:DisappearStatus"/>
+          <xs:element minOccurs="0" name="personExcludeStatus" type="tns:PersonExcludeStatus"/>
+          <xs:element minOccurs="0" name="frontierCrossings">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="frontierCrossing" type="ns2:FrontierCrossing"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="documents">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="document" type="ns2:Document"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="addresses">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="address" type="tns:Address"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="removed" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="subscribe" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Fio">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="surname" type="xs:string"/>
+          <xs:element minOccurs="0" name="firstname" type="xs:string"/>
+          <xs:element minOccurs="0" name="secondname" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AddDocs">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="birthSvidNumber" type="xs:string"/>
+          <xs:element minOccurs="0" name="birthSvidBeginDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="birthSvidIssueOrg" type="xs:string"/>
+          <xs:element minOccurs="0" name="deathSvidNumber" type="xs:string"/>
+          <xs:element minOccurs="0" name="deathSvidBeginDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="deathSvidIssueOrg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RegAddress">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="country" type="ns1:Country"/>
+          <xs:element minOccurs="0" name="districts" type="ns1:District"/>
+          <xs:element minOccurs="0" name="region" type="ns1:Region"/>
+          <xs:element minOccurs="0" name="districtName" type="xs:string"/>
+          <xs:element minOccurs="0" name="regionName" type="xs:string"/>
+          <xs:element minOccurs="0" name="city" type="xs:string"/>
+          <xs:element minOccurs="0" name="street" type="xs:string"/>
+          <xs:element minOccurs="0" name="building" type="xs:string"/>
+          <xs:element minOccurs="0" name="corpus" type="xs:string"/>
+          <xs:element minOccurs="0" name="flat" type="xs:string"/>
+          <xs:element minOccurs="0" name="date" type="xs:date"/>
+          <xs:element minOccurs="0" name="arCode" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BirthPlace">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="country" type="ns1:Country"/>
+          <xs:element minOccurs="0" name="district" type="ns1:District"/>
+          <xs:element minOccurs="0" name="region" type="ns1:Region"/>
+          <xs:element minOccurs="0" name="city" type="xs:string"/>
+          <xs:element minOccurs="0" name="foreignData" type="tns:ForeignData"/>
+          <xs:element minOccurs="0" name="birthTeCodeAR" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ForeignData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="districtName" type="xs:string"/>
+          <xs:element minOccurs="0" name="regionName" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PersonCapableStatus">
+        <xs:sequence>
+          <xs:element name="capableStatus" type="ns1:CapableStatus"/>
+          <xs:element name="capableDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="capableEndDate" type="xs:date"/>
+          <xs:element name="capableNumber" type="xs:string"/>
+          <xs:element name="court" type="ns1:Court"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MissingStatus">
+        <xs:sequence>
+          <xs:element name="missing" type="xs:boolean"/>
+          <xs:element name="missingDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="missingEndDate" type="xs:date"/>
+          <xs:element name="missingNumber" type="xs:string"/>
+          <xs:element name="gpTerritorial" type="ns1:GpTerritorial"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AbsentStatus">
+        <xs:sequence>
+          <xs:element name="absentDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="absentEndDate" type="xs:date"/>
+          <xs:element name="absentNumber" type="xs:string"/>
+          <xs:element name="court" type="ns1:Court"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DisappearStatus">
+        <xs:sequence>
+          <xs:element name="disappear" type="xs:boolean"/>
+          <xs:element name="disappearDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="disappearEndDate" type="xs:date"/>
+          <xs:element name="disappearNumber" type="xs:string"/>
+          <xs:element name="gpTerritorial" type="ns1:GpTerritorial"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PersonExcludeStatus">
+        <xs:sequence>
+          <xs:element name="excludeReason" type="ns1:ExcludeReason"/>
+          <xs:element minOccurs="0" name="excludeReasonDate" type="xs:date"/>
+          <xs:element name="excludeDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="excludeParticipant" type="ns1:Participant"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Address">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="type" type="ns1:AddressType"/>
+          <xs:element minOccurs="0" name="country" type="ns1:Country"/>
+          <xs:element minOccurs="0" name="district" type="ns1:District"/>
+          <xs:element minOccurs="0" name="region" type="ns1:Region"/>
+          <xs:element minOccurs="0" name="districtName" type="xs:string"/>
+          <xs:element minOccurs="0" name="regionName" type="xs:string"/>
+          <xs:element minOccurs="0" name="city" type="xs:string"/>
+          <xs:element minOccurs="0" name="street" type="xs:string"/>
+          <xs:element minOccurs="0" name="building" type="xs:string"/>
+          <xs:element minOccurs="0" name="corpus" type="xs:string"/>
+          <xs:element minOccurs="0" name="flat" type="xs:string"/>
+          <xs:element minOccurs="0" name="beginDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="endDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="arCode" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://message.persistence.interactive.nat" version="1.0" xmlns:ns1="http://dictionaries.persistence.interactive.nat" xmlns:ns2="http://person.persistence.interactive.nat" xmlns:ns3="http://document.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://dictionaries.persistence.interactive.nat"/>
+      <xs:import namespace="http://person.persistence.interactive.nat"/>
+      <xs:import namespace="http://document.persistence.interactive.nat"/>
+      <xs:complexType name="RequestSearchFio">
+        <xs:sequence>
+          <xs:element name="GUID" type="xs:string"/>
+          <xs:element name="dateMessage" type="xs:dateTime"/>
+          <xs:element name="senderCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="surname" type="xs:string"/>
+          <xs:element minOccurs="0" name="firstname" type="xs:string"/>
+          <xs:element minOccurs="0" name="secondname" type="xs:string"/>
+          <xs:element minOccurs="0" name="birthDateFrom" type="xs:date"/>
+          <xs:element minOccurs="0" name="birthDateTo" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Response">
+        <xs:sequence>
+          <xs:element name="GUID" type="xs:string"/>
+          <xs:element name="inquiryGUID" type="xs:string"/>
+          <xs:element name="dateMessage" type="xs:dateTime"/>
+          <xs:element name="messageResult" type="ns1:MessageResult"/>
+          <xs:element name="sender" type="ns1:Participant"/>
+          <xs:element name="receiver" type="ns1:Participant"/>
+          <xs:element minOccurs="0" name="persons">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="person" type="ns2:Person"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="version" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Request">
+        <xs:sequence>
+          <xs:element name="GUID" type="xs:string"/>
+          <xs:element name="dateMessage" type="xs:dateTime"/>
+          <xs:element name="sender" type="ns1:Participant"/>
+          <xs:element name="receiver" type="ns1:Participant"/>
+          <xs:element name="person" type="ns2:Person"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RequestIin">
+        <xs:sequence>
+          <xs:element name="GUID" type="xs:string"/>
+          <xs:element name="dateMessage" type="xs:dateTime"/>
+          <xs:element name="senderCode" type="xs:string"/>
+          <xs:element name="iin" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RequestDoc">
+        <xs:sequence>
+          <xs:element name="GUID" type="xs:string"/>
+          <xs:element name="dateMessage" type="xs:dateTime"/>
+          <xs:element name="senderCode" type="xs:string"/>
+          <xs:element name="documentNumber" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://document.persistence.interactive.nat" version="1.0" xmlns:ns1="http://dictionaries.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://dictionaries.persistence.interactive.nat"/>
+      <xs:complexType name="FrontierCrossing">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="operationType" type="xs:long"/>
+          <xs:element minOccurs="0" name="operationDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="kppCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="kppName" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Document">
+        <xs:sequence>
+          <xs:element name="documentType" type="ns1:DocumentType"/>
+          <xs:element name="number" type="xs:string"/>
+          <xs:element minOccurs="0" name="series" type="xs:string"/>
+          <xs:element name="beginDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="endDate" type="xs:date"/>
+          <xs:element name="issueOrganization" type="ns1:DocumentOrganization"/>
+          <xs:element name="documentInvalidity" type="ns1:DocumentInvalidity"/>
+          <xs:element minOccurs="0" name="invalidityDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="giveToPersonDate" type="xs:date"/>
+          <xs:element minOccurs="0" name="actual" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="surname" type="xs:string"/>
+          <xs:element minOccurs="0" name="firstname" type="xs:string"/>
+          <xs:element minOccurs="0" name="secondname" type="xs:string"/>
+          <xs:element name="birthDate" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://dictionaries.persistence.interactive.nat" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="MessageResult">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Participant">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Sex">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Nationality">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Country">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PersonStatus">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="District">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Region">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CapableStatus">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Court">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GpTerritorial">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ExcludeReason">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DocumentType">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DocumentOrganization">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DocumentInvalidity">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AddressType">
+        <xs:sequence>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="nameRu" type="xs:string"/>
+          <xs:element name="nameKz" type="xs:string"/>
+          <xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Exception">
+    <wsdl:part name="Exception" element="tns:Exception"/>
+  </wsdl:message>
+  <wsdl:message name="findPersonByFio">
+    <wsdl:part name="parameters" element="tns:findPersonByFio"/>
+  </wsdl:message>
+  <wsdl:message name="findPersonByFioResponse">
+    <wsdl:part name="parameters" element="tns:findPersonByFioResponse"/>
+  </wsdl:message>
+  <wsdl:message name="findPersonResponse">
+    <wsdl:part name="parameters" element="tns:findPersonResponse"/>
+  </wsdl:message>
+  <wsdl:message name="findPerson">
+    <wsdl:part name="parameters" element="tns:findPerson"/>
+  </wsdl:message>
+  <wsdl:message name="findPersonByDoc">
+    <wsdl:part name="parameters" element="tns:findPersonByDoc"/>
+  </wsdl:message>
+  <wsdl:message name="findPersonByIin">
+    <wsdl:part name="parameters" element="tns:findPersonByIin"/>
+  </wsdl:message>
+  <wsdl:message name="findPersonByDocResponse">
+    <wsdl:part name="parameters" element="tns:findPersonByDocResponse"/>
+  </wsdl:message>
+  <wsdl:message name="findPersonByIinResponse">
+    <wsdl:part name="parameters" element="tns:findPersonByIinResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="SearchService">
+    <wsdl:operation name="findPersonByFio">
+      <wsdl:input name="findPersonByFio" message="tns:findPersonByFio"/>
+      <wsdl:output name="findPersonByFioResponse" message="tns:findPersonByFioResponse"/>
+      <wsdl:fault name="Exception" message="tns:Exception"/>
+    </wsdl:operation>
+    <wsdl:operation name="findPerson">
+      <wsdl:input name="findPerson" message="tns:findPerson"/>
+      <wsdl:output name="findPersonResponse" message="tns:findPersonResponse"/>
+      <wsdl:fault name="Exception" message="tns:Exception"/>
+    </wsdl:operation>
+    <wsdl:operation name="findPersonByIin">
+      <wsdl:input name="findPersonByIin" message="tns:findPersonByIin"/>
+      <wsdl:output name="findPersonByIinResponse" message="tns:findPersonByIinResponse"/>
+      <wsdl:fault name="Exception" message="tns:Exception"/>
+    </wsdl:operation>
+    <wsdl:operation name="findPersonByDoc">
+      <wsdl:input name="findPersonByDoc" message="tns:findPersonByDoc"/>
+      <wsdl:output name="findPersonByDocResponse" message="tns:findPersonByDocResponse"/>
+      <wsdl:fault name="Exception" message="tns:Exception"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SearchServiceServiceSoapBinding" type="tns:SearchService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findPersonByFio">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findPersonByFio">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findPersonByFioResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findPerson">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findPerson">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findPersonResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findPersonByDoc">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findPersonByDoc">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findPersonByDocResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findPersonByIin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findPersonByIin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findPersonByIinResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SearchServiceService">
+    <wsdl:port name="SearchServicePort" binding="tns:SearchServiceServiceSoapBinding">
+      <soap:address location="http://192.168.55.76:8080/universal/SearchService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

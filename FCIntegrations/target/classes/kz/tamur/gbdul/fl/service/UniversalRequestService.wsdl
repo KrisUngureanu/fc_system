@@ -1,0 +1,1220 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions name="UniversalServiceService" targetNamespace="http://webservice.request.universal.interactive.nat" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:bons0="http://webservice.request.universal.interactive.nat" xmlns:bons1="webservice.request.universal.interactive.nat" xmlns:ns1="http://person.persistence.interactive.nat" xmlns:ns2="http://message.persistence.interactive.nat" xmlns:tns="webservice.request.universal.interactive.nat">
+  <types>
+    <xs:schema targetNamespace="http://document.persistence.interactive.nat" version="1.0" xmlns:ns11="http://dictionaries.persistence.interactive.nat" xmlns:ns3="http://document.persistence.interactive.nat" xmlns:ns4="http://dictionaries.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://dictionaries.persistence.interactive.nat"/>
+        <xs:complexType name="FrontierCrossing">
+				<xs:annotation>
+					<xs:documentation>Данные о пересечении границы РК</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element minOccurs="0" name="operationType" type="xs:long">
+						<xs:annotation>
+							<xs:documentation>Въезд/Выезд</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="operationDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата пересечения границы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="kppCode" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код КПП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="kppName" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование КПП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="Document">
+		<xs:sequence>
+			<xs:element name="documentType" type="ns11:DocumentType"/>
+			<xs:element name="number" type="xs:string"/>
+			<xs:element minOccurs="0" name="series" type="xs:string"/>
+			<xs:element name="beginDate" type="xs:date"/>
+			<xs:element minOccurs="0" name="endDate" type="xs:date"/>
+			<xs:element name="issueOrganization" type="ns11:DocumentOrganization"/>
+			<xs:element name="documentInvalidity" type="ns11:DocumentInvalidity"/>
+			<xs:element minOccurs="0" name="invalidityDate" type="xs:date"/>
+			<xs:element minOccurs="0" name="giveToPersonDate" type="xs:date"/>
+			<xs:element minOccurs="0" name="actual" type="xs:boolean"/>
+			<xs:element name="surname" type="xs:string"/>
+			<xs:element name="firstname" type="xs:string"/>
+			<xs:element minOccurs="0" name="secondname" type="xs:string"/>
+			<xs:element name="birthDate" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="webservice.request.universal.interactive.nat" version="1.0" xmlns:ns1="http://message.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://message.persistence.interactive.nat"/>
+            <xs:element name="request" type="ns1:Request"/>
+   <xs:element name="requestDoc" type="ns1:RequestDoc"/>
+   <xs:element name="requestFio" type="ns1:RequestFio"/>
+   <xs:element name="requestIin" type="ns1:RequestIin"/>
+   <xs:element name="response" type="ns1:Response"/>
+  </xs:schema>
+    <xs:schema targetNamespace="http://dictionaries.persistence.interactive.nat" version="1.0" xmlns:ns4="http://dictionaries.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xs:complexType name="Participant">
+				<xs:annotation>
+					<xs:documentation>Отправитель/получателя сообщения</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="MessageResult">
+				<xs:annotation>
+					<xs:documentation>Результат обработки сообщения</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="GpTerritorial">
+				<xs:annotation>
+					<xs:documentation>Справочник органов КПССУ</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="ExcludeReason">
+				<xs:annotation>
+					<xs:documentation>Справочник признаков исключений</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="Court">
+				<xs:annotation>
+					<xs:documentation>Справочник судов</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="CapableStatus">
+				<xs:annotation>
+					<xs:documentation>Справочник статусов дееспособности</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="Country">
+				<xs:annotation>
+					<xs:documentation>Страна</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="Region">
+				<xs:annotation>
+					<xs:documentation>Район</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="District">
+				<xs:annotation>
+					<xs:documentation>Область</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="Nationality">
+				<xs:annotation>
+					<xs:documentation>Национальность</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="Sex">
+				<xs:annotation>
+					<xs:documentation>Пол</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="PersonStatus">
+				<xs:annotation>
+					<xs:documentation>Статус персоны</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="DocumentType">
+				<xs:annotation>
+					<xs:documentation>Тип документа (УДЛ, Паспорт, итд)</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="DocumentInvalidity">
+				<xs:annotation>
+					<xs:documentation>Описание действительности документа</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="DocumentOrganization">
+				<xs:annotation>
+					<xs:documentation>Организация, выдавшая документ</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="code" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameRu" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (рус.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nameKz" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Наименование (каз.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="changeDate" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://message.persistence.interactive.nat" version="1.0" xmlns:ns11="http://dictionaries.persistence.interactive.nat" xmlns:ns12="http://dictionaries.persistence.interactive.nat" xmlns:ns21="http://person.persistence.interactive.nat" xmlns:ns22="http://person.persistence.interactive.nat" xmlns:ns4="http://dictionaries.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://dictionaries.persistence.interactive.nat"/>
+            <xs:import namespace="http://person.persistence.interactive.nat"/>
+        <xs:complexType name="Response">
+				<xs:annotation>
+					<xs:documentation>Ответ на запрос поиска персоны / Сообщение автоматической актуализации</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="GUID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Уникальный идентификатор сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="inquiryGUID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Идентификатор запроса (если это Ответ на запрос поиска персоны)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dateMessage" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата отправки сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="messageResult" type="ns11:MessageResult">
+						<xs:annotation>
+							<xs:documentation>Результат обработки запроса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sender" type="ns11:Participant">
+						<xs:annotation>
+							<xs:documentation>Код системы отправителя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="receiver" type="ns11:Participant">
+						<xs:annotation>
+							<xs:documentation>Код системы получателя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="persons">
+						<xs:annotation>
+							<xs:documentation>Список персон</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" minOccurs="0" name="person" type="ns21:Person"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="version" type="xs:int"/>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="RequestFio">
+				<xs:annotation>
+					<xs:documentation>Запрос поиска персоны по ФИО</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="GUID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Уникальный идентификатор сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dateMessage" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата отправки сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="senderCode" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код системы отправителя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="surname" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Фамилия искомой персоны</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="firstname" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Имя искомой персоны</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="secondname" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Отчество искомой персоны</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="birthDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата рождения искомой персоны</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="Request">
+				<xs:annotation>
+					<xs:documentation>Запрос поиска персоны</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="GUID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Уникальный идентификатор сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dateMessage" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата отправки сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sender" type="ns12:Participant">
+						<xs:annotation>
+							<xs:documentation>Код системы отправителя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="receiver" type="ns12:Participant">
+						<xs:annotation>
+							<xs:documentation>Код системы получателя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="person" type="ns22:Person">
+						<xs:annotation>
+							<xs:documentation>Искомая персона</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="RequestIin">
+				<xs:annotation>
+					<xs:documentation>Запрос поиска персоны по ИИН</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="GUID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Уникальный идентификатор сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dateMessage" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата отправки сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="senderCode" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код системы отправителя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="iin" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Искомый ИИН</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="RequestDoc">
+				<xs:annotation>
+					<xs:documentation>Запрос поиска персоны по ДУЛ</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="GUID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Уникальный идентификатор сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dateMessage" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата отправки сообщения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="senderCode" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код системы отправителя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="documentNumber" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Номер ДУЛ искомой персоны</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://person.persistence.interactive.nat" version="1.0" xmlns:ns11="http://dictionaries.persistence.interactive.nat" xmlns:ns12="http://dictionaries.persistence.interactive.nat" xmlns:ns13="http://dictionaries.persistence.interactive.nat" xmlns:ns14="http://dictionaries.persistence.interactive.nat" xmlns:ns15="http://dictionaries.persistence.interactive.nat" xmlns:ns16="http://dictionaries.persistence.interactive.nat" xmlns:ns17="http://dictionaries.persistence.interactive.nat" xmlns:ns18="http://dictionaries.persistence.interactive.nat" xmlns:ns21="http://document.persistence.interactive.nat" xmlns:ns3="http://document.persistence.interactive.nat" xmlns:ns4="http://dictionaries.persistence.interactive.nat" xmlns:tns1="http://person.persistence.interactive.nat" xmlns:tns10="http://person.persistence.interactive.nat" xmlns:tns11="http://person.persistence.interactive.nat" xmlns:tns2="http://person.persistence.interactive.nat" xmlns:tns3="http://person.persistence.interactive.nat" xmlns:tns4="http://person.persistence.interactive.nat" xmlns:tns5="http://person.persistence.interactive.nat" xmlns:tns6="http://person.persistence.interactive.nat" xmlns:tns7="http://person.persistence.interactive.nat" xmlns:tns8="http://person.persistence.interactive.nat" xmlns:tns9="http://person.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://document.persistence.interactive.nat"/>
+            <xs:import namespace="http://dictionaries.persistence.interactive.nat"/>
+        <xs:complexType name="Person">
+				<xs:annotation>
+					<xs:documentation>Персона</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="iin" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>ИИН</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fio" type="tns1:Fio">
+						<xs:annotation>
+							<xs:documentation>ФИО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="birthDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата рождения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="deathDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата смерти</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sex" type="ns11:Sex">
+						<xs:annotation>
+							<xs:documentation>Пол</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="nationality" type="ns11:Nationality">
+						<xs:annotation>
+							<xs:documentation>Национальность</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="citizenship" type="ns11:Country">
+						<xs:annotation>
+							<xs:documentation>Гражданство</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="personStatus" type="ns11:PersonStatus">
+						<xs:annotation>
+							<xs:documentation>Статус</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="addDocs" type="tns1:AddDocs">
+						<xs:annotation>
+							<xs:documentation>Данные свидетельства о рождении и свидетельства о смерти</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="regAddress" type="tns1:RegAddress">
+						<xs:annotation>
+							<xs:documentation>Адрес прописки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="birthPlace" type="tns1:BirthPlace">
+						<xs:annotation>
+							<xs:documentation>Место рождения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="personCapableStatus" type="tns1:PersonCapableStatus">
+						<xs:annotation>
+							<xs:documentation>Статус дееспособности персоны</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="missingStatus" type="tns1:MissingStatus">
+						<xs:annotation>
+							<xs:documentation>Статус персоны "Пропавший без вести"</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="absentStatus" type="tns1:AbsentStatus">
+						<xs:annotation>
+							<xs:documentation>Статус персоны "Безвестно отсутствующий"</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="disappearStatus" type="tns1:DisappearStatus">
+						<xs:annotation>
+							<xs:documentation>Физическое лицо скрывается от дознания, следствия, суда и отбытия наказания</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="personExcludeStatus" type="tns1:PersonExcludeStatus">
+						<xs:annotation>
+							<xs:documentation>Признак исключения ИИН</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="frontierCrossings">
+						<xs:annotation>
+							<xs:documentation>Данные о пересечении границы РК</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" minOccurs="0" name="frontierCrossing" type="ns21:FrontierCrossing"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="documents">
+						<xs:annotation>
+							<xs:documentation>Документы удостоверяющие личность</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" minOccurs="0" name="document" type="ns21:Document"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="removed" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>Статус удаления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="subscribe" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>Требуется ли автоматическая актуализация сведений по персоне</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="AddDocs">
+				<xs:annotation>
+					<xs:documentation>Данные свидетельства о рождении и свидетельства о смерти</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element minOccurs="0" name="birthSvidNumber" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Номер свидетельства о рождении</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="birthSvidBeginDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата выдачи свидетельства о рождении</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="birthSvidIssueOrg" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Организация, выдавшая свидетельство о рождении</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="deathSvidNumber" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Номер свидетельства о смерти</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="deathSvidBeginDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата выдачи свидетельства о смерти</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="deathSvidIssueOrg" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Организация, выдавшая свидетельство о смерти</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="MissingStatus">
+				<xs:annotation>
+					<xs:documentation>Статус персоны "Пропавший без вести"</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="missing" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>Пропавший - Да/Нет</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="missingDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата присвоения статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="missingEndDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата окончания срока действия статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="missingNumber" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Номер дела</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="gpTerritorial" type="ns12:GpTerritorial">
+						<xs:annotation>
+							<xs:documentation>Орган КПССУ присвоивший статус</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="PersonExcludeStatus">
+				<xs:annotation>
+					<xs:documentation>Признак исключения ИИН</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="excludeReason" type="ns13:ExcludeReason">
+						<xs:annotation>
+							<xs:documentation>Причина исключения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="excludeReasonDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата присвоения статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="excludeDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата начала срока действия статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="excludeParticipant" type="ns13:Participant">
+						<xs:annotation>
+							<xs:documentation>Источник информации о присвоении статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="DisappearStatus">
+				<xs:annotation>
+					<xs:documentation>Физическое лицо скрывается от дознания, следствия, суда и отбытия наказания</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="disappear" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>Скрывается - Да/Нет</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="disappearDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата присвоения статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="disappearEndDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата окончания срока действия статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="disappearNumber" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Номер дела</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="gpTerritorial" type="ns14:GpTerritorial">
+						<xs:annotation>
+							<xs:documentation>Орган КПССУ присвоивший статус</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="Fio">
+				<xs:annotation>
+					<xs:documentation>ФИО</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="surname" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Фамилия</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="firstname" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Имя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="secondname" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Отчество</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="AbsentStatus">
+				<xs:annotation>
+					<xs:documentation>Статус персоны "Безвестно отсутствующий"</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="absentDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата присвоения статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="absentEndDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата окончания срока действия статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="absentNumber" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Номер дела</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="court" type="ns15:Court">
+						<xs:annotation>
+							<xs:documentation>Суд присвоивший статус</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="PersonCapableStatus">
+				<xs:annotation>
+					<xs:documentation>Статус дееспособности персоны</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="capableStatus" type="ns16:CapableStatus">
+						<xs:annotation>
+							<xs:documentation>Признак дееспособности персоны</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="capableDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата присвоения статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="capableEndDate" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>Дата окончания срока действия статуса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="capableNumber" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Номер дела</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="court" type="ns16:Court">
+						<xs:annotation>
+							<xs:documentation>Суд присвоивший статус</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="BirthPlace">
+				<xs:annotation>
+					<xs:documentation>Место рождения</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element minOccurs="0" name="country" type="ns17:Country">
+						<xs:annotation>
+							<xs:documentation>Страна</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="district" type="ns17:District">
+						<xs:annotation>
+							<xs:documentation>Область</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="region" type="ns17:Region">
+						<xs:annotation>
+							<xs:documentation>Район</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="city" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Город</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="foreignData" type="tns9:ForeignData">
+						<xs:annotation>
+							<xs:documentation>Место рождения - заграница</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="birthTeCodeAR" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код адреса в формате Адресного регистра</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="ForeignData">
+				<xs:annotation>
+					<xs:documentation>Место рождения - заграница</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element minOccurs="0" name="districtName" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Область</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="regionName" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Район</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="RegAddress">
+				<xs:annotation>
+					<xs:documentation>Адрес прописки</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element minOccurs="0" name="country" type="ns18:Country">
+						<xs:annotation>
+							<xs:documentation>Страна</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="districts" type="ns18:District">
+						<xs:annotation>
+							<xs:documentation>Область</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="region" type="ns18:Region">
+						<xs:annotation>
+							<xs:documentation>Район</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="districtName" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Область (не Казахстан)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="regionName" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Район  (не Казахстан)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="city" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Город</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="street" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Улица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="building" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Дом</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="corpus" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Корпус</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="flat" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Квартира</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="arCode" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Код адреса в формате Адресного регистра</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+	</xs:complexType>
+    </xs:schema>
+        <xsd:schema targetNamespace="http://webservice.request.universal.interactive.nat" xmlns:ns11="http://message.persistence.interactive.nat" xmlns:ns12="http://message.persistence.interactive.nat" xmlns:ns13="http://message.persistence.interactive.nat" xmlns:ns14="http://message.persistence.interactive.nat" xmlns:ns15="http://message.persistence.interactive.nat" xmlns:ns16="http://message.persistence.interactive.nat" xmlns:ns17="http://message.persistence.interactive.nat" xmlns:ns18="http://message.persistence.interactive.nat" xmlns:tns1="http://webservice.request.universal.interactive.nat" xmlns:tns2="http://webservice.request.universal.interactive.nat" xmlns:tns3="http://webservice.request.universal.interactive.nat" xmlns:tns4="http://webservice.request.universal.interactive.nat" xmlns:tns5="http://webservice.request.universal.interactive.nat" xmlns:tns6="http://webservice.request.universal.interactive.nat" xmlns:tns7="http://webservice.request.universal.interactive.nat" xmlns:tns8="http://webservice.request.universal.interactive.nat" xmlns:tns9="http://webservice.request.universal.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://message.persistence.interactive.nat"/>
+    <xs:element name="findPersonByIinResponse" type="tns1:findPersonByIinResponse"/>
+      <xs:complexType name="findPersonByIinResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="return" type="ns11:Response"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="findPerson">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="request" type="ns12:Request"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:element name="findPerson" type="tns2:findPerson"/>
+      <xs:complexType name="findPersonResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="return" type="ns13:Response"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:element name="findPersonResponse" type="tns3:findPersonResponse"/>
+      <xs:element name="Exception" type="tns4:Exception"/>
+      <xs:complexType name="Exception">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="message" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="findPersonByDoc">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="requestDoc" type="ns14:RequestDoc"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:element name="findPersonByDoc" type="tns5:findPersonByDoc"/>
+      <xs:element name="findPersonByDocResponse" type="tns6:findPersonByDocResponse"/>
+      <xs:complexType name="findPersonByDocResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="return" type="ns15:Response"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:element name="findPersonByFio" type="tns7:findPersonByFio"/>
+      <xs:complexType name="findPersonByFio">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="requestFio" type="ns16:RequestFio"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:complexType name="findPersonByFioResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="return" type="ns17:Response"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:element name="findPersonByFioResponse" type="tns8:findPersonByFioResponse"/>
+      <xs:complexType name="findPersonByIin">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="requestIin" type="ns18:RequestIin"/>
+		</xs:sequence>
+	</xs:complexType>
+      <xs:element name="findPersonByIin" type="tns9:findPersonByIin"/>
+    </xsd:schema>
+    </types>
+  <message name="UniversalService_findPersonByFio">
+    <part element="bons0:findPersonByFio" name="findPersonByFio">
+    </part>
+  </message>
+  <message name="UniversalService_findPersonByIin">
+    <part element="bons0:findPersonByIin" name="findPersonByIin">
+    </part>
+  </message>
+  <message name="UniversalService_findPersonByDocResponse">
+    <part element="bons0:findPersonByDocResponse" name="findPersonByDocResponse">
+    </part>
+  </message>
+  <message name="UniversalService_findPersonResponse">
+    <part element="bons0:findPersonResponse" name="findPersonResponse">
+    </part>
+  </message>
+  <message name="Exception">
+    <part element="bons0:Exception" name="Exception">
+    </part>
+  </message>
+  <message name="UniversalService_findPerson">
+    <part element="bons0:findPerson" name="findPerson">
+    </part>
+  </message>
+  <message name="UniversalService_findPersonByIinResponse">
+    <part element="bons0:findPersonByIinResponse" name="findPersonByIinResponse">
+    </part>
+  </message>
+  <message name="UniversalService_findPersonByDoc">
+    <part element="bons0:findPersonByDoc" name="findPersonByDoc">
+    </part>
+  </message>
+  <message name="UniversalService_findPersonByFioResponse">
+    <part element="bons0:findPersonByFioResponse" name="findPersonByFioResponse">
+    </part>
+  </message>
+  <portType name="UniversalService">
+    <operation name="findPerson" parameterOrder="findPerson">
+      <input message="bons0:UniversalService_findPerson">
+    </input>
+      <output message="bons0:UniversalService_findPersonResponse">
+    </output>
+      <fault message="bons0:Exception" name="Exception">
+    </fault>
+    </operation>
+    <operation name="findPersonByDoc" parameterOrder="findPersonByDoc">
+      <input message="bons0:UniversalService_findPersonByDoc">
+    </input>
+      <output message="bons0:UniversalService_findPersonByDocResponse">
+    </output>
+      <fault message="bons0:Exception" name="Exception">
+    </fault>
+    </operation>
+    <operation name="findPersonByFio" parameterOrder="findPersonByFio">
+      <input message="bons0:UniversalService_findPersonByFio">
+    </input>
+      <output message="bons0:UniversalService_findPersonByFioResponse">
+    </output>
+      <fault message="bons0:Exception" name="Exception">
+    </fault>
+    </operation>
+    <operation name="findPersonByIin" parameterOrder="findPersonByIin">
+      <input message="bons0:UniversalService_findPersonByIin">
+    </input>
+      <output message="bons0:UniversalService_findPersonByIinResponse">
+    </output>
+      <fault message="bons0:Exception" name="Exception">
+    </fault>
+    </operation>
+  </portType>
+</definitions>

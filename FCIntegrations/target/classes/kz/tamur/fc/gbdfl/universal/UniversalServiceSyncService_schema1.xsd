@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://dictionaries.persistence.interactive.nat" xmlns:ns2="http://document.persistence.interactive.nat" xmlns:tns="http://person.persistence.interactive.nat" targetNamespace="http://person.persistence.interactive.nat" version="1.0">
+<xs:import namespace="http://dictionaries.persistence.interactive.nat" schemaLocation="UniversalServiceSyncService_schema4.xsd"/>
+<xs:import namespace="http://document.persistence.interactive.nat" schemaLocation="UniversalServiceSyncService_schema3.xsd"/>
+<xs:complexType name="Person">
+    <xs:annotation>
+      <xs:documentation>Сведения о физическом лице</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="iin" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>ИИН</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="surname" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Фамилия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Имя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="patronymic" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Отчество</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="birthDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата рождения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deathDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата смерти</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="gender" type="ns1:Gender">
+        <xs:annotation>
+          <xs:documentation>Пол</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nationality" type="ns1:Nationality">
+        <xs:annotation>
+          <xs:documentation>Национальность</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="citizenship" type="ns1:Country">
+        <xs:annotation>
+          <xs:documentation>Гражданство</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="lifeStatus" type="ns1:PersonStatus">
+        <xs:annotation>
+          <xs:documentation>Статус физического лица (живой/умерший)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="birthCertificate" type="tns:Certificate">
+        <xs:annotation>
+          <xs:documentation>Данные свидетельства о рождении</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="deathCertificate" type="tns:Certificate">
+        <xs:annotation>
+          <xs:documentation>Данные свидетельства о смерти</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="birthPlace" type="tns:BirthPlace">
+        <xs:annotation>
+          <xs:documentation>Место рождения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="regAddress" type="tns:RegAddress">
+        <xs:annotation>
+          <xs:documentation>Адрес прописки. Может отсутствовать, например, у детей</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="personCapableStatus" type="tns:PersonCapableStatus">
+        <xs:annotation>
+          <xs:documentation>Сведения о дееспособности физического лица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="missingStatus" type="tns:MissingStatus">
+        <xs:annotation>
+          <xs:documentation>Статус физического лица 'Пропавший без вести'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="disappearStatus" type="tns:DisappearStatus">
+        <xs:annotation>
+          <xs:documentation>Физическое лицо скрывается от дознания, следствия, суда и отбытия наказания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="excludeStatus" type="tns:PersonExcludeStatus">
+        <xs:annotation>
+          <xs:documentation>Признак исключения ИИН физического лица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="repatriationStatus" type="tns:personRepatriationStatus">
+        <xs:annotation>
+          <xs:documentation>Статус оралмана</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="documents">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="document" type="ns2:Document">
+              <xs:annotation>
+                <xs:documentation>Список документов удостоверяющих личность, в том числе неактуальных</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="addresses">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="address" type="tns:Address">
+              <xs:annotation>
+                <xs:documentation>Сведения о других адресах физического лица</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="removed" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Признак удаления записи о физическом лице из Национального реестра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="Certificate">
+    <xs:annotation>
+      <xs:documentation>Данные о свидетельстве</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Номер свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="beginDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="issueOrganisation" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Организация, выдавшая свидетельство</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="BirthPlace">
+    <xs:annotation>
+      <xs:documentation>Адрес места рождения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="country" type="ns1:Country">
+        <xs:annotation>
+          <xs:documentation>Страна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="district" type="ns1:District">
+        <xs:annotation>
+          <xs:documentation>Область. Поле может путь пустым в случае непустого значения поля foreignData</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="region" type="ns1:Region">
+        <xs:annotation>
+          <xs:documentation>Район. Поле может путь пустым в случае непустого значения поля foreignData</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="foreignData" type="tns:ForeignData">
+        <xs:annotation>
+          <xs:documentation>Данные о адресе за пределами Казахстана</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="city" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Населенный пункт</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="birthTeCodeAR" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Код адреса рождения в формате Адресного регистра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="ForeignData">
+    <xs:annotation>
+      <xs:documentation>Сведения о адресе за пределами Казахстана</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="districtName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Область (не Казахстан)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="regionName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Район  (не Казахстан)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="RegAddress">
+    <xs:annotation>
+      <xs:documentation>Адрес прописки (регистрации)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="country" type="ns1:Country">
+        <xs:annotation>
+          <xs:documentation>Страна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="district" type="ns1:District">
+        <xs:annotation>
+          <xs:documentation>Область</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="region" type="ns1:Region">
+        <xs:annotation>
+          <xs:documentation>Район</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="foreignData" type="tns:ForeignData">
+        <xs:annotation>
+          <xs:documentation>Данные о адресе за пределами Казахстана</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="city" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Населенный пункт</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="street" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Улица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="building" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Дом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="corpus" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Корпус</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="flat" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Квартира</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="beginDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата регистрации по адресу прописки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="endDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата снятия с регистрации по адресу прописки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="status" type="ns1:AddressStatus">
+        <xs:annotation>
+          <xs:documentation>Признак регистрации (зарегистрирован/снят с регистрации)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="invalidity" type="ns1:AddressInvalidity">
+        <xs:annotation>
+          <xs:documentation>Причина снятия с регистрации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="arCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Код адреса в формате Адресного регистра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="PersonCapableStatus">
+    <xs:annotation>
+      <xs:documentation>Сведения о дееспособности. Также содержит сведения о осуждении по статьям 192, 216, 217 УК</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="capableStatus" type="ns1:CapableStatus">
+        <xs:annotation>
+          <xs:documentation>Статус дееспособности</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="capableDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата начала действия статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="capableEndDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата окончания действия статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="capableNumber" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Номер дела в суде</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="court" type="ns1:Court">
+        <xs:annotation>
+          <xs:documentation>Суд присвоивший статус</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="MissingStatus">
+    <xs:annotation>
+      <xs:documentation>Статус физического лица 'Пропавший без вести'</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="missing" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Пропавший без вести (Да/Нет)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="missingDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата начала действия статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="missingEndDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата окончания действия статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="missingNumber" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Номер дела</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="gpTerritorial" type="ns1:GpTerritorial">
+        <xs:annotation>
+          <xs:documentation>Орган КПССУ присвоивший статус</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="DisappearStatus">
+    <xs:annotation>
+      <xs:documentation>Физическое лицо скрывается от дознания, следствия, суда и отбытия наказания</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="disappear" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>Текущий статус - скрывается (Да/Нет)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="disappearDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата начала действия статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="disappearEndDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата окончания действия статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="disappearNumber" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Номер дела</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="gpTerritorial" type="ns1:GpTerritorial">
+        <xs:annotation>
+          <xs:documentation>Орган КПССУ присвоивший статус</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="PersonExcludeStatus">
+    <xs:annotation>
+      <xs:documentation>Признак исключения/условного исключения ИИН из Национального реестра</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="excludeReason" type="ns1:ExcludeReason">
+        <xs:annotation>
+          <xs:documentation>Причина исключения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="excludeReasonDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата начала действия статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="excludeDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата окончания действия статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="excludeParticipant" type="ns1:Participant">
+        <xs:annotation>
+          <xs:documentation>Источник информации о присвоении статуса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="personRepatriationStatus">
+    <xs:annotation>
+      <xs:documentation>Статус оралмана</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="repatriationStatus" type="ns1:repatriationStatus"/>
+      <xs:element minOccurs="0" name="repatriationDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="repatriationEndDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="repatriationNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="repatriationOrg" type="ns1:repatriationOrg"/>
+      <xs:element minOccurs="0" name="repatriationReason" type="ns1:repatriationReason"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="Address">
+    <xs:annotation>
+      <xs:documentation>Другие адреса (например, адрес временной регистрации, адрес убытия)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="ns1:AddressType">
+        <xs:annotation>
+          <xs:documentation>Тип адреса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="country" type="ns1:Country">
+        <xs:annotation>
+          <xs:documentation>Страна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="district" type="ns1:District">
+        <xs:annotation>
+          <xs:documentation>Область</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="region" type="ns1:Region">
+        <xs:annotation>
+          <xs:documentation>Район</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="foreignData" type="tns:ForeignData">
+        <xs:annotation>
+          <xs:documentation>Данные о адресе за пределами Казахстана</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="city" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Населенный пункт</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="street" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Улица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="building" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Дом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="corpus" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Корпус</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="flat" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Квартира</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="beginDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата регистрации по адресу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="endDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата снятия с регистрации по адресу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="arCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Код адреса в формате Адресного регистра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

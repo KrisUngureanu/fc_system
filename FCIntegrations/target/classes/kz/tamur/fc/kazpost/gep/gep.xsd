@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://webservices.kazpost.kz/NewHybridMailSB/schema" targetNamespace="http://webservices.kazpost.kz/NewHybridMailSB/schema" elementFormDefault="qualified">
+	<xsd:element name="SendRPORequest" type="SendRPORequest"/>
+	<xsd:complexType name="SendRPORequest">
+		<xsd:sequence>
+			<xsd:element name="RPOInfo" type="RPOInfo"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RPOInfo">
+		<xsd:sequence>
+			<xsd:element name="PackageCode" type="xsd:string"/>
+			<xsd:element name="SenderID" type="xsd:int"/>
+			<xsd:element name="SenderPass" type="xsd:string"/>
+			<xsd:element name="DocumentID" type="xsd:string"/>
+			<xsd:element name="F1" type="xsd:string"/>
+			<xsd:element name="F2" type="xsd:string"/>
+			<xsd:element name="F3" type="xsd:string"/>
+			<xsd:element name="F4" type="xsd:string"/>
+			<xsd:element name="F5" type="xsd:string"/>
+			<xsd:element name="F6" type="xsd:string"/>
+			<xsd:element name="F7" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F8" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F9" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F10" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F11" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F12" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F13" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F14" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F15" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F16" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F17" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F18" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F19" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F20" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F21" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F22" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F23" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F24" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="F25" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="RecipientPhone" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="FileAttachment" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PageCount" type="xsd:int" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="SendRPOResponse" type="SendRPOResponse"/>
+	<xsd:complexType name="SendRPOResponse">
+		<xsd:sequence>
+			<xsd:element name="ResponseInfo" type="ResponseInfo"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ResponseInfo" type="ResponseInfo"/>
+	<xsd:complexType name="ResponseInfo">
+		<xsd:sequence>
+			<xsd:element name="ResponseMsg" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ResponseKpstID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ResponseTime" type="xsd:dateTime" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

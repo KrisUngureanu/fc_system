@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://egov.bee.kz/eds/scanneddocuments/upload/v1/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://egov.bee.kz/eds/scanneddocuments/common/v1/" xmlns:ns2="http://egov.bee.kz/eds/common/v1/" targetNamespace="http://egov.bee.kz/eds/scanneddocuments/upload/v1/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://egov.bee.kz/eds/common/v1/" schemaLocation="EdsCommonTypes.v1.xsd"/>
+	<xs:import namespace="http://egov.bee.kz/eds/scanneddocuments/common/v1/" schemaLocation="ScannedDocumentsCommonTypes.v1.xsd"/>
+	<xs:element name="uploadRequest" type="UploadRequest">
+		<xs:annotation>
+			<xs:documentation>Данные запроса на загрузку документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="uploadResponse" type="UploadResponse">
+		<xs:annotation>
+			<xs:documentation>Результат загрузки документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FileInfo">
+		<xs:annotation>
+			<xs:documentation>Содержимое файла и его порядковый номер; порядковый номер используется, если загружается набор изображений</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ns2:Sortable">
+				<xs:sequence>
+					<xs:element name="content" type="xs:base64Binary">
+						<xs:annotation>
+							<xs:documentation>Бинарное содержимое файла</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="UploadRequest">
+		<xs:annotation>
+			<xs:documentation>Данные запроса на загрузку документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="userId" type="ns2:IINBIN">
+				<xs:annotation>
+					<xs:documentation>Идентификатор пользователя, осуществляющего операцию</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор документа - заполняется, если загружается новая версия существующего документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="files" type="FileInfo" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Файлы, загружаемые в модуль сканированных документов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Название документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код типа документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="meta" type="ns2:Properties" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Мета информация документа. Код метаинформации сохраняется в Property.key</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="categories" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Коды категорий документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="userInfos" type="ns1:DocumentUserInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация о пользователях</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="credentials" type="ns2:SenderInfo">
+				<xs:annotation>
+					<xs:documentation>Данные для авторизации загружающей системы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="uploadType" type="UploadType" use="required">
+			<xs:annotation>
+				<xs:documentation>Тип загрузки:
+SINGLE - один файл любого типа
+PICTURES - несколько изображений формата "bmp", "jpeg", "png", "gif"; при загрузке склеиваются в pdf-файл</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="UploadResponse">
+		<xs:annotation>
+			<xs:documentation>Результат загрузки документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="processStatus" type="ns2:ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Статус процесса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="UploadType">
+		<xs:annotation>
+			<xs:documentation>Тип загрузки:
+SINGLE - один файл любого типа
+PICTURES - несколько изображений формата "bmp", "jpeg", "png", "gif"; при загрузке склеиваются в pdf-файл</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SINGLE"/>
+			<xs:enumeration value="PICTURES"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

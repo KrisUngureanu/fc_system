@@ -1,0 +1,5 @@
+build
+src\META-INF
+.settings
+.classpath
+.project

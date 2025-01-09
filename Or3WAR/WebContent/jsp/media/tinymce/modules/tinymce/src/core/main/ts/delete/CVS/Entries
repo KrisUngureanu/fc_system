@@ -1,0 +1,17 @@
+/BlockBoundaryDelete.ts/1.1/Mon Sep 21 11:10:04 2020//
+/BlockMergeBoundary.ts/1.1/Mon Sep 21 11:10:04 2020//
+/BlockRangeDelete.ts/1.1/Mon Sep 21 11:10:04 2020//
+/CefBoundaryDelete.ts/1.1/Mon Sep 21 11:10:04 2020//
+/CefDelete.ts/1.1/Mon Sep 21 11:10:04 2020//
+/CefDeleteAction.ts/1.1/Mon Sep 21 11:10:04 2020//
+/DeleteCommands.ts/1.1/Mon Sep 21 11:10:04 2020//
+/DeleteElement.ts/1.1/Mon Sep 21 11:10:04 2020//
+/DeleteUtils.ts/1.1/Mon Sep 21 11:10:04 2020//
+/ImageBlockDelete.ts/1.1/Mon Sep 21 11:10:04 2020//
+/InlineBoundaryDelete.ts/1.1/Mon Sep 21 11:10:04 2020//
+/InlineFormatDelete.ts/1.1/Mon Sep 21 11:10:04 2020//
+/MergeBlocks.ts/1.1/Mon Sep 21 11:10:04 2020//
+/MergeText.ts/1.1/Mon Sep 21 11:10:04 2020//
+/Outdent.ts/1.1/Mon Sep 21 11:10:04 2020//
+/TableDelete.ts/1.1/Mon Sep 21 11:10:04 2020//
+/TableDeleteAction.ts/1.1/Mon Sep 21 11:10:04 2020//

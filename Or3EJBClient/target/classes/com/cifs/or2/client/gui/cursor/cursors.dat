@@ -1,0 +1,17 @@
+#
+# @(#)cursors.properties	1.5 99/07/12
+#
+# Cursors Properties file
+#
+# Names GIF89 sources for Custom Cursors and their associated HotSpots
+#
+# Note: the syntax of the property name is significant and is parsed
+# by java.awt.Cursor
+#
+# The syntax is: Cursor.<name>.<geom>.File=win32_<filename>
+#                Cursor.<name>.<geom>.HotSpot=<x>,<y>
+#	         Cursor.<name>.<geom>.Name=<localized name>
+#
+Cursor.MyHelp_red.32x32.File=win32_MyHelp2.gif
+Cursor.MyHelp_red.32x32.HotSpot=0,0
+Cursor.MyHelp_red.32x32.Name=MyHelp_red32x32

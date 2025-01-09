@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Tostanovskiy (Tamur) -->
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://record.bank.fc.tamur.kz" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://record.bank.fc.tamur.kz" name="record">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import namespace="http://record.bank.fc.tamur.kz" schemaLocation="fc.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="checkFlRequest">
+		<wsdl:part name="parameters" element="tns:checkFlRequest"/>
+	</wsdl:message>
+	<wsdl:message name="checkFlResponse">
+		<wsdl:part name="parameters" element="tns:checkFlResponse"/>
+	</wsdl:message>
+	<wsdl:message name="createRecordRequest">
+		<wsdl:part name="parameters" element="tns:createRecordRequest"/>
+	</wsdl:message>
+	<wsdl:message name="createRecordResponse">
+		<wsdl:part name="parameters" element="tns:createRecordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getStatusRequest">
+		<wsdl:part name="parameters" element="tns:getStatusRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getStatusResponse">
+		<wsdl:part name="parameters" element="tns:getStatusResponse"/>
+	</wsdl:message>
+	<wsdl:message name="closeRecordRequest">
+		<wsdl:part name="parameters" element="tns:closeRecordRequest"/>
+	</wsdl:message>
+	<wsdl:message name="closeRecordResponse">
+		<wsdl:part name="parameters" element="tns:closeRecordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPermitTransmitRequest">
+		<wsdl:part name="parameters" element="tns:getPermitTransmitRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getPermitTransmitResponse">
+		<wsdl:part name="parameters" element="tns:getPermitTransmitResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getTransmitRequest">
+		<wsdl:part name="parameters" element="tns:getTransmitRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getTransmitResponse">
+		<wsdl:part name="parameters" element="tns:getTransmitResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getTransmitRecordRequest">
+		<wsdl:part name="parameters" element="tns:getTransmitRecordRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getTransmitRecordResponse">
+		<wsdl:part name="parameters" element="tns:getTransmitRecordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfirmTransmitRecordRequest">
+		<wsdl:part name="parameters" element="tns:getConfirmTransmitRecordRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getConfirmTransmitRecordResponse">
+		<wsdl:part name="parameters" element="tns:getConfirmTransmitRecordResponse"/>
+	</wsdl:message>
+	<wsdl:message name="transmitFromRequest">
+		<wsdl:part name="parameters" element="tns:transmitFromRequest"/>
+	</wsdl:message>
+	<wsdl:message name="transmitFromResponse">
+		<wsdl:part name="parameters" element="tns:transmitFromResponse"/>
+	</wsdl:message>
+	<wsdl:message name="transmitRequest">
+		<wsdl:part name="parameters" element="tns:transmitRequest"/>
+	</wsdl:message>
+	<wsdl:message name="transmitResponse">
+		<wsdl:part name="parameters" element="tns:transmitResponse"/>
+	</wsdl:message>
+	<wsdl:message name="summRequest">
+		<wsdl:part name="parameters" element="tns:summRequest"/>
+	</wsdl:message>
+	<wsdl:message name="summResponse">
+		<wsdl:part name="parameters" element="tns:summResponse"/>
+	</wsdl:message>
+	<wsdl:message name="summReestrRequest">
+		<wsdl:part name="parameters" element="tns:summReestrRequest"/>
+	</wsdl:message>
+	<wsdl:message name="summReestrResponse">
+		<wsdl:part name="parameters" element="tns:summReestrResponse"/>
+	</wsdl:message>
+	<wsdl:message name="transferReestrRequest">
+		<wsdl:part name="parameters" element="tns:transferReestrRequest"/>
+	</wsdl:message>
+	<wsdl:message name="transferReestrResponse">
+		<wsdl:part name="parameters" element="tns:transferReestrResponse"/>
+	</wsdl:message>
+	<wsdl:message name="filePropertyRequest">
+		<wsdl:part name="parameters" element="tns:filePropertyRequest"/>
+	</wsdl:message>
+	<wsdl:message name="filePropertyResponse">
+		<wsdl:part name="parameters" element="tns:filePropertyResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getFilePropertyRequest">
+		<wsdl:part name="parameters" element="tns:getFilePropertyRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getFilePropertyResponse">
+		<wsdl:part name="parameters" element="tns:getFilePropertyResponse"/>
+	</wsdl:message>
+	<wsdl:message name="educationOrgRequest">
+		<wsdl:part name="parameters" element="tns:educationOrgRequest"/>
+	</wsdl:message>
+	<wsdl:message name="educationOrgResponse">
+		<wsdl:part name="parameters" element="tns:educationOrgResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="FCBANKServiceSoap">
+		<wsdl:operation name="checkFl">
+			<wsdl:input message="tns:checkFlRequest"/>
+			<wsdl:output message="tns:checkFlResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="createRecord">
+			<wsdl:input message="tns:createRecordRequest"/>
+			<wsdl:output message="tns:createRecordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getStatus">
+			<wsdl:input message="tns:getStatusRequest"/>
+			<wsdl:output message="tns:getStatusResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="closeRecord">
+			<wsdl:input message="tns:closeRecordRequest"/>
+			<wsdl:output message="tns:closeRecordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPermitTransmit">
+			<wsdl:input message="tns:getPermitTransmitRequest"/>
+			<wsdl:output message="tns:getPermitTransmitResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTransmit">
+			<wsdl:input message="tns:getTransmitRequest"/>
+			<wsdl:output message="tns:getTransmitResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getTransmitRecord">
+			<wsdl:input message="tns:getTransmitRecordRequest"/>
+			<wsdl:output message="tns:getTransmitRecordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getConfirmTransmitRecord">
+			<wsdl:input message="tns:getConfirmTransmitRecordRequest"/>
+			<wsdl:output message="tns:getConfirmTransmitRecordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="transmitFromRecord">
+			<wsdl:input message="tns:transmitFromRequest"/>
+			<wsdl:output message="tns:transmitFromResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="transmitRecord">
+			<wsdl:input message="tns:transmitRequest"/>
+			<wsdl:output message="tns:transmitResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="summBonus">
+			<wsdl:input message="tns:summRequest"/>
+			<wsdl:output message="tns:summResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="summReestr">
+			<wsdl:input message="tns:summReestrRequest"/>
+			<wsdl:output message="tns:summReestrResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="transferReestr">
+			<wsdl:input message="tns:transferReestrRequest"/>
+			<wsdl:output message="tns:transferReestrResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="fileProperty">
+			<wsdl:input message="tns:filePropertyRequest"/>
+			<wsdl:output message="tns:filePropertyResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getFileProperty">
+			<wsdl:input message="tns:getFilePropertyRequest"/>
+			<wsdl:output message="tns:getFilePropertyResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="educationOrg">
+			<wsdl:input message="tns:educationOrgRequest"/>
+			<wsdl:output message="tns:educationOrgResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="FCBANKServiceSoap" type="tns:FCBANKServiceSoap">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="checkFl">
+			<soap:operation soapAction="tns:checkFl"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createRecord">
+			<soap:operation soapAction="tns:createRecord"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getStatus">
+			<soap:operation soapAction="tns:getStatus"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="closeRecord">
+			<soap:operation soapAction="tns:closeRecord"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPermitTransmit">
+			<soap:operation soapAction="tns:getPermitTransmit"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTransmit">
+			<soap:operation soapAction="tns:getTransmit"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getTransmitRecord">
+			<soap:operation soapAction="tns:getTransmitRecord"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getConfirmTransmitRecord">
+			<soap:operation soapAction="tns:getConfirmTransmitRecord"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="transmitFromRecord">
+			<soap:operation soapAction="tns:transmitFromRecord"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="transmitRecord">
+			<soap:operation soapAction="tns:transmitRecord"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="summBonus">
+			<soap:operation soapAction="tns:summBonus"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="summReestr">
+			<soap:operation soapAction="tns:summReestr"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="transferReestr">
+			<soap:operation soapAction="tns:transferReestr"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="fileProperty">
+			<soap:operation soapAction="tns:fileProperty"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getFileProperty">
+			<soap:operation soapAction="tns:getFileProperty"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="educationOrg">
+			<soap:operation soapAction="tns:educationOrg"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="FCBANKService">
+		<wsdl:port name="FCBANKServiceSoap" binding="tns:FCBANKServiceSoap">
+			<soap:address location="http://localhost:8080/RecordService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

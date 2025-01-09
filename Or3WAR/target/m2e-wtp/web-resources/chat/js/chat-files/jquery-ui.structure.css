@@ -1,0 +1,498 @@
+/*!
+ * jQuery UI CSS Framework 1.11.1
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ */
+
+/* Layout helpers
+----------------------------------*/
+.jb-chat .ui-helper-hidden {
+	display: none;
+}
+.jb-chat .ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+.jb-chat .ui-helper-reset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	line-height: 1.3;
+	text-decoration: none;
+	font-size: 100%;
+	list-style: none;
+}
+.jb-chat .ui-helper-clearfix:before,
+.jb-chat .ui-helper-clearfix:after {
+	content: "";
+	display: table;
+	border-collapse: collapse;
+}
+.jb-chat .ui-helper-clearfix:after {
+	clear: both;
+}
+.jb-chat .ui-helper-clearfix {
+	min-height: 0; /* support: IE7 */
+}
+.jb-chat .ui-helper-zfix {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	opacity: 0;
+	filter:Alpha(Opacity=0); /* support: IE8 */
+}
+
+.jb-chat .ui-front {
+	z-index: 100;
+}
+
+
+/* Interaction Cues
+----------------------------------*/
+.jb-chat .ui-state-disabled {
+	cursor: default !important;
+}
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.jb-chat .ui-icon {
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.jb-chat .ui-widget-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.jb-chat .ui-draggable-handle {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.jb-chat .ui-resizable {
+	position: relative;
+}
+.jb-chat .ui-resizable-handle {
+	position: absolute;
+	font-size: 0.1px;
+	display: block;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.jb-chat .ui-resizable-disabled .ui-resizable-handle,
+.jb-chat .ui-resizable-autohide .ui-resizable-handle {
+	display: none;
+}
+.jb-chat .ui-resizable-n {
+	cursor: n-resize;
+	height: 7px;
+	width: 100%;
+	top: -5px;
+	left: 0;
+}
+.jb-chat .ui-resizable-s {
+	cursor: s-resize;
+	height: 7px;
+	width: 100%;
+	bottom: -5px;
+	left: 0;
+}
+.jb-chat .ui-resizable-e {
+	cursor: e-resize;
+	width: 7px;
+	right: -5px;
+	top: 0;
+	height: 100%;
+}
+.jb-chat .ui-resizable-w {
+	cursor: w-resize;
+	width: 7px;
+	left: -5px;
+	top: 0;
+	height: 100%;
+}
+.jb-chat .ui-resizable-se {
+	cursor: se-resize;
+	width: 12px;
+	height: 12px;
+	right: 1px;
+	bottom: 1px;
+}
+.jb-chat .ui-resizable-sw {
+	cursor: sw-resize;
+	width: 9px;
+	height: 9px;
+	left: -5px;
+	bottom: -5px;
+}
+.jb-chat .ui-resizable-nw {
+	cursor: nw-resize;
+	width: 9px;
+	height: 9px;
+	left: -5px;
+	top: -5px;
+}
+.jb-chat .ui-resizable-ne {
+	cursor: ne-resize;
+	width: 9px;
+	height: 9px;
+	right: -5px;
+	top: -5px;
+}
+.jb-chat .ui-selectable {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.jb-chat .ui-selectable-helper {
+	position: absolute;
+	z-index: 100;
+	border: 1px dotted black;
+}
+.jb-chat .ui-sortable-handle {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.jb-chat .ui-button {
+	display: inline-block;
+	position: relative;
+	padding: 0;
+	line-height: normal;
+	margin-right: .1em;
+	cursor: pointer;
+	vertical-align: middle;
+	text-align: center;
+	overflow: visible; /* removes extra width in IE */
+}
+.jb-chat .ui-button,
+.jb-chat .ui-button:link,
+.jb-chat .ui-button:visited,
+.jb-chat .ui-button:hover,
+.jb-chat .ui-button:active {
+	text-decoration: none;
+}
+/* to make room for the icon, a width needs to be set here */
+.jb-chat .ui-button-icon-only {
+	width: 2.2em;
+}
+/* button elements seem to need a little more width */
+button.jb-chat .ui-button-icon-only {
+	width: 2.4em;
+}
+.jb-chat .ui-button-icons-only {
+	width: 3.4em;
+}
+button.jb-chat .ui-button-icons-only {
+	width: 3.7em;
+}
+
+/* button text element */
+.jb-chat .ui-button .ui-button-text {
+	display: block;
+	line-height: normal;
+}
+.jb-chat .ui-button-text-only .ui-button-text {
+	padding: .4em 1em;
+}
+.jb-chat .ui-button-icon-only .ui-button-text,
+.jb-chat .ui-button-icons-only .ui-button-text {
+	padding: .4em;
+	text-indent: -9999999px;
+}
+.jb-chat .ui-button-text-icon-primary .ui-button-text,
+.jb-chat .ui-button-text-icons .ui-button-text {
+	padding: .4em 1em .4em 2.1em;
+}
+.jb-chat .ui-button-text-icon-secondary .ui-button-text,
+.jb-chat .ui-button-text-icons .ui-button-text {
+	padding: .4em 2.1em .4em 1em;
+}
+.jb-chat .ui-button-text-icons .ui-button-text {
+	padding-left: 2.1em;
+	padding-right: 2.1em;
+}
+/* no icon support for input elements, provide padding by default */
+input.jb-chat .ui-button {
+	padding: .4em 1em;
+}
+
+/* button icon element(s) */
+.jb-chat .ui-button-icon-only .ui-icon,
+.jb-chat .ui-button-text-icon-primary .ui-icon,
+.jb-chat .ui-button-text-icon-secondary .ui-icon,
+.jb-chat .ui-button-text-icons .ui-icon,
+.jb-chat .ui-button-icons-only .ui-icon {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+}
+.jb-chat .ui-button-icon-only .ui-icon {
+	left: 50%;
+	margin-left: -8px;
+}
+.jb-chat .ui-button-text-icon-primary .ui-button-icon-primary,
+.jb-chat .ui-button-text-icons .ui-button-icon-primary,
+.jb-chat .ui-button-icons-only .ui-button-icon-primary {
+	left: .5em;
+}
+.jb-chat .ui-button-text-icon-secondary .ui-button-icon-secondary,
+.jb-chat .ui-button-text-icons .ui-button-icon-secondary,
+.jb-chat .ui-button-icons-only .ui-button-icon-secondary {
+	right: .5em;
+}
+
+/* button sets */
+.jb-chat .ui-buttonset {
+	margin-right: 7px;
+}
+.jb-chat .ui-buttonset .ui-button {
+	margin-left: 0;
+	margin-right: -.3em;
+}
+
+/* workarounds */
+/* reset extra padding in Firefox, see h5bp.com/l */
+input.jb-chat .ui-button::-moz-focus-inner,
+button.jb-chat .ui-button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+.jb-chat .ui-dialog {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: .2em;
+	outline: 0;
+}
+.jb-chat .ui-dialog .ui-dialog-titlebar {
+	padding: .4em 1em;
+	position: relative;
+}
+.jb-chat .ui-dialog .ui-dialog-title {
+	float: left;
+	margin: .1em 0;
+	white-space: nowrap;
+	width: 90%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.jb-chat .ui-dialog .ui-dialog-titlebar-close {
+	position: absolute;
+	right: .3em;
+	top: 50%;
+	width: 20px;
+	margin: -10px 0 0 0;
+	padding: 1px;
+	height: 20px;
+}
+.jb-chat .ui-dialog .ui-dialog-content {
+	position: relative;
+	border: 0;
+	padding: .5em 1em;
+	background: none;
+	overflow: auto;
+}
+.jb-chat .ui-dialog .ui-dialog-buttonpane {
+	text-align: left;
+	border-width: 1px 0 0 0;
+	background-image: none;
+	margin-top: .5em;
+	padding: .3em 1em .5em .4em;
+}
+.jb-chat .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+	float: right;
+}
+.jb-chat .ui-dialog .ui-dialog-buttonpane button {
+	margin: .5em .4em .5em 0;
+	cursor: pointer;
+}
+.jb-chat .ui-dialog .ui-resizable-se {
+	width: 12px;
+	height: 12px;
+	right: -5px;
+	bottom: -5px;
+	background-position: 16px 16px;
+}
+.jb-chat .ui-draggable .ui-dialog-titlebar {
+	cursor: move;
+}
+.jb-chat .ui-menu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: block;
+	outline: none;
+}
+.jb-chat .ui-menu .ui-menu {
+	position: absolute;
+}
+.jb-chat .ui-menu .ui-menu-item {
+	position: relative;
+	margin: 0;
+	padding: 3px 1em 3px .4em;
+	cursor: pointer;
+	min-height: 0; /* support: IE7 */
+	/* support: IE10, see #8844 */
+	list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+}
+.jb-chat .ui-menu .ui-menu-divider {
+	margin: 5px 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	border-width: 1px 0 0 0;
+}
+.jb-chat .ui-menu .ui-state-focus,
+.jb-chat .ui-menu .ui-state-active {
+	margin: -1px;
+}
+
+/* icon support */
+.jb-chat .ui-menu-icons {
+	position: relative;
+}
+.jb-chat .ui-menu-icons .ui-menu-item {
+	padding-left: 2em;
+}
+
+/* left-aligned */
+.jb-chat .ui-menu .ui-icon {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: .2em;
+	margin: auto 0;
+}
+
+/* right-aligned */
+.jb-chat .ui-menu .ui-menu-icon {
+	left: auto;
+	right: 0;
+}
+.jb-chat .ui-selectmenu-menu {
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.jb-chat .ui-selectmenu-menu .ui-menu {
+	overflow: auto;
+	/* Support: IE7 */
+	overflow-x: hidden;
+	padding-bottom: 1px;
+}
+.jb-chat .ui-selectmenu-menu .ui-menu .ui-selectmenu-optgroup {
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1.5;
+	padding: 2px 0.4em;
+	margin: 0.5em 0 0 0;
+	height: auto;
+	border: 0;
+}
+.jb-chat .ui-selectmenu-open {
+	display: block;
+}
+.jb-chat .ui-selectmenu-button {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	text-decoration: none;
+	cursor: pointer;
+}
+.jb-chat .ui-selectmenu-button span.ui-icon {
+	right: 0.5em;
+	left: auto;
+	margin-top: -8px;
+	position: absolute;
+	top: 50%;
+}
+.jb-chat .ui-selectmenu-button span.ui-selectmenu-text {
+	text-align: left;
+	padding: 0.4em 2.1em 0.4em 1em;
+	display: block;
+	line-height: 1.4;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.jb-chat .ui-tabs {
+	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+	padding: .2em;
+}
+.jb-chat .ui-tabs .ui-tabs-nav {
+	margin: 0;
+	padding: .2em .2em 0;
+}
+.jb-chat .ui-tabs .ui-tabs-nav li {
+	list-style: none;
+	float: left;
+	position: relative;
+	top: 0;
+	margin: 1px .2em 0 0;
+	border-bottom-width: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+.jb-chat .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	float: left;
+	padding: .5em 1em;
+	text-decoration: none;
+}
+.jb-chat .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+	margin-bottom: -1px;
+	padding-bottom: 1px;
+}
+.jb-chat .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
+.jb-chat .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
+.jb-chat .ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
+	cursor: text;
+}
+.jb-chat .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	cursor: pointer;
+}
+.jb-chat .ui-tabs .ui-tabs-panel {
+	display: block;
+	border-width: 0;
+	padding: 1em 1.4em;
+	background: none;
+}
+.jb-chat .ui-tooltip {
+	padding: 8px;
+	position: absolute;
+	z-index: 9999;
+	max-width: 300px;
+	-webkit-box-shadow: 0 0 5px #aaa;
+	box-shadow: 0 0 5px #aaa;
+}
+body .jb-chat .ui-tooltip {
+	border-width: 2px;
+}

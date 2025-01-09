@@ -1,0 +1,261 @@
+span.textbox.easyui-fluid.spinner::before {
+    content: "Время";
+    line-height: 18px;
+    padding-left: 10px;
+    border-right: solid 1px #ccc;
+    height: 20px;
+    display: inline-block;
+    padding-right: 10px;
+    background: #ddd;
+}
+
+body.login{
+	background-image:url(../img/login-bg.jpg);
+	background-position: top center;
+	background-size:cover;
+	
+}
+
+#loginbox .logo {
+    height: auto;
+    margin-bottom: 20px;
+    /* width: 100%; */
+    position: absolute;
+    top: -90px;
+    text-align: left;
+    left: -2px;
+}
+#loginbox {
+    background: #fff none repeat scroll 0 0;
+    border: 3px solid #5d91a2;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 191px auto 0;
+    position: relative;
+}
+#loginbox #loginBtn, #loginbox #resetBtn, #loginbox #loginECPBtn {
+    background: #20aab0 none repeat scroll 0 0;
+    border: none;
+    box-shadow: none;
+    font-size: 16px;
+    /* width: 135px; */
+    line-height: 30px;
+    padding: 5px 28px;
+}
+.btnPanel {
+    border-top: none;
+    margin-top: 30px;
+    padding-top: 20px;
+    text-align: center;
+		display: flex;
+		gap: 5px;
+		justify-content: center;
+}
+
+#left-panel {
+    width: 215px;
+}
+
+body {
+ 
+    padding: 25px 0 0 215px;
+}
+#logo {
+    background-position: top center;
+    background-size: cover;
+    width: 225px;
+    display: inline-block;
+    height: 35px;
+    
+}
+.left-bar {
+    display: inline-block;
+    float: right;
+}
+.hepl-icon {
+    background: #20aab0 url(../img/discuss-issue.png) no-repeat scroll center center;
+    color: #707d7f;
+    display: inline-block;
+    height: 25px;
+    padding-left: 0;
+    padding-top: 0;
+    position: initial;
+    /* right: 0; */
+    text-decoration: none;
+    /* top: 0; */
+    width: 35px;
+}
+#nameGo {
+    color: #20aab0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    top: 16px;
+    display: inline-block;
+    height: 25px;
+    vertical-align: top;
+    line-height: 25px;
+    width: calc(100% - 1000px);
+}
+#userDiv {
+    position: relative;
+    display: inline-block;
+}
+.system-info {
+    display: block;
+    width: 100%;
+    background: rgba(55, 51, 51, 0.97);
+    height: 100px;
+	text-align: center;
+    padding-top: 10px;
+}
+.server-ping {
+    display: inline-block;
+    float: none;
+    color: #fff;
+    padding: 2px 2px;
+}
+#logo > img {
+    height: 22px;
+    padding-top: 1px;
+}
+.container {
+    margin: 0;
+    padding: 0;
+    
+    height: 100%;
+    
+}
+.user-panel {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: block;
+    background: rgb(37, 44, 51);
+    height: 115px;
+}
+a.user-info-link {
+    background-image: url(../img/user-info.png);
+}
+.user-info {
+    height: 49px;
+}
+a.user-logout{
+    background-image: url(../img/gis_exit.png);
+}
+.user-info {
+    height: 49px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    padding-top: 10px;
+}
+.user-panel a {
+    display: inline-block;
+    width: 49%;
+    height: 50px;
+    background-color: rgba(0, 172, 172, 0.4);
+	    background-repeat: no-repeat;
+    background-position: center;
+}
+.combo,.numberbox,.datebox .textbox-text,.combo .textbox-text,.textbox .textbox-text{
+border-radius: 0px;
+}
+.tabs li a.tabs-inner {
+    
+    background: rgba(0, 0, 0, 0.05);
+    
+}
+
+h3 .task-link {
+    font-size: 12px;
+}
+h3 .task-link:visited {
+    color: #6600FF;
+    font-size: 12px;
+}
+.task-step{
+	font-weight:bold;
+	color:#0083D3;
+}
+.process-header .ph-cell {
+    display: inline-block;
+    text-align: center;
+    line-height: 24px;
+    font-weight: bold;
+}
+.process-header {
+    background: #f0f0f0;
+    border-bottom: solid 1px #ddd;
+}
+
+span.order_dir1 {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: url(../img/sort_asc.png);
+    display: inline-block;
+	background-repeat: no-repeat;
+    margin-left: 2px;
+}
+
+span.order_dir0 {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: url(../img/sort_desc.png);
+    display: inline-block;
+	background-repeat: no-repeat;
+    margin-left: 2px;
+}
+
+.help-item {
+	background: rgba(0, 0, 0, 0) url("../img/noteNew.png") no-repeat;
+	margin-bottom: 5px;
+	padding: 1px 2px 7px 30px;
+	text-align: left;
+}
+.help-item:hover {
+	background-color: #d0eeef;	
+}
+.help-item a {
+	font-size: 14px;
+	text-decoration: none;
+}.help-file-item {
+	background: rgba(0, 0, 0, 0) url("../img/noteFile.png") no-repeat;
+	margin-bottom: 5px;
+	padding: 1px 2px 7px 30px;
+	text-align: left;
+}
+.help-file-item:hover {
+	background-color: #d0eeef;	
+}
+.help-file-item a {
+	font-size: 14px;
+	text-decoration: none;
+}
+.help-name > h3 {
+	font-size: 14px;
+}
+#ui_startPage {background-image:url(or3/notification.png)}
+
+.blockUI a {
+ 	color: red;
+}
+
+#searchchatUsers .datagrid-cell {
+	white-space: normal;
+}
+
+.navbar-inner {
+  border-bottom: medium none;
+  border-top: medium none;
+  box-shadow: 0 -8px 8px 4px #000;
+  height: 25px;
+}
+#left-panel-content > ul {
+  display: block;
+  margin: 0;
+  overflow: auto;
+  padding: 26px 0 15px;
+}

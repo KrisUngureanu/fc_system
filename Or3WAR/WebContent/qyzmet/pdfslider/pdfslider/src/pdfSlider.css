@@ -1,0 +1,102 @@
+.pdfSlider_rootContainer
+{
+    width: 600px;
+    height: 320px;
+}
+
+.pdfSlider_rootContainer .pdfSlider_button
+{
+    position : absolute;
+    background : #4FD1C5;
+    width : 25px;
+    height : 25px;
+    z-index : 1000;
+    border-radius: 8px;
+}
+.pdfSlider_rootContainer .pdfSlider_prev
+{
+    position: absolute; /* Абсолютное позиционирование */
+    top: 50%; /* Положение от верхнего края */
+    left: 15px; /* Положение от левого края */
+    text-align: center;
+    cursor: pointer;
+}
+.pdfSlider_rootContainer .pdfSlider_next
+{
+    position: absolute; /* Абсолютное позиционирование */
+    top: 50%; /* Положение от верхнего края */
+    right: 15px; /* Положение от правого края */
+    text-align: center;
+    cursor: pointer;
+}
+
+.pdfSlider_rootContainer .pdfSlider_close
+{
+    display: none;
+    /*
+    top: 0;
+    right: 0;
+    background: #000;
+    width: 20px;
+    height: 20px;
+    z-index: 2000;
+    */
+}
+
+.pdfSlider_rootContainer .pdfSlider_hideControls
+{
+    display: none;
+    /*
+    right: 0;
+    bottom: -30px;
+    width: auto;
+    height: auto;
+    background: none;
+    */
+}
+
+.pdfSlider_rootContainer .pdfSlider_slidesContainer
+{
+    position: relative;
+}
+
+.pdfSlider_rootContainer .pdfSlider_slideWrapper
+{
+    position : absolute;
+    top : 0;
+    left : 0;
+    overflow: hidden;
+    width: 600px;
+    height: 320px;
+}
+
+.pdfSlider_rootContainer .pdfSlider_slideWrapper object
+{
+    width: 100%;
+    height: 100%;
+}
+
+.pdfSlider_rootContainer .pdfSlider_thumbsContainer
+{
+    display: none;
+    /*
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    */
+}
+
+.pdfSlider_rootContainer .pdfSlider_thumbsContainer li
+{
+    float: left;
+    margin-right: 10px;
+    list-style-type: none;
+}
+
+
+.pdfSlider_rootContainer .pdfSlider_activeThumb
+{
+    background: #000000;
+    color: #ffffff;
+}

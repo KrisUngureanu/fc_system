@@ -1,0 +1,39 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://kz.nitec.mgov/mbc/verifyphone/" targetNamespace="http://kz.nitec.mgov/mbc/verifyphone/">
+	<xs:complexType name="verifyPhoneRequest">
+		<xs:annotation>
+			<xs:documentation>Проверка номера телефона и ИИН</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="iin" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+              ИИН
+            </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="phone" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+              Телефон
+            </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="verifyPhoneResponse">
+		<xs:annotation>
+			<xs:documentation>Результат проверки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="result" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>
+              Результат
+            </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="verifyPhoneRequest" type="tns:verifyPhoneRequest"/>
+	<xs:element name="verifyPhoneResponse" type="tns:verifyPhoneResponse"/>
+</xs:schema>

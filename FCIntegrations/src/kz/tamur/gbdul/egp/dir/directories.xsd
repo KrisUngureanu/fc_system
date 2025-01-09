@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.7-b01-. -->
+<xs:schema xmlns:tns="http://impl.egp.gbdul.tamur.kz/" xmlns:ns1="http://GBD_UL_Native_Library/DataTypes/DirectoryTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://impl.egp.gbdul.tamur.kz/" version="1.0">
+	<xs:import namespace="http://GBD_UL_Native_Library/DataTypes/DirectoryTypes" schemaLocation="directory.xsd"/>
+	<xs:element name="getDirectories" type="tns:getDirectories"/>
+	<xs:element name="getDirectoriesResponse" type="tns:getDirectoriesResponse"/>
+	<xs:element name="getDirectory" type="tns:getDirectory"/>
+	<xs:element name="getDirectoryResponse" type="tns:getDirectoryResponse"/>
+	<xs:element name="getLevelContent" type="tns:getLevelContent"/>
+	<xs:element name="getLevelContentResponse" type="tns:getLevelContentResponse"/>
+	<xs:element name="getNodeByCode" type="tns:getNodeByCode"/>
+	<xs:element name="getNodeByCodeResponse" type="tns:getNodeByCodeResponse"/>
+	<xs:element name="getRecordsByName" type="tns:getRecordsByName"/>
+	<xs:element name="getRecordsByNameResponse" type="tns:getRecordsByNameResponse"/>
+	<xs:element name="getRecordById" type="tns:getRecordById"/>
+	<xs:element name="getRecordByIdResponse" type="tns:getRecordByIdResponse"/>
+	<xs:element name="getRegOrgByKato" type="tns:getRegOrgByKato"/>
+	<xs:element name="getRegOrgByKatoResponse" type="tns:getRegOrgByKatoResponse"/>
+	<xs:complexType name="getDirectory">
+		<xs:sequence>
+			<xs:element name="arg0" type="ns1:DirectoryRequest" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getDirectoryResponse">
+		<xs:sequence>
+			<xs:element name="return" type="ns1:DirectoryResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getDirectories">
+		<xs:sequence>
+			<xs:element name="arg0" type="ns1:DirectoriesInfoRequest" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getDirectoriesResponse">
+		<xs:sequence>
+			<xs:element name="return" type="ns1:DirectoriesInfoResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getLevelContent">
+		<xs:sequence>
+			<xs:element name="arg0" type="ns1:LevelContentRequest" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getLevelContentResponse">
+		<xs:sequence>
+			<xs:element name="return" type="ns1:LevelContentResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNodeByCode">
+		<xs:sequence>
+			<xs:element name="arg0" type="ns1:NodeByCodeRequest" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNodeByCodeResponse">
+		<xs:sequence>
+			<xs:element name="return" type="ns1:NodeByCodeResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getRecordsByName">
+		<xs:sequence>
+			<xs:element name="arg0" type="ns1:RecordsByNameRequest" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getRecordsByNameResponse">
+		<xs:sequence>
+			<xs:element name="return" type="ns1:RecordsByNameResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getRecordById">
+		<xs:sequence>
+			<xs:element name="arg0" type="ns1:RecordByIdRequest" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getRecordByIdResponse">
+		<xs:sequence>
+			<xs:element name="return" type="ns1:RecordByIdResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getRegOrgByKato">
+		<xs:sequence>
+			<xs:element name="arg0" type="ns1:RegOrgByKatoRequest" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getRegOrgByKatoResponse">
+		<xs:sequence>
+			<xs:element name="return" type="ns1:RegOrgByKatoResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

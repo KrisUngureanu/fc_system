@@ -1,0 +1,44 @@
+body{font-size:12px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; CURSOR: default; PADDING-TOP: 0px; FONT-FAMILY: tahoma,arial; scrollbar-base-color: #f4f4f4; scrollbar-arrow-color: #cccccc;}
+
+.style2 {color: #1a2f88; font-weight: bold; }
+
+.menu{font-size:12px; PADDING-RIGHT: 0px; PADDING-LEFT: 2px; PADDING-BOTTOM: 0px; MARGIN: 0px; CURSOR: default; PADDING-TOP: 2px; FONT-FAMILY: tahoma,arial; BACKGROUND-COLOR: #104E8B;}
+td.error {font-size:11px; FONT-FAMILY: Tahoma; color: red; font-weight: bold; BACKGROUND-COLOR: none; text-decoration: none;}
+th {font-weight: normal; font-size:12px; color:#fffafa;}
+
+.OrLabel{font-size:12px; font-family:Helvetica, Tahoma, Arial; font-weight: bold; color:#104E8B;}
+A.OrHiperLabel{font-size:12px; font-family:Helvetica, Times, Arial; font-weight: bold; color:#5030A0;}
+A.OrHiperLabel:visited{color:#5030A0;}
+A.OrHiperLabel:hover{color:#5030A0;}
+span.OrHiperLabel{font-size:12px; font-family:Helvetica, Times, Arial; font-weight: bold; color:#a0a0a0;}
+.OrTable{font-size:12px; font-family:Tahoma, Arial; background-color:#104eb8; color:black; border:solid; border-width:1; border-color:#104E8B;}
+.OrTreeField {font-size:12px; font-family:Helvetica, Times, Arial; font-weight: bold; background-color: #c0c0c0; color: black; border: solid; border-width: 2; border-color:#a0a0a0;}
+.selected{background-color:#b2baca;}
+.cellselected{background-color:#104E8B;}
+.notselected{background-color:#fffafa;}
+input.enabled {font-size:12px; 
+font-family:Tahoma, Arial, Helvetica; 
+background-color: white; 
+color: #003399;
+border-color: #79a7e3;
+border-style: solid;
+ }
+input.disabled {font-size:12px; font-family:Tahoma, Arial, Helvetica; background-color: white; color: #003399;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #79A7E3; }
+.login {font-size:12px; 
+font-family:Tahoma, Arial, Helvetica; 
+background-color: #d6e8ff; 
+color: #003399;
+border-color: #79a7e3;
+border-style: solid;
+border-width: 1px;
+ }
+input.menuButton {font-size: 10px; background-color: #c0c0c0; color: black; height: 20px}
+select.enabled {font-size: 12px; font-family:Helvetica, Tahoma, Arial; font-weight: bold; background-color: white; color: black }
+select.disabled {font-size: 12px; font-family:Helvetica, Tahoma, Arial; font-weight: bold; background-color: #c0c0c0; color: black }
+textarea.enabled {font-size: 11px; font-family:Tahoma, Arial, Helvetica; background-color: white; color: black }
+textarea.disabled {font-size: 11px; font-family:Tahoma, Arial, Helvetica; background-color: white; color: black }
+button img {width: 20; height: 20;}
+button.submit {width: 20; height: 20; background-color:#d6e8ff; border-width:1px; color:#003399; border-color:#79A7E3}

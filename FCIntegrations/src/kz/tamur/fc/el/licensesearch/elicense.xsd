@@ -1,0 +1,208 @@
+<s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://integration.elicense.kz/CustomServices/Egov/EgovLicenseSearchService" targetNamespace="http://integration.elicense.kz/CustomServices/Egov/EgovLicenseSearchService" elementFormDefault="qualified">
+	<s:element name="UniversalLicenseRequest" type="tns:UniversalLicenseRequest"/>
+	<s:element name="UniversalLicenseResponse" type="tns:UniversalLicenseResponse"/>
+	<s:complexType name="TaxpayerLicenseRequest" mixed="false">
+		<s:complexContent mixed="false">
+			<s:extension base="tns:RequestBase">
+				<s:sequence>
+					<s:element name="IinBin" type="s:string" minOccurs="0"/>
+					<s:element name="RequestType" type="tns:EgovRequestType"/>
+				</s:sequence>
+			</s:extension>
+		</s:complexContent>
+	</s:complexType>
+	<s:complexType name="RequestBase" mixed="false">
+		<s:complexContent mixed="false">
+			<s:extension base="tns:ARequestResponseBase"/>
+		</s:complexContent>
+	</s:complexType>
+	<s:complexType name="ARequestResponseBase" abstract="true">
+		<s:sequence>
+			<s:element name="SystemInfo" type="tns:SystemInfo" minOccurs="0"/>
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="SystemInfo">
+		<s:sequence>
+			<s:element name="MessageId" type="s:string" minOccurs="0"/>
+			<s:element name="ChainId" type="s:string" minOccurs="0"/>
+			<s:element name="MessageDate" type="s:dateTime"/>
+			<s:element name="MessageType" type="tns:MessageType"/>
+			<s:element name="ServiceId" type="s:string" minOccurs="0"/>
+			<s:element name="ResponseCode" type="s:string" minOccurs="0"/>
+			<s:element name="AdditionalInfo" type="s:string" minOccurs="0"/>
+			<s:element name="SenderId" type="s:string" minOccurs="0"/>
+			<s:element name="DigitalSignature" type="s:string" minOccurs="0"/>
+			<s:element name="SignatureType" type="tns:DigitalSignatureType"/>
+		</s:sequence>
+	</s:complexType>
+	<s:simpleType name="MessageType">
+		<s:restriction base="s:string">
+			<s:enumeration value="Request"/>
+			<s:enumeration value="Response"/>
+			<s:enumeration value="Notification"/>
+			<s:enumeration value="Error"/>
+			<s:enumeration value="Other"/>
+		</s:restriction>
+	</s:simpleType>
+	<s:simpleType name="DigitalSignatureType">
+		<s:restriction base="s:string">
+			<s:enumeration value="None"/>
+			<s:enumeration value="XmlDsig"/>
+			<s:enumeration value="Pkcs7"/>
+			<s:enumeration value="Other"/>
+		</s:restriction>
+	</s:simpleType>
+	<s:complexType name="TaxpayerLicenseResponse" mixed="false">
+		<s:complexContent mixed="false">
+			<s:extension base="tns:ARequestResponseBase">
+				<s:sequence>
+					<s:element name="Licenses" type="tns:ArrayOfTaxpayerLicense" minOccurs="0"/>
+					<s:element name="Request" type="tns:TaxpayerLicenseRequest" minOccurs="0"/>
+				</s:sequence>
+			</s:extension>
+		</s:complexContent>
+	</s:complexType>
+	<s:complexType name="ArrayOfTaxpayerLicense">
+		<s:sequence>
+			<s:element name="TaxpayerLicense" type="tns:TaxpayerLicense" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="TaxpayerLicense">
+		<s:sequence>
+			<s:element name="LicenseSeries" type="s:string" minOccurs="0"/>
+			<s:element name="LicenseNumber" type="s:string" minOccurs="0"/>
+			<s:element name="GlobalUniqueNumber" type="s:string" minOccurs="0"/>
+			<s:element name="ActivityType" type="tns:DictionaryRecord" minOccurs="0"/>
+			<s:element name="Licensiar" type="tns:DictionaryRecord" minOccurs="0"/>
+			<s:element name="DateIssue" type="s:dateTime" nillable="true"/>
+			<s:element name="ValidityStartDate" type="s:dateTime" nillable="true"/>
+			<s:element name="ValidityEndDate" type="s:dateTime" nillable="true"/>
+			<s:element name="LicActivityType" type="tns:LicenseActivityType"/>
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="DictionaryRecord">
+		<s:sequence>
+			<s:element name="Code" type="s:string" minOccurs="0"/>
+			<s:element name="NameRu" type="s:string" minOccurs="0"/>
+			<s:element name="NameKz" type="s:string" minOccurs="0"/>
+			<s:element name="NameEn" type="s:string" minOccurs="0"/>
+		</s:sequence>
+	</s:complexType>
+	<s:simpleType name="LicenseActivityType">
+		<s:restriction base="s:string">
+			<s:enumeration value="Casino"/>
+			<s:enumeration value="GameMachine"/>
+			<s:enumeration value="Totalizator"/>
+			<s:enumeration value="Bukmaker"/>
+			<s:enumeration value="Lottery"/>
+			<s:enumeration value="Alcohol"/>
+			<s:enumeration value="Tobacco"/>
+		</s:restriction>
+	</s:simpleType>
+	<s:simpleType name="EgovRequestType">
+		<s:restriction base="s:string">
+			<s:enumeration value="Gambling"/>
+			<s:enumeration value="Lottery"/>
+			<s:enumeration value="Alcohol"/>
+			<s:enumeration value="Tobacco"/>
+		</s:restriction>
+	</s:simpleType>
+	<s:complexType name="EgovCabinetLicenseRequest" mixed="false">
+		<s:complexContent mixed="false">
+			<s:extension base="tns:RequestPageBase">
+				<s:sequence>
+					<s:element name="IinBin" type="s:string" minOccurs="0"/>
+				</s:sequence>
+			</s:extension>
+		</s:complexContent>
+	</s:complexType>
+	<s:complexType name="RequestPageBase" mixed="false">
+		<s:complexContent mixed="false">
+			<s:extension base="tns:ARequestResponseBase">
+				<s:sequence>
+					<s:element name="PageIndex" type="s:int"/>
+					<s:element name="PageSize" type="s:int"/>
+				</s:sequence>
+			</s:extension>
+		</s:complexContent>
+	</s:complexType>
+	<s:complexType name="EgovCabinetLicenseResponse" mixed="false">
+		<s:complexContent mixed="false">
+			<s:extension base="tns:ARequestResponseBase">
+				<s:sequence>
+					<s:element name="Licenses" type="tns:ArrayOfEgovCabinetLicense" minOccurs="0"/>
+					<s:element name="Request" type="tns:EgovCabinetLicenseRequest" minOccurs="0"/>
+				</s:sequence>
+			</s:extension>
+		</s:complexContent>
+	</s:complexType>
+	<s:complexType name="ArrayOfEgovCabinetLicense">
+		<s:sequence>
+			<s:element name="EgovCabinetLicense" type="tns:EgovCabinetLicense" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="EgovCabinetLicense">
+		<s:sequence>
+			<s:element name="Series" type="s:string" minOccurs="0"/>
+			<s:element name="Number" type="s:string" minOccurs="0"/>
+			<s:element name="GlobalUniqueNumber" type="s:string" minOccurs="0"/>
+			<s:element name="Nikad" type="s:string" minOccurs="0"/>
+			<s:element name="ValidityStartDate" type="s:dateTime" nillable="true"/>
+			<s:element name="ValidityEndDate" type="s:dateTime" nillable="true"/>
+			<s:element name="ActivityType" type="tns:DictionaryRecord" minOccurs="0"/>
+			<s:element name="Licensiar" type="tns:DictionaryRecord" minOccurs="0"/>
+			<s:element name="StopSuspendDuplicateDate" type="s:dateTime" nillable="true"/>
+			<s:element name="SuspendingStartDate" type="s:dateTime" nillable="true"/>
+			<s:element name="SuspendingEndDate" type="s:dateTime" nillable="true"/>
+			<s:element name="Status" type="tns:DictionaryRecord" minOccurs="0"/>
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="UniversalLicenseRequest" mixed="false">
+		<s:complexContent mixed="false">
+			<s:extension base="tns:RequestPageBase">
+				<s:sequence>
+					<s:element name="IinBin" type="s:string" minOccurs="0"/>
+					<s:element name="Rnn" type="s:string" minOccurs="0"/>
+					<s:element name="NumberNikadUinrd" type="s:string" minOccurs="0"/>
+					<s:element name="IssueDate" type="s:dateTime" nillable="true"/>
+					<s:element name="ActivityCodes" type="s:string" minOccurs="0"/>
+				</s:sequence>
+			</s:extension>
+		</s:complexContent>
+	</s:complexType>
+	<s:complexType name="UniversalLicenseResponse" mixed="false">
+		<s:complexContent mixed="false">
+			<s:extension base="tns:ARequestResponseBase">
+				<s:sequence>
+					<s:element name="Licenses" type="tns:ArrayOfUniversalLicense" minOccurs="0"/>
+					<s:element name="Request" type="tns:UniversalLicenseRequest" minOccurs="0"/>
+				</s:sequence>
+			</s:extension>
+		</s:complexContent>
+	</s:complexType>
+	<s:complexType name="ArrayOfUniversalLicense">
+		<s:sequence>
+			<s:element name="UniversalLicense" type="tns:UniversalLicense" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</s:sequence>
+	</s:complexType>
+	<s:complexType name="UniversalLicense">
+		<s:sequence>
+			<s:element name="IinBin" type="s:string" minOccurs="0"/>
+			<s:element name="Series" type="s:string" minOccurs="0"/>
+			<s:element name="Number" type="s:string" minOccurs="0"/>
+			<s:element name="GlobalUniqueNumber" type="s:string" minOccurs="0"/>
+			<s:element name="Nikad" type="s:string" minOccurs="0"/>
+			<s:element name="NikadRequests" type="s:string" minOccurs="0"/>
+			<s:element name="IssueDate" type="s:dateTime" nillable="true"/>
+			<s:element name="ValidityStartDate" type="s:dateTime" nillable="true"/>
+			<s:element name="ValidityEndDate" type="s:dateTime" nillable="true"/>
+			<s:element name="ActivityType" type="tns:DictionaryRecord" minOccurs="0"/>
+			<s:element name="Licensiar" type="tns:DictionaryRecord" minOccurs="0"/>
+			<s:element name="StopSuspendDuplicateDate" type="s:dateTime" nillable="true"/>
+			<s:element name="SuspendingStartDate" type="s:dateTime" nillable="true"/>
+			<s:element name="SuspendingEndDate" type="s:dateTime" nillable="true"/>
+			<s:element name="Status" type="tns:DictionaryRecord" minOccurs="0"/>
+			<s:element name="DocumentUrl" type="s:string" minOccurs="0"/>
+		</s:sequence>
+	</s:complexType>
+</s:schema>

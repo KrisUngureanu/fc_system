@@ -1,0 +1,203 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Авторизация с помощью ЭЦП</title>
+    <link href="login.css" rel="StyleSheet" type="text/css">
+</head>
+<body bgcolor="#F0F8FF" style="margin:0">
+<form name="logonForm" action="/kadry/main" method="post" onSubmit="getSecretString(); return false;" onReset="resetForm();">
+<table style="width:100%;height:100%;" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td style="height:100%;" align="center" valign="middle">
+            <table border="0" cellpadding="0" cellspacing="5" class="designLoginPageForm"
+                   style="width:300px;height: 212px; background-image:url(loginBox.png);background-repeat:no-repeat;">
+                <tr>
+                    <td valign="middle" style="height:140px">
+                            <table width="100%" border="0" cellpadding="2" cellspacing="1">
+                                <tr height="40">
+                                    <td width="30%" rowspan="6" align="center" valign="middle" nowrap>
+                                    	<img src="key2.png" width="60" height="82" border="0" alt="" align="bottom" />
+                                    </td>
+                                    <td align="center" valign="middle" nowrap>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  	<td align="left" valign="bottom" nowrap><label class="label">Путь к ключу ЭЦП:</label></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+                                    	<input type="text" name="file" value="" class="input" id="file"/>
+                                    	<input name="sel" type="button" class="button" value="..." 
+                                    					onclick="selectFile(document.getElementById('file').value);"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><label class="label">Пароль:</label></td>
+                                </tr>
+                                <tr>
+                                  <td align="left" valign="middle"><input type="password" name="passwd" class="input"/></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="middle"><input name="submit" type="submit" class="button" value="Вход"/><input name="reset" type="reset" class="button" value="Очистить"/></td>
+                                </tr>
+																<TR valign="bottom" height="40">
+																	<td id="error" colspan="2" align="center" class="error"></td>
+																</TR>
+                            </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+<!--
+        <td align="center" valign="bottom" class="infofont"> (c) ТОО "Тамур" 2009. Все права защищены.</td>
+-->
+    </tr>
+</table>
+<input type="hidden" name="trg" value="top">
+<input type="hidden" name="bp" value="/kadry/index2.html">
+</form>
+<applet style="position:absolute; top:0;left:0;" width="1" height="1" code="kz.crypto.CryptoApplet" archive="commons-logging-1.1.1.jar, xmlsec-1.4.4.jar, softkey_jce_iola-2.2.jar, crypto_applet-1.0.jar"
+		type="application/x-java-applet" mayscript="true" id="IolaApplet" name="IolaApplet">
+    <param name="code" value="kz.crypto.CryptoApplet">
+    <param name="archive" value="commons-logging-1.1.1.jar,xmlsec-1.4.4.jar,softkey_jce_iola-2.2.jar,crypto_applet-1.0.jar">
+</applet>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function selectFile(path) {
+  var f = document.getElementById('IolaApplet').selectFile("p12", "Файлы ключей ЭЦП в формате PKCS12", path);
+  if (f != null) {
+  	if (f.length > 7 && "[ERROR: " == f.substring(0, 8)) {
+    	document.getElementById("error").innerHTML = f.substring(8, f.length - 1);  	    	
+			document.forms["logonForm"].elements["submit"].disabled = false;
+  	} else {
+		  document.getElementById("error").innerHTML = "";
+		  document.getElementById('file').value = f;
+  	}
+  }
+}
+
+function resetForm() {
+	document.forms["logonForm"].elements["submit"].disabled = false;
+	return true;
+} 
+
+function gup( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+
+function getSecretString() {
+	document.forms["logonForm"].elements["submit"].disabled = true;
+	document.getElementById("error").innerHTML = "Подождите идет авторизация...";
+	var url = "/kadry/main";
+  var post = "cmd=getSecret";
+  post += "&noCache=" + (new Date).getTime();
+  if (window.XMLHttpRequest) {
+    req = new XMLHttpRequest();
+  } else if (window.ActiveXObject) {
+    req = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  req.open("POST", url, true);
+  req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+ // req.setRequestHeader("Content-Length", post.length);
+  req.onreadystatechange = function() { login(req); };
+  req.send(post);
+} 
+
+function login(req) {
+  if (req.readyState == 4) {
+    if (req.status == 200) {
+      var d = document;
+      var responseTag = req.responseXML.getElementsByTagName("s")[0];
+	    var secret = responseTag.childNodes[0].nodeValue;
+
+			document.forms["logonForm"].elements["submit"].disabled = true;
+			document.getElementById("error").innerHTML = "Подождите идет авторизация...";
+			var file = document.forms["logonForm"].elements["file"].value;
+			var pwd = document.forms["logonForm"].elements["passwd"].value;
+
+			var s = document.getElementById('IolaApplet').getSignAndCert(secret, 17, file, pwd)
+
+		  if (s != null) {
+  			if (s.length > 7 && "[ERROR: " == s.substring(0, 8)) {
+		    	document.getElementById("error").innerHTML = s.substring(8, s.length - 1);  	    	
+					document.forms["logonForm"].elements["submit"].disabled = false;
+  			} else {
+					var flow = gup('flow');
+					var url = "/kadry/main";
+			  	
+					var b1 = s.indexOf("sign=");
+					var b2 = s.indexOf("&cert=");
+
+					var sign = s.substring(b1 + 5, b2);
+					var cert = s.substring(b2 + 6);
+
+			  	var post = "xml=1";
+				if (flow != null && flow.length > 0)
+			  		post += "&flow=" + flow;
+				  post += "&sign=" + encodeURIComponent(sign) + "&cert=" + encodeURIComponent(cert) + "&passwd=" + pwd;
+				  post += "&profile=" + encodeURIComponent(file);
+      	  post += "&noCache=" + (new Date).getTime();
+		  		if (window.XMLHttpRequest) {
+				    req = new XMLHttpRequest();
+			  	} else if (window.ActiveXObject) {
+			    	req = new ActiveXObject("Microsoft.XMLHTTP");
+		  		}
+	
+			  	req.open("POST", url, true);
+		  		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			  //	req.setRequestHeader("Content-Length", post.length);
+		  		req.onreadystatechange = function() { processLogin(req); };
+			  	req.send(post);
+		  	}
+		  }
+    }
+  }            
+} 
+
+function processLogin(req)
+{
+  if (req.readyState == 4) {
+    if (req.status == 200) {
+      var d = document;
+      var responseTag = req.responseXML.getElementsByTagName("r")[0];
+
+      var tag = responseTag.getElementsByTagName("status")[0];
+      if (tag != null) {
+	      var id = tag.childNodes[0].nodeValue;
+
+  	    if (id == "1") {
+			var flow = gup('flow');
+    	    var url = "/kadry/main?trg=top";
+			if (flow != null && flow.length > 0)
+		  		url += "&flow=" + flow;
+	    
+      	  url += "&noCache=" + (new Date).getTime();
+
+      	  location.assign(url);
+  			}
+      } else {
+	      var tag = responseTag.getElementsByTagName("fatal")[0];
+  	    if (tag != null) {
+	      	var id = tag.childNodes[0].nodeValue;
+          d.getElementById("error").innerHTML = id;  	    	
+  			}
+      }
+    }
+  }            
+}
+
+// -->
+</script>
+</BODY>
+</HTML>

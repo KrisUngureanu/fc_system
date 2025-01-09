@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://egov.bee.kz/eds/scanneddocuments/common/v1/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://egov.bee.kz/eds/common/v1/" targetNamespace="http://egov.bee.kz/eds/scanneddocuments/common/v1/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://egov.bee.kz/eds/common/v1/" schemaLocation="EdsCommonTypes.v1.xsd"/>
+	<xs:complexType name="DocumentUserInfo">
+		<xs:annotation>
+			<xs:documentation>Информация о пользователе документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="userId" type="ns1:IINBIN">
+				<xs:annotation>
+					<xs:documentation>Идентификатор пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="accessType" type="AccessType">
+				<xs:annotation>
+					<xs:documentation>Тип доступа пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expirationDateTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время окончания действия доступа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expirationTimeout" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Время в миллисекундах, по истечении которого доступ будет закрыт</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="AccessType">
+		<xs:annotation>
+			<xs:documentation>Тип доступа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="READ_ONLY"/>
+			<xs:enumeration value="EDIT"/>
+			<xs:enumeration value="OWNER"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

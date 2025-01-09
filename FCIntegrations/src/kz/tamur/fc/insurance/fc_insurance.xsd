@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://insurance.fc.tamur.kz" targetNamespace="http://insurance.fc.tamur.kz" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="Request" type="tns:RequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="Response" type="tns:ResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="RequestType">
+		<xsd:annotation>
+			<xsd:documentation>Тип данных, обозначающий информацию о запросе</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="IdSubService" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Идентификатор подсервиса</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="checkFlRequest" type="tns:checkFlRequestType" minOccurs="0"/>
+			<xsd:element name="createRecordRequest" type="tns:createRecordRequestType" minOccurs="0"/>
+			<xsd:element name="statusRequest" type="tns:getStatusRequestType" minOccurs="0"/>
+			<xsd:element name="closeRecordRequest" type="tns:closeRecordRequestType" minOccurs="0"/>
+			<xsd:element name="filePropertyRequest" type="tns:filePropertyRequestType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="info" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Примечание</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="createRecordResponse" type="tns:createRecordResponseType" minOccurs="0"/>
+			<xsd:element name="statusResponse" type="tns:statusResponseType" minOccurs="0"/>
+			<xsd:element name="closeRecordResponse" type="tns:closeRecordResponseType" minOccurs="0"/>
+			<xsd:element name="filePropertyResponse" type="tns:filePropertyResponseType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="checkFlRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для проверки наличия выгодоприобретателя</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="dataInfo" type="tns:PersonType" form="qualified"/>
+			<xsd:element name="reason" type="tns:DictionaryType" form="qualified" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="createRecordRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для создания записи депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="dataInfo" type="tns:DataType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="createRecordResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос об открытии депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="dataInfo" type="tns:RecordResponseType" form="qualified"/>
+			<xsd:element name="dataFile" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="getStatusRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос к ИС ГОНС на получение статуса и реквизитов запрашиваемой информации</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="regRrecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="scanDoct" type="tns:DictionaryType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Код сканированного документа</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="requestDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата запроса</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="statusResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ ИС ГОНС на получение статуса и реквизитов запрашиваемой информации</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="info" type="xsd:string" form="qualified" minOccurs="0"/>
+			<xsd:element name="summ" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="data" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="closeRecordRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос к ИС ГОНС для передачи данных о закрытии депозита вкладчика ГОНС</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="regRecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dataInfo" type="tns:DataType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="closeRecordResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос о закрытии депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="info" type="xsd:string" form="qualified"/>
+			<xsd:element name="dataInfo" type="tns:RecordResponseType" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="filePropertyType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  для передачи реквизитов загружаемого файла</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="dataInfo" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="filePropertyRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос  на получение реквизитов загружаемого файла</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="typeFile" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="dateFile" type="xsd:date" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="filePropertyResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ с реквизитами загружаемого файла</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="tns:DictionaryType" form="qualified"/>
+			<xsd:element name="data" type="tns:BaseDoc" form="qualified"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PersonType">
+		<xsd:annotation>
+			<xsd:documentation>Вкладчик/вноситель</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="lastName" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Фамилия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="name" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Имя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="secondName" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Отчество</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DocTypeCode" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Код типа документа удостоверяющего личность</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DocNumber" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер документа удостоверяющего личность</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="birthDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата рождения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="personAddress" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RecordType">
+		<xsd:annotation>
+			<xsd:documentation>Данные депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="dogovorNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Номер договора</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeInsurance" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код страховой компании</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codeKato" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код като</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="district" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Область</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="moneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="InsAmountUndrContrct" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>Страховая сумма по договору</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="closeDate" type="xsd:date" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата закрытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="closeReason" type="tns:DictionaryType" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Причина запрытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="info" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Примечание</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RecordResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Данные в ответе при открытии депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="regRrecordNumber" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>регистрационный номер депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>ИИН вкладчика</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordDate" type="xsd:date" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата открытия депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="InsAmountUndrContrct" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>Страховая сумма по договору</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="moneyAmount" type="xsd:double" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Сумма депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="info" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Примечание</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DataType">
+		<xsd:annotation>
+			<xsd:documentation>Передача данных для создания депозита</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="person" type="tns:PersonType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные вкладчика</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deposit" type="tns:RecordType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>данные депозита</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="docums" type="tns:DictionaryType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Перечень прилагаемых документов</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DictionaryType">
+		<xsd:annotation>
+			<xsd:documentation>Справочное значение</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description_ru" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Наименование на русском</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description_kz" type="xsd:string" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Наименование на казахском</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BaseDoc">
+		<xsd:annotation>
+			<xsd:documentation>Прилагаемые документы</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="type" type="tns:DictionaryType" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Код сканированного документа		</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="recordNumber" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Регистрационный номер</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="date" type="xsd:date" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Дата документа</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fileId" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Имя файла без расширения		</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fileType" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Расширение файла</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fileHash" type="xsd:string" form="qualified" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="ru">Хэш функция файла	</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="content" type="xsd:base64Binary" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

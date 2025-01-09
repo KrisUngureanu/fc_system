@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+                    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+                    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+                    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                    wsdlLocation="BatchProcessingService.wsdl"
+                    version="2.0">
+
+        <jaxws:package name="kz.tamur.fc.bank.service"/>
+        <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+        <jaxws:enableAsyncMapping>true</jaxws:enableAsyncMapping>
+
+        <jaxws:bindings node="//wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://data.chdb.scb.kz']">
+            <jaxb:schemaBindings>
+                <jaxb:package name="kz.tamur.fc.bank.credit"/>
+            </jaxb:schemaBindings>
+        </jaxws:bindings>
+
+    </jaxws:bindings>

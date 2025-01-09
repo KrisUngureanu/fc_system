@@ -1,0 +1,1339 @@
+Dim IsSwitch As Boolean
+Dim IsSaved As Boolean
+Dim IsInit As Boolean
+Dim langs_() As String
+Dim langIds_() As Long
+Dim count_ As Integer
+Dim language As String
+Dim languageId As Long
+Dim selIndex As Integer
+Dim sved As String
+Dim type_ As Integer
+Dim resType_ As Integer
+Dim resDateFormat_ As String
+Dim id_ As Long
+Dim buffer_ As String
+Public curId_ As String
+Dim r As Comment
+Dim paramArr As Variant
+
+Dim servletUrl As String
+Dim designerUUID As String
+Dim reportID As String
+Dim langID As String
+Private Const CP_UTF8 = 65001
+Private Declare PtrSafe Function WideCharToMultiByte Lib "Kernel32" ( _
+    ByVal CodePage As LongPtr, ByVal dwflags As LongPtr, _
+    ByVal lpWideCharStr As LongPtr, ByVal cchWideChar As LongPtr, _
+    ByVal lpMultiByteStr As LongPtr, ByVal cchMultiByte As LongPtr, _
+    ByVal lpDefaultChar As LongPtr, ByVal lpUsedDefaultChar As LongPtr) As Long
+    
+Public Sub BringToFront()
+    Application.Visible = True
+    Application.ActiveWindow.Activate
+    
+    Set oShell = CreateObject("WScript.Shell")
+    oShell.AppActivate (Application.Caption)
+    oShell.SendKeys ("")
+End Sub
+
+    
+Public Sub SetIntitialParams(s1 As String, s2 As String, s3 As String, s4 As String)
+    servletUrl = s1
+    designerUUID = s2
+    reportID = s3
+    langID = s4
+    
+    Dim cb As CommandBar
+    Dim cbc As CommandBarButton
+    Dim found As Boolean
+    found = False
+    For Each cb In Application.CommandBars
+        If cb.Name = "OR2" Then
+            found = True
+            cb.Visible = True
+            cb.Controls.Item(1).OnAction = "InsertSved"
+            cb.Controls.Item(2).OnAction = "SaveToBase"
+        End If
+    Next
+    If found = False Then
+        Set cb = Application.CommandBars.Add("OR2")
+        Set cbc = cb.Controls.Add(msoControlButton)
+        cbc.FaceId = 176
+        cbc.OnAction = "InsertSved"
+        Set cbc = cb.Controls.Add(msoControlButton)
+        cbc.FaceId = 3
+        cbc.OnAction = "SaveToBase"
+        cb.Visible = True
+    End If
+    
+    BringToFront
+End Sub
+Public Function callServer(cmd As String, param As String) As String
+    callServer = ""
+    
+    Set oXMLHTTP = CreateObject("MSXML2.XMLHTTP")
+    Set oXMLDoc = CreateObject("MSXML2.DOMDocument")
+
+    s = "uuid=" & designerUUID & "&rid=" & reportID & "&cmd=" & cmd & "&param=" & URLEncode(param)
+
+    Call oXMLHTTP.Open("POST", servletUrl, False) '<< changed true to false here.
+    Call oXMLHTTP.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+
+    Call oXMLHTTP.send(s)
+    
+    If (oXMLHTTP.readyState = 4) Then
+        Dim szResponse: szResponse = oXMLHTTP.responseText
+        
+        Call oXMLDoc.LoadXML(szResponse)
+        If (oXMLDoc.parseError.ErrorCode <> 0) Then
+            MsgBox oXMLDoc.parseError.reason & "|" & oXMLHTTP.responseText
+        ElseIf (oXMLDoc.FirstChild.tagName = "error") Then
+            MsgBox oXMLDoc.FirstChild.Text
+        Else
+            callServer = oXMLDoc.FirstChild.Text
+            BringToFront
+        End If
+    End If
+End Function
+
+Public Function UTF16To8(ByVal UTF16 As String) As String
+Dim sBuffer As String
+Dim lLength As Long
+If UTF16 <> "" Then
+    lLength = WideCharToMultiByte(CP_UTF8, 0, StrPtr(UTF16), -1, 0, 0, 0, 0)
+    sBuffer = Space$(lLength)
+    lLength = WideCharToMultiByte(CP_UTF8, 0, StrPtr(UTF16), -1, StrPtr(sBuffer), Len(sBuffer), 0, 0)
+    sBuffer = StrConv(sBuffer, vbUnicode)
+    UTF16To8 = Left$(sBuffer, lLength - 1)
+Else
+    UTF16To8 = ""
+End If
+End Function
+
+Public Function URLEncode( _
+   StringVal As String, _
+   Optional SpaceAsPlus As Boolean = False, _
+   Optional UTF8Encode As Boolean = True _
+) As String
+
+Dim StringValCopy As String: StringValCopy = IIf(UTF8Encode, UTF16To8(StringVal), StringVal)
+Dim StringLen As Long: StringLen = Len(StringValCopy)
+
+If StringLen > 0 Then
+    ReDim Result(StringLen) As String
+    Dim I As Long, CharCode As Integer
+    Dim Char As String, Space As String
+
+  If SpaceAsPlus Then Space = "+" Else Space = "%20"
+
+  For I = 1 To StringLen
+    Char = Mid$(StringValCopy, I, 1)
+    CharCode = Asc(Char)
+    Select Case CharCode
+      Case 97 To 122, 65 To 90, 48 To 57, 45, 46, 95, 126
+        Result(I) = Char
+      Case 32
+        Result(I) = Space
+      Case 0 To 15
+        Result(I) = "%0" & Hex(CharCode)
+      Case Else
+        Result(I) = "%" & Hex(CharCode)
+    End Select
+  Next I
+  URLEncode = Join(Result, "")
+
+End If
+End Function
+
+' Ïðîöåäóðà InsertSved âûçûâàåòñÿ êàæäûé ðàç ïðè íàæàòèè
+' íà êíîïêó äîáàâèòü ñâåäåíèå è ïîêàçûâàåò îêîøêî ñ òèïàìè ñâåäåíèé
+
+Public Sub InsertSved()
+  Dim commentText As String
+  commentText = ""
+  type_ = 0 ' Îáíóëÿåì ïåðåìåííóþ òèïà ñâåäåíèÿ
+  Browser.Show ' Ïîêàçûâàåì îêîøêî
+  ' Ïîñëå âûáîðà êàêîé-òî èç ðàäèîêíîïîê ïåðåìåííîé type_
+  ' ïðèñâàèâàåòñÿ ñîîòâåòñâóþùåå çíà÷åíèå
+  curId_ = "" ' Îáíóëÿåì òåêóùèé íîìåð ñâåäåíèÿ
+  
+  If (type_ <> 0 And Not ActiveCell.Comment Is Nothing) Then
+        commentText = ActiveCell.Comment.Text
+        If commentText <> "" Then
+            posstart = InStr(1, commentText, "|", 1) + 1
+            PosLength = InStr(posstart, commentText, "|", 1) - posstart
+            If PosLength > 0 Then curId_ = Mid(commentText, posstart, PosLength)
+        End If
+  End If ' Åñëè ñâåäåíèå â ýòîì ìåñòå óæå áûëî, òî curId_
+  ' ïðèñâàèâàåòñÿ çíà÷åíèå íîìåðà ýòîãî ñâåäåíèÿ
+  
+  If type_ = 1 Then insertField (commentText)
+  If type_ = 2 Then insertColumn (commentText)
+  If type_ = 3 Then insertRow
+  If type_ = 4 Then insertTreeColumn (commentText)
+  If type_ = 5 Then insertFilter
+  If type_ = 6 Then insertSummary
+  If type_ = 7 Then insertSpecSum
+  If type_ = 8 Then insertFree
+  If type_ = 9 Then insertRowColumn
+  If type_ = 10 Then insertConsColumn
+  If type_ = 11 Then insertConsValue (commentText)
+  'If type_ = 12 Then insertSimpleSved ("User")
+  'If type_ = 13 Then insertSimpleSved ("Base")
+  If type_ = 12 Then insertConsColumnEx (commentText)
+  If type_ = 13 Then insertColumnEx
+  'If type_ = 16 Then insertSimpleSved ("Department")
+  If type_ = 14 Then insertFilterDate (1)
+  If type_ = 15 Then insertFilterDate (2)
+  If type_ = 16 Then insertTable
+End Sub
+Public Sub insertFilterDate(typeDate As Integer)
+    Dim t As Comment
+    ActiveCell.ClearComments
+    Set t = ActiveCell.AddComment("Field|" + format(-typeDate) + "|ref=")
+    t.Visible = False
+End Sub
+Public Sub insertSimpleSved(w As String)
+  Dim t As Comment
+
+  If Not IsInit Then init
+  ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment(w + "|" + curId_)
+    Else
+        Set t = ActiveCell.AddComment(w + "|" + format(id_))
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+End Sub
+Public Sub insertConsColumnEx(str As String)
+  Dim t As Comment
+  If Not IsInit Then init
+  buffer_ = ""
+  ConsColumnExBrowser.init (str)
+  ConsColumnExBrowser.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("ConsColumnEx|" + curId_ + "|" + buffer_)
+    Else
+        Set t = ActiveCell.AddComment("ConsColumnEx|" + format(id_) + "|" + buffer_)
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+  End If
+End Sub
+Public Sub insertConsColumn()
+    Dim msg As String
+    Dim inTreeTable As String
+    Dim curCol As Integer
+    Dim curRow As Integer
+    Dim t As Comment
+  
+    If Not IsInit Then init
+    curCol = ActiveCell.Column
+    curRow = ActiveCell.row
+    inTreeTable = isNearTree(curRow, curCol)
+    If (inTreeTable <> "") Then
+        If (Left(inTreeTable, 1) = "t") Then
+            msg = "|" + inTreeTable + "|"
+        Else
+            msg = "|tree=" + inTreeTable + "|"
+        End If
+    Else
+        msg = ""
+    End If
+    ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("ConsColumn|" + curId_ + msg)
+    Else
+        Set t = ActiveCell.AddComment("ConsColumn|" + format(id_) + msg)
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+End Sub
+Public Sub insertConsValue(str As String)
+    Dim t As Comment
+    If Not IsInit Then init
+    
+    ConsValueBrowser.init (str)
+    ConsValueBrowser.Show
+    If buffer_ <> "" Then
+        ActiveCell.ClearComments
+        If curId_ <> "" Then
+            Set t = ActiveCell.AddComment("ConsValue|" + curId_ + "|" + buffer_)
+        Else
+            Set t = ActiveCell.AddComment("ConsValue|" + format(id_) + "|" + buffer_)
+            id_ = id_ + 1
+        End If
+        t.Visible = False
+    End If
+End Sub
+Public Sub insertSummary()
+    Dim t As Comment
+    buffer_ = ""
+    SummaryBrowser.Show
+    If buffer_ <> "" Then
+        ActiveCell.ClearComments
+        Set t = ActiveCell.AddComment("Sum|" + buffer_)
+        t.Visible = False
+    End If
+End Sub
+Public Sub insertFree()
+    Dim t As Comment
+    buffer_ = ""
+    FreeBrowser.Show
+    If buffer_ <> "" Then
+        ActiveCell.ClearComments
+        Set t = ActiveCell.AddComment("Free|" + buffer_)
+        t.Visible = False
+    End If
+End Sub
+Public Sub insertSpecSum()
+    Dim t As Comment
+    buffer_ = ""
+    SpecSumBrowser.Show
+    If buffer_ <> "" Then
+        ActiveCell.ClearComments
+        If curId_ <> "" Then
+            Set t = ActiveCell.AddComment("SpecSum|" + curId_ + "|" + buffer_)
+        Else
+            Set t = ActiveCell.AddComment("SpecSum|" + format(id_) + "|" + buffer_)
+            id_ = id_ + 1
+        End If
+        t.Visible = False
+    End If
+End Sub
+Public Sub insertTreeColumn(str As String)
+  Dim t As Comment
+  If Not IsInit Then init
+  buffer_ = ""
+  TreeColumnBrowser.init (str)
+  TreeColumnBrowser.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("TreeColumn|" + curId_ + "|" + buffer_ + "|" + curId_ + "|")
+    Else
+        Set t = ActiveCell.AddComment("TreeColumn|" + format(id_) + "|" + buffer_ + "|" + format(id_) + "|")
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+  End If
+End Sub
+Public Sub insertField(str As String)
+  Dim t As Comment
+  If Not IsInit Then init
+  buffer_ = ""
+  FieldBrowser.init (str)
+  FieldBrowser.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("Field|" + curId_ + "|" + buffer_)
+    Else
+        Set t = ActiveCell.AddComment("Field|" + format(id_) + "|" + buffer_)
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+  End If
+End Sub
+Public Sub insertTable()
+  Dim t As Comment
+  If Not IsInit Then init
+  buffer_ = ""
+  TableForm.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("Table|" + curId_ + "|" + buffer_)
+    Else
+        Set t = ActiveCell.AddComment("Table|" + format(id_) + "|" + buffer_)
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+  End If
+End Sub
+Public Sub insertColumn(str As String)
+  Dim t As Comment
+  If Not IsInit Then init
+  buffer_ = ""
+  ColumnBrowser.init (str)
+  ColumnBrowser.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("Column|" + curId_ + "|" + buffer_)
+    Else
+        Set t = ActiveCell.AddComment("Column|" + format(id_) + "|" + buffer_)
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+  End If
+End Sub
+Public Sub insertColumnEx()
+    Dim t As Comment
+    If Not IsInit Then init
+  buffer_ = ""
+  ColumnExBrowser.intBuffer = ""
+  ColumnExBrowser.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("ColumnEx|" + curId_ + "|" + buffer_)
+    Else
+        Set t = ActiveCell.AddComment("ColumnEx|" + format(id_) + "|" + buffer_)
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+  End If
+End Sub
+Public Sub insertRowColumn()
+  Dim t As Comment
+  If Not IsInit Then init
+  buffer_ = ""
+  RowColumnBrowser.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("RowColumn|" + curId_ + "|" + buffer_)
+    Else
+        Set t = ActiveCell.AddComment("RowColumn|" + format(id_) + "|" + buffer_)
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+  End If
+End Sub
+Public Sub insertRow()
+  Dim t As Comment
+  If Not IsInit Then init
+  buffer_ = ""
+  RowBrowser.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    If curId_ <> "" Then
+        Set t = ActiveCell.AddComment("Row|" + curId_ + "|" + buffer_)
+    Else
+        Set t = ActiveCell.AddComment("Row|" + format(id_) + "|" + buffer_)
+        id_ = id_ + 1
+    End If
+    t.Visible = False
+  End If
+End Sub
+Public Sub insertFilter()
+  Dim t As Comment
+  If Not IsInit Then init
+  buffer_ = ""
+  FilterBrowser.Show
+  If buffer_ <> "" Then
+    ActiveCell.ClearComments
+    Set t = ActiveCell.AddComment("Filters|" + buffer_)
+    t.Visible = False
+  End If
+End Sub
+Public Sub Relase()
+  If ActiveWorkbook Is Nothing Then Exit Sub
+  
+  If Not ActiveWorkbook.Saved Then SaveForm.Show
+  
+  IsInit = False
+End Sub
+Public Sub init()
+  Dim temp As String
+  Dim max As Long
+  
+  paramArr = Array("ref", "ref2", "table", "unique", "group", "group2", _
+            "expr", "groupExpression", "lang", "format", "filter", "root", _
+            "title", "treeGroup", "defText", "sysPath", "sort", "direction", "level", _
+            "level2", "tableId", "showNulls", "dateFormat", "rootExpression", _
+            "filterTree", "childrenRef", "childrenExpr", "align", "valign")
+  
+  IsInit = True
+  showLangs
+  wCount = ActiveWorkbook.Worksheets.Count
+  max = 0
+  For w = 1 To wCount
+    coms = ActiveWorkbook.Worksheets(w).Comments.Count
+    For I = 1 To coms
+        temp = ActiveWorkbook.Worksheets(w).Comments(I).Text
+        posstart = InStr(1, temp, "|", 1) + 1
+        PosLength = InStr(posstart, temp, "|", 1) - posstart
+        If (posstart > 1) Then
+            If (PosLength < 0) Then
+                ty = Left(temp, posstart - 2)
+                If (ty = "Filters") Then
+                    Result = "0"
+                Else
+                    Result = Right(temp, Len(temp) - posstart + 1)
+                    If (Len(Result) < 1) Then Result = "0"
+                End If
+            Else
+                Result = Mid(temp, posstart, PosLength)
+            End If
+        Else
+            Result = "0"
+        End If
+        If (InStr(1, Result, ".", 1) = 0 And InStr(1, Result, ",", 1) = 0) Then
+            If (CLng(Result) > max) Then max = CLng(Result)
+        End If
+    Next I
+  Next w
+  id_ = max + 1
+End Sub
+Public Sub SaveToBase()
+    If Not IsInit Then init
+    Dim fs As New Collection
+    Dim wsh As Worksheet
+    Dim res As String
+    Dim fid As String
+    Dim fxml As String
+    Dim Result As String
+        
+    sved = "<?xml version=""1.0"" encoding=""UTF-8""?>" + Chr(10) + "<Root>" + Chr(10)
+    wCount = ActiveWorkbook.Worksheets.Count ' Number of worksheets
+    For w = 1 To wCount
+      cCount = ActiveWorkbook.Worksheets(w).Comments.Count 'Number of comments in worksheet
+      
+      For I = cCount To 1 Step -1
+        comm = ActiveWorkbook.Worksheets(w).Comments(I).Text
+     
+        posstart = InStr(1, comm, "|", 1)
+        If (posstart > 0) Then
+            Result = Left(comm, posstart - 1)
+            If (Result = "Filters") Then
+                Dim f As New Class1
+                f.sh = w
+                f.col = ActiveWorkbook.Worksheets(w).Comments(I).parent.Column
+                f.row = ActiveWorkbook.Worksheets(w).Comments(I).parent.row
+                f.tillRow = 0
+                f.tillCol = 0
+                
+                res = Right(comm, Len(comm) - posstart)
+                posstart = InStr(1, res, "|", 1)
+                If (posstart > 0) Then
+                    f.value = Left(res, posstart - 1)
+                    res = Right(res, Len(res) - posstart)
+                    posstart = InStr(1, res, "|", 1)
+                    If (posstart > 0) Then
+                        f.attr = Left(res, posstart - 1)
+                        f.expr = Right(res, Len(res) - posstart)
+                    Else
+                        f.attr = res
+                    End If
+                Else
+                    f.value = res
+                    f.attr = ""
+                    f.expr = ""
+                End If
+                    
+                'ActiveWorkbook.Worksheets(w).Comments(i).Delete
+                fs.Add Item:=f
+                Set f = Nothing
+            End If
+            If (Result = "Filter") Then
+                posstart = InStr(1, comm, "Filters", 1)
+                If (posstart > 0) Then
+                    Dim f3 As New Class1
+                    comm = Right(comm, Len(comm) - posstart + 1)
+                    posstart = InStr(1, comm, "|", 1)
+                    f3.sh = w
+                    f3.col = ActiveWorkbook.Worksheets(w).Comments(I).parent.Column
+                    f3.value = Right(comm, Len(comm) - posstart)
+                    f3.row = ActiveWorkbook.Worksheets(w).Comments(I).parent.row
+                    f3.tillRow = 0
+                    f3.tillCol = 0
+                    'ActiveWorkbook.Worksheets(w).Comments(i).Delete
+                    fs.Add Item:=f3
+                    Set f3 = Nothing
+                End If
+            End If
+        
+            res = Right(comm, Len(comm) - posstart)
+        
+            If (InStr(1, res, "=", 1) > 0) Then ' And InStr(1, res, "attr", 1) = 0) Then
+                posstart = InStr(1, res, "|", 1)
+                fid = Left(res, posstart - 1)
+                res = Right(res, Len(res) - posstart)
+                If (Result = "TreeColumn") Then
+                    success = addNewTreeColumn(res, fid)
+                Else
+                    If (InStr(1, res, "tree=", 1) = 0 And Result <> "ConsValue" And Right(comm, 1) <> "|") Then
+                        fxml = Chr(9) + "<" + Result + " id=""" + fid + """"
+                        sved = sved + newAdd(res, fxml, Result) + Chr(10)
+                    End If
+                End If
+            Else
+                If (Result = "Base") Then addBase (res)
+                If (Result = "User") Then addUser (res)
+                If (Result = "Department") Then addDepartment (res)
+                If (Result = "Field") Then addField (res)
+                If (Result = "Row") Then addRow (res)
+                If (Result = "Column") Then
+                    If (Right(comm, 1) <> "|") Then addRow (res)
+                End If
+                If (Result = "ColumnEx") Then addColumnEx (res)
+                If (Result = "ConsColumnEx") Then addConsColumnEx (res)
+                If (Result = "TreeColumn") Then addTreeColumn (res)
+            End If
+        End If
+      Next I
+    Next w
+    
+    For I = 1 To fs.Count
+        For j = 1 To fs.Count
+          If ((fs(I).sh = fs(j).sh) And (I <> j)) Then
+            If (fs(I).row = fs(j).row) And (fs(I).col < fs(j).col) And ((fs(I).tillCol > fs(j).col) Or (fs(I).tillCol = 0)) Then
+                fs(I).tillCol = fs(j).col
+            End If
+            If (fs(I).col = fs(j).col) And (fs(I).row < fs(j).row) And ((fs(I).tillRow > fs(j).row) Or (fs(I).tillRow = 0)) Then
+                fs(I).tillRow = fs(j).row
+            End If
+          End If
+        Next j
+    Next I
+    
+    For I = 1 To fs.Count
+        For j = 1 To fs.Count
+          If (I <> j) Then
+           If (fs(I).sh = fs(j).sh) Then
+            If (fs(I).row > fs(j).row) And ((fs(j).tillRow = 0) Or (fs(I).row < fs(j).tillRow)) And (fs(I).col <= fs(j).col) And ((fs(I).tillCol = 0) Or (fs(j).col < fs(I).tillCol)) Then
+                
+                sved = sved + "<Filter" + " filter1=""" + fs(I).value + """ filter2=""" + fs(j).value
+                curWsh = fs(I).sh
+                Set curCell = ActiveWorkbook.Worksheets(curWsh).Cells(fs(I).row, fs(j).col)
+                sved = sved + """ sheet=""" + format(curWsh) + """ cell=""" + curCell.Address
+                
+                If (fs(I).attr <> "") Then
+                    sved = sved + """ attr=""" + fs(I).attr + """/>" + Chr(10)
+                ElseIf (fs(j).attr <> "") Then
+                    sved = sved + """ attr=""" + fs(j).attr + """/>" + Chr(10)
+                End If
+                
+                If (fs(I).expr <> "") Then
+                    sved = sved + """>" + "<expr>" + fs(I).expr + "</expr>" + Chr(10) + "</Filter>" + Chr(10)
+                ElseIf (fs(j).expr <> "") Then
+                    sved = sved + """>" + "<expr>" + fs(j).expr + "</expr>" + Chr(10) + "</Filter>" + Chr(10)
+                Else
+                    sved = sved + """/>" + Chr(10)
+                End If
+                
+'                sved = sved + "<Filter id=""" + format(id_) + """ filter1=""" + fs(i).value + """ filter2=""" + fs(j).value
+'
+'                If (fs(i).attr <> "") Then
+'                    sved = sved + """ attr=""" + fs(i).attr + """/>" + Chr(10)
+'                ElseIf (fs(j).attr <> "") Then
+'                    sved = sved + """ attr=""" + fs(j).attr + """/>" + Chr(10)
+'                Else
+'                    sved = sved + """/>" + Chr(10)
+'                End If
+'
+'                curWsh = fs(i).sh
+'
+'                If (ActiveWorkbook.Worksheets(curWsh).Cells(fs(i).row, fs(j).col).Comment Is Nothing) Then
+'                    comm = ""
+'                Else
+'                    comm = ActiveWorkbook.Worksheets(curWsh).Cells(fs(i).row, fs(j).col).Comment.Text
+'
+'                    posstart = InStr(1, comm, "Filters", 1)
+'                    If (posstart < 1) Then
+'                        comm = ""
+'                    Else:
+'                        comm = Right(comm, Len(comm) - posstart + 1)
+'                    End If
+'                End If
+'
+'                ActiveWorkbook.Worksheets(curWsh).Cells(fs(i).row, fs(j).col).ClearComments
+'                If comm <> "" Then
+'                    ActiveWorkbook.Worksheets(curWsh).Cells(fs(i).row, fs(j).col).AddComment ("Filter|" + format(id_) + "|" + comm)
+'                Else
+'                    ActiveWorkbook.Worksheets(curWsh).Cells(fs(i).row, fs(j).col).AddComment ("Filter|" + format(id_))
+'                End If
+'                id_ = id_ + 1
+'
+            End If
+           End If
+          End If
+        Next j
+    Next I
+    sved = sved + "</Root>"
+    'MsgBox sved
+    s = Application.Version
+    posstart = InStr(1, s, ".", 1)
+    If (posstart > 0) Then
+        v = Left(s, posstart - 1)
+        If (CLng(v) > 11) Then
+            ActiveWorkbook.SaveAs FileFormat:=56
+        Else
+            ActiveWorkbook.Save
+        End If
+    Else
+        ActiveWorkbook.Save
+    End If
+        
+    ret = callServer("xml", sved)
+    ret = callServer("file", ActiveWorkbook.path + "\" + ActiveWorkbook.Name)
+    ret = callServer("save", reportID + "|" + langID)
+    
+    IsSaved = True
+End Sub
+
+Public Sub showLangs()
+    ret = callServer("langs", "")
+    
+    Set oXMLDoc = CreateObject("MSXML2.DOMDocument")
+    Call oXMLDoc.LoadXML(ret)
+    If (oXMLDoc.parseError.ErrorCode <> 0) Then
+        MsgBox oXMLDoc.parseError.reason & "|" & ret
+    Else
+        tmp = oXMLDoc.FirstChild.getElementsByTagName("count").Item(0).Text
+        count_ = CInt(tmp)
+        
+        ReDim langs_(count_)
+        ReDim langIds_(count_)
+        LangsForm.ComboBox1.Clear
+        
+        For I = 1 To count_
+            langs_(I) = oXMLDoc.FirstChild.getElementsByTagName("lang").Item(I - 1).FirstChild.Text
+            langIds_(I) = CLng(oXMLDoc.FirstChild.getElementsByTagName("lang").Item(I - 1).LastChild.Text)
+            LangsForm.ComboBox1.AddItem (langs_(I))
+        Next I
+        
+        If (count_ > 0) Then LangsForm.ComboBox1.ListIndex = 0
+    End If
+End Sub
+
+Public Function getLang(I As Integer) As String
+  getLang = langs_(I)
+  Exit Function
+End Function
+Public Sub SetIndex(index As Integer)
+  selIndex = index + 1
+End Sub
+Public Sub addBase(sv As String)
+    fxml = Chr(9) + "<Base id=""" + sv + """/>"
+    sved = sved + fxml + Chr(10)
+End Sub
+Public Sub addUser(sv As String)
+    fxml = Chr(9) + "<User id=""" + sv + """/>"
+    sved = sved + fxml + Chr(10)
+End Sub
+Public Sub addDepartment(sv As String)
+    fxml = Chr(9) + "<Department id=""" + sv + """/>"
+    sved = sved + fxml + Chr(10)
+End Sub
+Public Sub addField(sv As String)
+    posstart = InStr(1, sv, "|", 1)
+    fid = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref = Left(sv, posstart - 1)
+    fres = "0"
+    sv = Right(sv, Len(sv) - posstart)
+    If fref = "" Then
+        posstart = InStr(1, sv, "|", 1)
+        expr = Left(sv, posstart - 1)
+        flang = "0"
+        sv = Right(sv, Len(sv) - posstart)
+        posstart = InStr(1, sv, "|", 1)
+        If posstart > 0 Then fres = Left(sv, posstart - 1)
+        flang = Right(sv, Len(sv) - posstart)
+    Else
+        posstart = InStr(1, sv, "|", 1)
+        If posstart > 0 Then flang = Left(sv, posstart - 1) Else flang = Right(sv, Len(sv) - posstart)
+        expr = ""
+    End If
+    fxml = Chr(9) + "<Field id=""" + fid + """ ref=""" + fref + """ lang=""" + flang + """ expr=""" + expr + """ format=""" + fres + """/>"
+    sved = sved + fxml + Chr(10)
+End Sub
+Public Sub addRowColumn(sv As String)
+    posstart = InStr(1, sv, "|", 1)
+    fid = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref = Left(sv, posstart - 1)
+    flang = Right(sv, Len(sv) - posstart)
+    fxml = Chr(9) + "<RowColumn id=""" + fid + """ ref=""" + fref + """ lang=""" + flang + """/>"
+    sved = sved + fxml + Chr(10)
+End Sub
+Public Sub addRow(sv As String)
+    tempStr = sv
+    posstart = 1
+    c = 0
+    While (posstart <> 0)
+        c = c + 1
+        posstart = InStr(1, tempStr, "|", 1)
+        tempStr = Right(tempStr, Len(tempStr) - posstart)
+    Wend
+    If (c < 4) Then
+        MsgBox "Ââåäèòå äàííûå äëÿ òàáëèöû"
+    Else
+        posstart = InStr(1, sv, "|", 1)
+        fid = Left(sv, posstart - 1)
+        sv = Right(sv, Len(sv) - posstart)
+        posstart = InStr(1, sv, "|", 1)
+        fref1 = Left(sv, posstart - 1)
+        sv = Right(sv, Len(sv) - posstart)
+        posstart = InStr(1, sv, "|", 1)
+        fref2 = Left(sv, posstart - 1)
+        sv = Right(sv, Len(sv) - posstart)
+        posstart = InStr(1, sv, "|", 1)
+        flang = "0"
+        fexpr = ""
+        If (posstart > 0) Then
+            flang = Left(sv, posstart - 1)
+            sv = Right(sv, Len(sv) - posstart)
+        Else
+            flang = sv
+            sv = ""
+        End If
+        posstart = InStr(1, sv, "|", 1)
+        fres = "0"
+        If (posstart > 0) Then
+            fexpr = Left(sv, posstart - 1)
+            fres = Right(sv, Len(sv) - posstart)
+            sv = fres
+        Else
+            fexpr = sv
+            sv = ""
+        End If
+        
+        If (fexpr = "_") Then fexpr = ""
+        fxml = Chr(9) + "<Column id=""" + fid + """ table=""" + fref1 + """ ref=""" + fref2 + """ lang=""" + flang + """ expr=""" + fexpr + """ format=""" + fres + """/>"
+        'MsgBox fxml
+        sved = sved + fxml + Chr(10)
+    End If
+End Sub
+Public Sub addColumnEx(sv As String)
+    fxml = ""
+    If (Len(sv) > 0) Then fxml = newColumnEx(sv, True)
+    sved = sved + fxml + Chr(10)
+End Sub
+Public Function newColumnEx(sv As String, parent As Boolean) As String
+    Dim sv1 As String
+    sv1 = ""
+    posstart = InStr(1, sv, Chr(10), 1)
+    If (posstart > 0) Then
+        sv1 = Right(sv, Len(sv) - posstart)
+        sv = Left(sv, posstart - 1)
+    End If
+    If (parent) Then
+        posstart = InStr(1, sv, "|", 1)
+        fid = Left(sv, posstart - 1)
+        sv = Right(sv, Len(sv) - posstart)
+    End If
+    posstart = InStr(1, sv, "|", 1)
+    tabRef = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fres = "0"
+    If fref = "" Then
+       posstart = InStr(1, sv, "|", 1)
+       fexpr = Left(sv, posstart - 1)
+       sv = Right(sv, Len(sv) - posstart)
+       posstart = InStr(1, sv, "|", 1)
+       fres = Left(sv, posstart - 1)
+       sv = Right(sv, Len(sv) - posstart)
+       posstart = InStr(1, sv, "|", 1)
+       If posstart > 0 Then
+            flang = Left(sv, posstart - 1)
+            sv = Right(sv, Len(sv) - posstart)
+       Else
+            flang = Right(sv, Len(sv) - posstart)
+            sv = ""
+       End If
+    Else
+       posstart = InStr(1, sv, "|", 1)
+       flang = Left(sv, posstart - 1)
+       sv = Right(sv, Len(sv) - posstart)
+       posstart = InStr(1, sv, "|", 1)
+       fexpr = Left(sv, posstart - 1)
+       sv = Right(sv, Len(sv) - posstart)
+       posstart = InStr(1, sv, "|", 1)
+       If posstart > 0 Then
+            fres = Left(sv, posstart - 1)
+            sv = Right(sv, Len(sv) - posstart)
+       Else
+            fres = Right(sv, Len(sv) - posstart)
+            sv = ""
+       End If
+    End If
+    
+    fxml = Chr(9) + "<ColumnEx id=""" + fid + """ table=""" + tabRef + """ ref=""" + fref + """ lang=""" + flang + """ expr=""" + fexpr + """ format=""" + fres + """>" + Chr(10)
+    If (Len(sv1) > 0) Then fxml = fxml + newColumnEx(sv1, False)
+    fxml = fxml + Chr(9) + "</ColumnEx>" + Chr(10)
+    newColumnEx = fxml
+End Function
+Public Sub addConsColumnEx(sv As String)
+    posstart = InStr(1, sv, "|", 1)
+    fid = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    tabRef = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    consRef = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    If fref = "" Then
+        flang = "0"
+    Else
+        posstart = InStr(1, sv, "|", 1)
+        flang = Left(sv, posstart - 1)
+        sv = Right(sv, Len(sv) - posstart)
+    End If
+    posend = InStr(1, sv, "|", 1)
+    fexpr = ""
+    If (posend > 0) Then fexpr = Left(sv, posend - 1)
+    fxml = Chr(9) + "<ConsColumnEx id=""" + fid + """ table=""" + tabRef + """ ref=""" + fref + """ group=""" + consRef + """ lang=""" + flang + """ expr=""" + fexpr + """ />"
+    sved = sved + fxml + Chr(10)
+End Sub
+Public Sub addConsValue(sv As String)
+    
+    posstart = InStr(1, sv, "|", 1)
+    fid = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    tabRef = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref1 = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref2 = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref3 = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    flang = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posend = InStr(1, sv, "|", 1)
+    fexpr = ""
+    
+    If (posend > 0) Then fexpr = Left(sv, posend - 1)
+    fxml = Chr(9) + Chr(9) + Chr(9) + "<ConsValue id=""" + fid + """ table=""" + tabRef + """ ref=""" + fref1 + """ group=""" + fref2 + """ title=""" + fref3 + """ lang=""" + flang + """ expr=""" + fexpr + """ />"
+    sved = sved + fxml + Chr(10)
+End Sub
+Public Sub addConsColumn(sv As String)
+    Dim rng As range
+    
+    'PosStart = InStr(1, sv, "|", 1)
+    'fid = Left(sv, PosStart - 1)
+    'sv = Right(sv, Len(sv) - PosStart)
+    'PosStart = InStr(1, sv, "|", 1)
+    'fref1 = Left(sv, PosStart - 1)
+    'sv = Right(sv, Len(sv) - PosStart)
+    
+    fxml = Chr(9) + "<ConsColumn id=""" + sv + """>"
+    sved = sved + fxml + Chr(10)
+    
+    Set rng = r.parent.Offset(1, 0)
+    I = 1
+    While (Not rng.Comment Is Nothing)
+        I = I + 1
+        comm = rng.Comment.Text
+        posstart = InStr(1, comm, "|", 1)
+        Result = Left(comm, posstart - 1)
+        If (Result = "ConsValue") Then
+            Result = Right(comm, Len(comm) - posstart)
+            addConsValue (Result)
+        End If
+        Set rng = r.parent.Offset(I, 0)
+    Wend
+    sved = sved + Chr(9) + Chr(9) + "</ConsColumn>" + Chr(10)
+    
+End Sub
+Public Sub addTreeColumn(sv As String)
+    Dim fxml As String
+    Dim comm As String
+    Dim res As String
+    Dim cid As String
+    Dim Result As String
+    
+    posstart = InStr(1, sv, "|", 1)
+    fid = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref1 = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref2 = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref3 = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    fref4 = Left(sv, posstart - 1)
+    sv = Right(sv, Len(sv) - posstart)
+    posstart = InStr(1, sv, "|", 1)
+    flang = Left(sv, posstart - 1)
+    fxml = Chr(9) + "<TreeColumn id=""" + fid + """ table=""" + fref1 + """ ref=""" + fref2 + """ root=""" + fref3 + """ title=""" + fref4 + """ lang=""" + flang + """>"
+    sved = sved + fxml + Chr(10)
+    wCount = ActiveWorkbook.Worksheets.Count ' Number of worksheets
+    For w = 1 To wCount
+      cCount = ActiveWorkbook.Worksheets(w).Comments.Count 'Number of comments in worksheet
+      For I = 1 To cCount
+        comm = ActiveWorkbook.Worksheets(w).Comments(I).Text
+        posstart = InStr(1, comm, "|", 1)
+        Result = Left(comm, posstart - 1)
+        If (Result = "Column") Then
+            treeNum = getParam(comm, "tree")
+            If (treeNum = fid) Then
+                posstart = InStr(1, comm, "|", 1)
+                Result = Left(comm, posstart - 1)
+                res = Right(comm, Len(comm) - posstart)
+            
+                posstart = InStr(1, res, "|", 1)
+                cid = Left(res, posstart - 1)
+                res = Right(res, Len(res) - posstart)
+                
+                If (Result = "ConsColumn") Then
+                    Set r = ActiveWorkbook.Worksheets(w).Comments(I)
+                    success = addNewConsColumn(res, cid)
+                Else
+                    fxml = Chr(9) + Chr(9) + "<" + Result + " id=""" + cid + """"
+                    sved = sved + newAdd(res, fxml, Result) + "/>" + Chr(10)
+                End If
+            
+            Else
+                Result = Right(comm, Len(comm) - posstart)
+                If (Right(comm, 1) = "|") Then
+                    Result = Left(Result, Len(Result) - 1)
+                    PosLast = InStrRev(Result, "|")
+                    cid = Right(Result, Len(Result) - PosLast)
+                    If (cid = fid) Then
+                        Result = Left(Result, PosLast - 1)
+                        sved = sved + Chr(9)
+                        addRow (Result)
+                    End If
+                End If
+            End If
+        End If
+        If (Result = "RowColumn") Then
+            Result = Right(comm, Len(comm) - posstart)
+            If (Right(comm, 1) = "|") Then
+                Result = Left(Result, Len(Result) - 1)
+                PosLast = InStrRev(Result, "|")
+                cid = Right(Result, Len(Result) - PosLast)
+                If (cid = fid) Then
+                    Result = Left(Result, PosLast - 1)
+                    sved = sved + Chr(9)
+                    addRowColumn (Result)
+                End If
+            End If
+        End If
+        If (Result = "ConsColumn") Then
+            Result = Right(comm, Len(comm) - posstart)
+            If (Right(comm, 1) = "|") Then
+                Result = Left(Result, Len(Result) - 1)
+                PosLast = InStrRev(Result, "|")
+                cid = Right(Result, Len(Result) - PosLast)
+                If (cid = fid) Then
+                    Result = Left(Result, PosLast - 1)
+                    sved = sved + Chr(9)
+                    Set r = ActiveWorkbook.Worksheets(w).Comments(I)
+                    addConsColumn (Result)
+                End If
+            End If
+        End If
+      Next I
+    Next w
+    sved = sved + Chr(9) + "</TreeColumn>" + Chr(10)
+End Sub
+Public Function addNewTreeColumn(sv As String, tid As String) As Boolean
+    Dim fxml As String
+    Dim comm As String
+    Dim res As String
+    Dim fid As String
+    Dim Result As String
+    
+    fxml = Chr(9) + "<" + "TreeColumn id=""" + tid + """"
+    sved = sved + newAdd(sv, fxml, "TreeColumn") + Chr(10)
+    
+    wCount = ActiveWorkbook.Worksheets.Count ' Number of worksheets
+    For w = 1 To wCount
+      cCount = ActiveWorkbook.Worksheets(w).Comments.Count 'Number of comments in worksheet
+      For I = 1 To cCount
+        comm = ActiveWorkbook.Worksheets(w).Comments(I).Text
+        treeNum = getParam(comm, "tree")
+        If (treeNum = tid) Then
+               
+            posstart = InStr(1, comm, "|", 1)
+            Result = Left(comm, posstart - 1)
+            res = Right(comm, Len(comm) - posstart)
+        
+            posstart = InStr(1, res, "|", 1)
+            fid = Left(res, posstart - 1)
+            res = Right(res, Len(res) - posstart)
+            
+            If (Result = "ConsColumn") Then
+                Set r = ActiveWorkbook.Worksheets(w).Comments(I)
+                success = addNewConsColumn(res, fid)
+            Else
+                fxml = Chr(9) + Chr(9) + "<" + Result + " id=""" + fid + """"
+                sved = sved + newAdd(res, fxml, Result) + Chr(10)
+            End If
+        End If
+        
+      Next I
+    Next w
+    sved = sved + Chr(9) + "</TreeColumn>" + Chr(10)
+    addNewTreeColumn = True
+End Function
+Public Function addNewConsColumn(sv As String, tid As String) As Boolean
+    Dim rng As range
+    Dim res As String
+    Dim fxml As String
+    Dim comm As String
+    Dim Result As String
+    
+    fxml = Chr(9) + "<ConsColumn id=""" + tid + """>"
+    sved = sved + fxml + Chr(10)
+    
+    Set rng = r.parent.Offset(1, 0)
+    I = 1
+    While (Not rng.Comment Is Nothing)
+        I = I + 1
+        comm = rng.Comment.Text
+        posstart = InStr(1, comm, "|", 1)
+        Result = Left(comm, posstart - 1)
+        res = Right(comm, Len(comm) - posstart)
+    
+        posstart = InStr(1, res, "|", 1)
+        fid = Left(res, posstart - 1)
+        res = Right(res, Len(res) - posstart)
+        
+        If (Result = "ConsValue") Then
+            fxml = Chr(9) + Chr(9) + "<ConsValue id=""" + fid + """"
+            sved = sved + newAdd(res, fxml, Result) + Chr(10)
+        End If
+        Set rng = r.parent.Offset(I, 0)
+    Wend
+    sved = sved + Chr(9) + Chr(9) + "</ConsColumn>" + Chr(10)
+    addNewConsColumn = True
+End Function
+Public Sub SetType(t As Integer)
+    type_ = t
+End Sub
+Public Sub SetResType(t As Integer)
+    resType_ = t
+End Sub
+Public Sub SetDateFormat(format As String)
+    resDateFormat_ = format
+End Sub
+Public Function ShowTypeBrowser() As String
+  resType_ = 0
+  TypeForm.Show
+  msg = format(resType_)
+  If (resType_ = 4) Then
+    LangsForm.Show
+    language = langs_(selIndex)
+    languageId = langIds_(selIndex)
+  Else
+    languageId = 0
+  End If
+  msg = msg + "|lang=" + format(languageId)
+  If (resType_ = 8) Then msg = msg + "|dateFormat=" + resDateFormat_
+  ShowTypeBrowser = msg
+End Function
+Public Sub Test()
+    Dim cb As CommandBar
+    Dim cbc As CommandBarButton
+    Dim found As Boolean
+    found = False
+    For Each cb In Application.CommandBars
+        If cb.Name = "OR2" Then
+            found = True
+            cb.Visible = True
+            cb.Controls.Item(1).OnAction = "InsertSved"
+            cb.Controls.Item(2).OnAction = "SaveToBase"
+        End If
+    Next
+    If found = False Then
+        Set cb = Application.CommandBars.Add("OR2")
+        Set cbc = cb.Controls.Add(msoControlButton)
+        cbc.FaceId = 176
+        cbc.OnAction = "InsertSved"
+        Set cbc = cb.Controls.Add(msoControlButton)
+        cbc.FaceId = 3
+        cbc.OnAction = "SaveToBase"
+        cb.Visible = True
+    End If
+End Sub
+Public Function isNearTree(curRow As Integer, curCol As Integer) As String
+  For I = 1 To ActiveSheet.Comments.Count
+    temp = ActiveSheet.Comments(I).Text
+    If (Right(temp, 1) = "|") Then
+        tCol1 = ActiveSheet.Comments(I).parent.Column
+        c = ActiveSheet.Comments(I).parent.MergeArea.Cells.Count
+        tCol2 = tCol1 + c - 1
+        tRow = ActiveSheet.Comments(I).parent.row
+        If (curRow = tRow) And ((tCol2 = curCol - 1) Or (tCol1 = curCol + 1)) Then
+            Result = ActiveSheet.Comments(I).Text
+            PosLast2 = InStrRev(Result, "|") + 1
+            PosLast = InStrRev(Result, "|", PosLast2 - 2) + 1
+            isNearTree = Mid(Result, PosLast, PosLast2 - PosLast - 1)
+            Exit Function
+        End If
+    End If
+  Next I
+  isNearTree = ""
+  Exit Function
+End Function
+Public Sub SetBuffer(b As String)
+    buffer_ = b
+End Sub
+Public Function ShowFieldBrowser(path As String) As String
+    Dim msg As String
+      
+    If (Len(path) > 0) Then
+        posend = InStr(1, path, "|", 1)
+        If posend > 0 Then
+            path = Left(path, posend - 1)
+        End If
+    End If
+    msg = callServer("ref", path)
+    If msg <> "" Then
+        fmsg = msg
+        posend = InStr(1, fmsg, "|", 1)
+        If posend > 0 Then
+            msg = Left(fmsg, posend - 1)
+        End If
+        
+        ismulti = CBool(Right(fmsg, Len(fmsg) - posend))
+        
+        If ismulti Then
+            LangsForm.Show
+            language = langs_(selIndex)
+            languageId = langIds_(selIndex)
+        Else
+            languageId = 0
+        End If
+        msg = msg + "|lang=" + format(languageId)
+    End If
+    ShowFieldBrowser = msg
+End Function
+Public Function ShowExpresionEditorBrowser(expr As String) As String
+  ShowExpresionEditorBrowser = callServer("expr", expr)
+End Function
+Public Function ShowFirstBrowser(path As String) As String
+  msg = callServer("ref", path)
+  posend = InStr(1, msg, "|", 1)
+  msg = Left(msg, posend - 1)
+  ShowFirstBrowser = msg
+End Function
+Public Function ShowFilterBrowser() As String
+  ShowFilterBrowser = callServer("filter", "")
+End Function
+Public Sub ids2uids()
+    Const ForReading = 1
+    Dim fs, f, cel
+    Dim d                   'Create a variable
+    Dim t As Comment
+    
+    Set d = CreateObject("Scripting.Dictionary")
+    Set fs = CreateObject("Scripting.FileSystemObject")
+    Set f = fs.OpenTextFile("c:\uid", ForReading, TristateFalse)
+    Do While f.AtEndOfStream <> True
+        retstring = f.ReadLine
+        pos = InStr(1, retstring, "|", 1)
+        id = Left(retstring, pos - 1)
+        uid = Mid(retstring, pos + 1, Len(retstring) - pos - 1)
+        d.Add id, uid
+    Loop
+        
+    wCount = ActiveWorkbook.Worksheets.Count
+    For w = 1 To wCount
+      cCount = ActiveWorkbook.Worksheets(w).Comments.Count 'Number of comments in worksheet
+      For I = cCount To 1 Step -1
+        comm = ActiveWorkbook.Worksheets(w).Comments(I).Text
+        posstart = InStr(1, comm, "|", 1)
+        If (posstart > 0) Then
+            Result = Left(comm, posstart - 1)
+            If (Result = "Filters") Then
+                curId = Right(comm, Len(comm) - posstart)
+                curUid = d.Item(curId)
+                If curUid = "" Then MsgBox "EmptyUid"
+                Set cel = ActiveWorkbook.Worksheets(w).Comments(I).parent
+                comm = Result + "|" + curUid
+                cel.ClearComments
+                Set t = cel.AddComment(comm)
+                t.Visible = False
+            End If
+        End If
+      Next
+    Next
+End Sub
+Public Function newAdd(sv As String, nam As String, Result As String) As String
+    On Error GoTo addEnd
+    Dim I As Integer
+    Dim tt As String
+    Dim temp As String
+    
+    Dim expr As String
+    
+    I = 0
+    temp = nam
+    expr = ""
+    
+    sv = "|" + sv
+    
+    While (True)
+        tt = paramArr(I)
+        v = getParam(sv, tt)
+        If Len(v) > 0 Then
+            If (tt = "expr") Then
+                expr = expr + "<expr>" + v + "</expr>" + Chr(10)
+            ElseIf (tt = "groupExpression") Then
+                expr = expr + "<groupExpression>" + v + "</groupExpression>" + Chr(10)
+            ElseIf (tt = "rootExpression") Then
+                expr = expr + "<rootExpr>" + v + "</rootExpr>" + Chr(10)
+            ElseIf (tt = "childrenExpr") Then
+                expr = expr + "<childrenExpr>" + v + "</childrenExpr>" + Chr(10)
+            Else
+                temp = temp + " " + tt + "=""" + v + """"
+            End If
+        End If
+        I = I + 1
+    Wend
+addEnd:
+    If (Len(expr) > 0) Then
+        If (Result = "TreeColumn") Then
+            newAdd = temp + ">" + expr
+        Else
+            newAdd = temp + ">" + expr + "</" + Result + ">"
+        End If
+    ElseIf (Result = "TreeColumn") Then
+        newAdd = temp + ">"
+    Else
+        newAdd = temp + "/>"
+    End If
+End Function
+Public Function getParam(sv As String, t As String) As String
+    On Error GoTo endFunc
+    posstart = InStr(1, sv, "|" + t + "=", 1)
+    If (posstart > 0) Then posstart = posstart + 1 + Len(t)
+    posend = InStr(posstart, sv, "|", 1)
+    
+    If (posend > 0) Then
+        While (Mid(sv, posend - 1, 1) = " ")
+            posend = InStr(posend + 2, sv, "|", 1)
+        Wend
+    End If
+    
+    If posend > 0 Then
+        getParam = Mid(sv, posstart + 1, posend - posstart - 1)
+    Else
+        getParam = Right(sv, Len(sv) - posstart)
+    End If
+    Exit Function
+endFunc:
+    getParam = ""
+End Function

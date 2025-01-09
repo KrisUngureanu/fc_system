@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: xalan2.jar 
+ Or3EJB.jar 
+ jdom.jar
+

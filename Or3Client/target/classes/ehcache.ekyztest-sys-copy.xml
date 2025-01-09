@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+    <cacheManagerPeerProviderFactory
+            class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+            properties="peerDiscovery=automatic,
+                        multicastGroupAddress=239.68.13.203,
+                        multicastGroupPort=12203, timeToLive=1"
+            propertySeparator=","
+            />
+
+    <cacheManagerPeerListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"/>
+
+    <cache name="localUserSessionCache"
+           maxEntriesLocalHeap="5000"
+           eternal="true">
+           <persistence strategy="none"/>
+    </cache>
+
+    <cache name="ServerMessageCache"
+           maxEntriesLocalHeap="100000"
+           eternal="true" >
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true" />
+        <bootstrapCacheLoaderFactory
+                class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory"/>
+    </cache>
+
+    <cache name="activeFlowCache"
+           maxEntriesLocalHeap="1000"
+           eternal="true">
+           <persistence strategy="none"/>
+    </cache>
+
+    <cache name="userSessionCache"
+           maxEntriesLocalHeap="5000"
+           eternal="true">
+        <persistence strategy="none"/>
+        <searchable>
+        	<searchAttribute name="userName"/>
+        	<searchAttribute name="userId"/>
+        </searchable>
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+        <bootstrapCacheLoaderFactory
+                class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory"/>
+    </cache>
+
+    <cache name="systemRightsCache"
+           maxEntriesLocalHeap="5000"
+           eternal="true">
+        <persistence strategy="none"/>
+        <searchable>
+        	<searchAttribute name="action"/>
+        </searchable>
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+        <bootstrapCacheLoaderFactory
+                class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory"/>
+    </cache>
+
+    <cache name="protocolRulesCache"
+           maxEntriesLocalHeap="5000"
+           eternal="true">
+        <persistence strategy="none"/>
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+        <bootstrapCacheLoaderFactory
+                class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory"/>
+    </cache>
+
+	<cache name="methodCache" maxEntriesLocalHeap="5000" eternal="true">
+        <persistence strategy="none"/>
+		<searchable>
+			<searchAttribute name="name" expression="value.name"/>
+			<searchAttribute name="classId" expression="value.classId"/>
+		</searchable>
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" />
+		<bootstrapCacheLoaderFactory
+			class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory" />
+	</cache>
+	
+	<cache name="attributeCache" maxEntriesLocalHeap="50000" eternal="true">
+        <persistence strategy="none"/>
+		<searchable>
+			<searchAttribute name="uid" expression="value.uid"/>
+			<searchAttribute name="name" expression="value.name"/>
+			<searchAttribute name="classId" expression="value.classId"/>
+			<searchAttribute name="typeClassId" expression="value.typeClassId"/>
+		</searchable>
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" />
+		<bootstrapCacheLoaderFactory
+			class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory" />
+	</cache>
+	
+	<cache name="rAttributeCache" maxEntriesLocalHeap="10000" eternal="true">		
+        <persistence strategy="none"/>
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" />
+		<bootstrapCacheLoaderFactory
+			class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory" />
+	</cache>
+	
+	<cache name="classCache" maxEntriesLocalHeap="10000" eternal="true">
+        <persistence strategy="none"/>
+		<searchable>
+			<searchAttribute name="uid" expression="value.uid"/>
+			<searchAttribute name="name" expression="value.name"/>
+			<searchAttribute name="parentId" expression="value.parentId"/>
+		</searchable>
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" />
+		<bootstrapCacheLoaderFactory
+			class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory" />
+	</cache>
+
+	<cache name="filterSqlCache" maxEntriesLocalHeap="5000" eternal="true">
+        <persistence strategy="none"/>
+		<cacheEventListenerFactory
+			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" />
+		<bootstrapCacheLoaderFactory
+			class="net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory" />
+	</cache>
+</ehcache>

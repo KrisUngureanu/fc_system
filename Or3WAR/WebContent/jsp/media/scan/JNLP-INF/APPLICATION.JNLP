@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP файл для JBoss-->
+
+<jnlp spec="1.0+" codebase="http://192.168.13.58:8181/webstart" href="client.jnlp">
+	<information>
+		<title>Управление персоналом OR3 - Клиент</title>
+		<vendor>ТОО "ТАМУР"</vendor>
+		<homepage href="index.html"/>
+		<description>УП OR3</description>
+		<description kind="short">Kadry Client</description>
+		<icon href="images/icon.jpg"/>
+		<shortcut online="true"> 
+			<menu submenu="TAMUR"/>
+			<desktop/> 
+		</shortcut>
+	</information>
+	<security>
+	  <all-permissions/>
+	</security>
+	<resources>
+		<j2se version="1.6+" java-vm-args="-Xmx1024m"/>
+		
+		<jar href="Or3EJBClient.jar" download="eager" main="true"/>		
+		<jar href="Or3Designer.jar" download="eager"/>
+		<jar href="Or3Client.jar" download="eager"/>
+		
+		<jar href="jcalendar.jar"/>
+		<jar href="jdom.jar"/>
+		<jar href="jhall.jar"/>
+		<jar href="joda-time-1.3.jar"/>
+		<jar href="commons-logging.jar"/>
+		<jar href="commons-lang-2.6.jar"/>
+		<jar href="httpclient-4.0.1.jar"/>
+		<jar href="httpcore-4.0.1.jar"/>
+		<jar href="ant-1.9.4.jar"/>		
+		<jar href="gef.jar"/>
+		<jar href="jaxen-core.jar"/>
+		<jar href="jaxen-jdom.jar"/>		
+		<jar href="saxpath.jar"/>
+		<jar href="xbean.jar"/>	
+		<jar href="knca_provider_jce_kalkan-0.0.1-20151102.045943-2.jar"/>	
+		<jar href="knca_xmldsig_jce_kalkan-0.0.1-20151102.045921-1.jar"/>
+		<jar href="mail-1.4.7.jar"/>			
+		<!--<jar href="clientplugs.jar"/>-->
+		
+		<!--Библиотеки Jacob-->
+		<jar href="jacob.jar"/>
+		<nativelib href="jacob-dll.jar"/>
+		<nativelib href="jacob-1.15-M2-x86.jar"/>	
+
+		<!--Библиотеки для JBoss 7.1.1-->		
+		<jar href="jboss-client.jar"/>
+
+		<!--Параметры-->                
+        	<property name="splash" value="SplashTSON.jpg"/>
+
+		<property name="selSrv" value="0"/>
+		<property name="reportType" value="jacob"/>
+		<property name="ref.fetch.depth" value="1"/>
+		<property name="serverType" value="Wildfly"/>
+		<property name="dsName" value="kdr_sed_tt_real"/>
+		<property name="host" value="192.168.13.58"/>
+		<property name="port" value="8181"/>
+
+	</resources>	
+	
+	<!--Библиотеки Jacob-->
+	<resources os="Windows" arch="x86">
+		<nativelib href="jacob-1.15-M2-x86.jar"/>	
+	</resources>
+
+	<resources os="Windows" arch="x86_64">
+		<nativelib href="jacob-1.15-M2-x64.jar"/>	
+	</resources>
+
+	<resources os="Windows" arch="amd64">
+		<nativelib href="jacob-1.15-M2-x64.jar"/>	
+	</resources>
+
+	<application-desc main-class="kz.tamur.rt.Application"/>
+</jnlp>

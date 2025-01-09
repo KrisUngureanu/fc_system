@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kb-project>
+ <depends-on-projects>
+  <project name="Or3EJB"/>
+  <project name="ShepIntegrations"/>
+  <project name="Or3Client"/>
+  <project name="FCIntegrations"/>
+ </depends-on-projects>
+ <used-by-projects/>
+ <paths>
+  <path value="C:/Users/user/.m2/repository/com/github/jnr/jffi/1.2.14/jffi-1.2.14-native.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/measure/unit-api/2.0/unit-api-2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-i18n/1.14/batik-i18n-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-digester/commons-digester/2.1/commons-digester-2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/slf4j/slf4j-simple/1.7.12/slf4j-simple-1.7.12.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/scale/jt-scale/1.1.20/jt-scale-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/grpc/grpc-protobuf-lite/1.61.1/grpc-protobuf-lite-1.61.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-sdk-logs/1.35.0/opentelemetry-sdk-logs-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.12.2/jackson-databind-2.12.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/igniterealtime/rest-api-client/1.0.0/rest-api-client-1.0.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-sdk-extension-autoconfigure-spi/1.35.0/opentelemetry-sdk-extension-autoconfigure-spi-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/spotify/futures-extra/4.3.3/futures-extra-4.3.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-net/commons-net/3.3/commons-net-3.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/grpc/grpc-api/1.61.1/grpc-api-1.61.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/ibm/mq/mqjms/5.3/mqjms-5.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/livesense/jodconverter-core/1.0.3/jodconverter-core-1.0.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-main/22.2/gt-main-22.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/tamur/crypto/null-uri-resolver/1.4.4/null-uri-resolver-1.4.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-gvt/1.14/batik-gvt-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/bandcombine/jt-bandcombine/1.1.20/jt-bandcombine-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/mail/mail/1.4.7/mail-1.4.7.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/grpc/grpc-context/1.61.1/grpc-context-1.61.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/docx4j/docx4j/2.8.1/docx4j-2.8.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/vectorbin/jt-vectorbin/1.1.20/jt-vectorbin-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/sourceforge/nekohtml/nekohtml/1.9.16/nekohtml-1.9.16.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/stats/jt-stats/1.1.20/jt-stats-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jgridshift/jgridshift-core/1.3/jgridshift-core-1.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/xalan/serializer/2.7.1/serializer-2.7.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/tamur/rn3/GtsIntegrations/1.0/GtsIntegrations-1.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/xom/xom/1.2.5/xom-1.2.5.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/plutext/jaxb-svg11/1.0.2/jaxb-svg11-1.0.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/eclipse/emf/org.eclipse.emf.common/2.15.0/org.eclipse.emf.common-2.15.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-anim/1.14/batik-anim-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/opensaml/openws/1.4.2-1/openws-1.4.2-1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/squareup/okhttp3/logging-interceptor/3.8.1/logging-interceptor-3.8.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.4.0-b180830.0438/jaxb-runtime-2.4.0-b180830.0438.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/grpc/grpc-stub/1.61.1/grpc-stub-1.61.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/reactivex/rxjava/1.2.4/rxjava-1.2.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/grpc/grpc-core/1.61.1/grpc-core-1.61.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/web3j/utils/3.2.0/utils-3.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/ws/commons/axiom/axiom-api/1.2.14/axiom-api-1.2.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/zonal/jt-zonal/1.1.20/jt-zonal-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/orderdither/jt-orderdither/1.1.20/jt-orderdither-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/jnr/jnr-posix/3.0.33/jnr-posix-3.0.33.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/web3j/rlp/3.2.0/rlp-3.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/joda-time/joda-time/1.3/joda-time-1.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-sdk-metrics/1.35.0/opentelemetry-sdk-metrics-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/itextpdf/kernel/7.1.12/kernel-7.1.12.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/geronimo/specs/geronimo-jta_1.1_spec/1.1/geronimo-jta_1.1_spec-1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/jai-imageio/jai-imageio-core/1.3.1/jai-imageio-core-1.3.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/cloudant/cloudant-http/2.19.0/cloudant-http-2.19.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/ejml/ejml-core/0.34/ejml-core-0.34.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/shadedrelief/jt-shadedrelief/1.1.20/jt-shadedrelief-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/glassfish/javax.json/1.1.4/javax.json-1.1.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/rescale/jt-rescale/1.1.20/jt-rescale-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/iterators/jt-iterators/1.1.20/jt-iterators-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/logkit/logkit/1.0.1/logkit-1.0.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-codec/commons-codec/1.9/commons-codec-1.9.jar"/>
+  <path value="C:/Users/user/.m2/repository/avalon-framework/avalon-framework/4.1.3/avalon-framework-4.1.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/jakarta-regexp/jakarta-regexp/1.4/jakarta-regexp-1.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/gamma/hardware/gamma-hardware/1.0.0.352/gamma-hardware-1.0.0.352.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/sf/saxon/saxon/9/saxon-9.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-exporter-otlp/1.35.0/opentelemetry-exporter-otlp-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-script/1.14/batik-script-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/sun/jersey/jersey-core/1.18/jersey-core-1.18.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/huldra/math/bigint/0.7.1/bigint-0.7.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jboss/logging/jboss-logging-spi/2.0.5.GA/jboss-logging-spi-2.0.5.GA.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/tigris/gef/gef/0.12.1/gef-0.12.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/in/jlibs/jlibs-xml/2.2.1/jlibs-xml-2.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/jnr/jnr-x86asm/1.0.2/jnr-x86asm-1.0.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/wsdl4j/wsdl4j/1.6.2/wsdl4j-1.6.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/logging/log4j/log4j-core/2.22.1/log4j-core-2.22.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/si/uom/si-units/2.0.1/si-units-2.0.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/media/jai_core/1.1.3/jai_core-1.1.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/format/jt-format/1.1.20/jt-format-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/colorconvert/jt-colorconvert/1.1.20/jt-colorconvert-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-opengis/25.0/gt-opengis-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/codehaus/castor/castor-core/1.4.1/castor-core-1.4.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/errorprone/error_prone_annotations/2.23.0/error_prone_annotations-2.23.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/beust/jcommander/1.48/jcommander-1.48.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-shapefile/22.2/gt-shapefile-22.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/ejml/ejml-ddense/0.34/ejml-ddense-0.34.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/logging/log4j/log4j-1.2-api/2.22.1/log4j-1.2-api-2.22.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/lucene/lucene-analyzers-common/4.5.1/lucene-analyzers-common-4.5.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/squareup/okhttp3/okhttp/3.8.1/okhttp-3.8.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/api/api-common/2.26.0/api-common-2.26.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-context/1.35.0/opentelemetry-context-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/woden/woden-api/1.0M9/woden-api-1.0M9.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/utilities/jt-utilities/1.1.20/jt-utilities-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/sf/ehcache/ehcache/2.9.0/ehcache-2.9.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/lucene/lucene-memory/4.5.1/lucene-memory-4.5.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/geronimo/specs/geronimo-ws-metadata_2.0_spec/1.1.2/geronimo-ws-metadata_2.0_spec-1.1.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/ow2/asm/asm/5.0.3/asm-5.0.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-sdk/1.35.0/opentelemetry-sdk-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/crypto/kalkan/crypto-applet-kalkan/1.3/crypto-applet-kalkan-1.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/axis2/axis2-transport-local/1.6.2/axis2-transport-local-1.6.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-awt-util/1.14/batik-awt-util-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-xml/1.14/batik-xml-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/httpcomponents/httpcore/4.3.1/httpcore-4.3.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-beanutils/commons-beanutils-core/1.8.3/commons-beanutils-core-1.8.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-swing/25.0/gt-swing-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/lucene/lucene-queryparser/4.5.1/lucene-queryparser-4.5.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/gov/pki/kalkan/knca_provider_jce_kalkan/0.7-SNAPSHOT/knca_provider_jce_kalkan-0.7-SNAPSHOT.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/codehaus/woodstox/woodstox-core-asl/4.1.4/woodstox-core-asl-4.1.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/bandmerge/jt-bandmerge/1.1.20/jt-bandmerge-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/axis2/axis2-kernel/1.6.2/axis2-kernel-1.6.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/rlookup/jt-rlookup/1.1.20/jt-rlookup-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/servlet/servlet-api/2.3/servlet-api-2.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/sun/xml/rpc/jaxrpc-spi/1.1.3_01/jaxrpc-spi-1.1.3_01.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/ws/security/wss4j/1.6.19/wss4j-1.6.19.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/instrumentation/opentelemetry-grpc-1.6/1.32.1-alpha/opentelemetry-grpc-1.6-1.32.1-alpha.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/woden/woden-impl-commons/1.0M9/woden-impl-commons-1.0M9.jar"/>
+  <path value="C:/Users/user/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/commons/commons-compress/1.26.0/commons-compress-1.26.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/pdfbox/fontbox/2.0.21/fontbox-2.0.21.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/plutext/jaxb-xslfo/1.0.1/jaxb-xslfo-1.0.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-api-events/1.35.0-alpha/opentelemetry-api-events-1.35.0-alpha.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/opensaml/xmltooling/1.3.2-1/xmltooling-1.3.2-1.jar"/>
+  <path value="C:/Users/user/.m2/repository/jgroups/jgroups/2.6.13.GA/jgroups-2.6.13.GA.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/eclipse/jdt/ecj/3.21.0/ecj-3.21.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/ogc/org.w3.xlink/25.0/org.w3.xlink-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jaitools/jt-zonalstats/1.6.0/jt-zonalstats-1.6.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/commons/commons-collections4/4.2/commons-collections4-4.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/lucene/lucene-queries/4.5.1/lucene-queries-4.5.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/slf4j/slf4j-api/1.7.13/slf4j-api-1.7.13.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/affine/jt-affine/1.1.20/jt-affine-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/zxing/javase/3.3.0/javase-3.3.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/sf/jasperreports/jasperreports/6.17.0/jasperreports-6.17.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/grpc/grpc-netty-shaded/1.61.1/grpc-netty-shaded-1.61.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/openoffice/jurt/3.2.1/jurt-3.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/ow2/asm/asm-commons/5.0.3/asm-commons-5.0.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/web3j/crypto/3.2.0/crypto-3.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-logging/commons-logging/1.1/commons-logging-1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/openoffice/juh/3.2.1/juh-3.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0.1/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-geocore/1.3.5/imageio-ext-geocore-1.3.5.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-parser/1.14/batik-parser-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/media/jai_codec/1.1.3/jai_codec-1.1.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/piecewise/jt-piecewise/1.1.20/jt-piecewise-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/hyperledger/fabric/fabric-gateway-java/2.2.0/fabric-gateway-java-2.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/poi/poi-ooxml/3.11/poi-ooxml-3.11.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/ibm/mq/mq/5.3/mq-5.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/colorindexer/jt-colorindexer/1.1.20/jt-colorindexer-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jfree/jcommon/1.0.23/jcommon-1.0.23.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-referencing/25.0/gt-referencing-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore/2.15.0/org.eclipse.emf.ecore-2.15.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/sun/jersey/jersey-client/1.18/jersey-client-1.18.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/miracl/milagro/amcl/milagro-crypto-java/0.4.0/milagro-crypto-java-0.4.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/perfmark/perfmark-api/0.26.0/perfmark-api-0.26.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/jackrabbit/jackrabbit-jcr-rmi/2.14.9/jackrabbit-jcr-rmi-2.14.9.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.12.2/jackson-core-2.12.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jboss/cache/jbosscache-core/3.2.5.GA/jbosscache-core-3.2.5.GA.jar"/>
+  <path value="C:/Users/user/.m2/repository/oracle/jdbc/driver/ojdbc6/11.2.0.3.0/ojdbc6-11.2.0.3.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/woden/woden-impl-dom/1.0M9/woden-impl-dom-1.0M9.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/xmlgraphics-commons/2.6/xmlgraphics-commons-2.6.jar"/>
+  <path value="C:/Users/user/.m2/repository/si/uom/si-quantity/2.0.1/si-quantity-2.0.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/web3j/abi/3.2.0/abi-3.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/tamur/crypto/esedo-sign/1.0/esedo-sign-1.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-cql/25.0/gt-cql-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/lucene/lucene-sandbox/4.5.1/lucene-sandbox-4.5.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-extension-incubator/1.35.0-alpha/opentelemetry-extension-incubator-1.35.0-alpha.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/warp/jt-warp/1.1.20/jt-warp-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jboss/spec/javax/ejb/jboss-ejb-api_3.1_spec/1.0.1.Final/jboss-ejb-api_3.1_spec-1.0.1.Final.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/beanshell/bsh-core/2.0b4/bsh-core-2.0b4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jboss/javaee/jboss-transaction-api/1.0.1.GA/jboss-transaction-api-1.0.1.GA.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/tamur/jasperreports/jasperreports-fonts/6.1.1/jasperreports-fonts-6.1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/lucene/lucene-core/4.5.1/lucene-core-4.5.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/poi/poi/3.11/poi-3.11.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-bridge/1.14/batik-bridge-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/tamur/ws/fl/fl/1.0/fl-1.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/auto/value/auto-value-annotations/1.10.4/auto-value-annotations-1.10.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/grpc/grpc-util/1.61.1/grpc-util-1.61.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-extension-trace-propagators/1.35.0/opentelemetry-extension-trace-propagators-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/imagefunction/jt-imagefunction/1.1.20/jt-imagefunction-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/semconv/opentelemetry-semconv/1.21.0-alpha/opentelemetry-semconv-1.21.0-alpha.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/opensaml/opensaml/2.5.1-1/opensaml-2.5.1-1.jar"/>
+  <path value="C:/Users/user/.m2/repository/lotus/notes/notes/7.0.3/notes-7.0.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-coverage/25.0/gt-coverage-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/openoffice/unoil/3.2.1/unoil-3.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/avalon/framework/avalon-framework-impl/4.3.1/avalon-framework-impl-4.3.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/guava/guava/32.1.3-android/guava-32.1.3-android.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/squareup/okio/okio/1.13.0/okio-1.13.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/itextpdf/tool/xmlworker/5.5.0/xmlworker-5.5.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/hazelcast/hazelcast/3.11.2/hazelcast-3.11.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/bouncycastle/bcutil-jdk18on/1.77/bcutil-jdk18on-1.77.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-sdk-extension-autoconfigure/1.35.0/opentelemetry-sdk-extension-autoconfigure-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/mozilla/rhino/1.7.14/rhino-1.7.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/media/jai_imageio/1.1/jai_imageio-1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/gamma/crypto.gammaprov/4.2/crypto.gammaprov-4.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-sdk-common/1.35.0/opentelemetry-sdk-common-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/ws/rs/jsr311-api/1.0/jsr311-api-1.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/bouncycastle/bcpkix-jdk18on/1.77/bcpkix-jdk18on-1.77.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/owasp/esapi/esapi/2.1.0.1/esapi-2.1.0.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/ow2/asm/asm-util/5.0.3/asm-util-5.0.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/instrumentation/opentelemetry-instrumentation-api/1.32.1/opentelemetry-instrumentation-api-1.32.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/conversantmedia/disruptor/1.2.13/disruptor-1.2.13.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-dom/1.14/batik-dom-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/jackrabbit/jackrabbit-jcr-commons/2.14.9/jackrabbit-jcr-commons-2.14.9.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/jnr/jnr-enxio/0.14/jnr-enxio-0.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/jakarta/annotation/jakarta.annotation-api/1.3.4/jakarta.annotation-api-1.3.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/geronimo/specs/geronimo-javamail_1.4_spec/1.7.1/geronimo-javamail_1.4_spec-1.7.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/docx4j/xhtmlrenderer/1.0.0/xhtmlrenderer-1.0.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/googlecode/java-diff-utils/diffutils/1.2.1/diffutils-1.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/jnr/jffi/1.2.14/jffi-1.2.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/api/grpc/proto-google-common-protos/2.29.0/proto-google-common-protos-2.29.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/protobuf/protobuf-java/3.25.3/protobuf-java-3.25.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/avalon/framework/avalon-framework-api/4.3.1/avalon-framework-api-4.3.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-exporter-sender-okhttp/1.35.0/opentelemetry-exporter-sender-okhttp-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/arnx/wmf2svg/0.9.0/wmf2svg-0.9.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/fop/1.0/fop-1.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/mosaic/jt-mosaic/1.1.20/jt-mosaic-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/plutext/jaxb-xmldsig-core/1.0.0/jaxb-xmldsig-core-1.0.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/ws/commons/axiom/axiom-impl/1.2.14/axiom-impl-1.2.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/in/jlibs/jlibs-xsd/2.2.1/jlibs-xsd-2.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/json/json/20180130/json-20180130.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/glassfish/jaxb/txw2/2.4.0-b180830.0438/txw2-2.4.0-b180830.0438.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/lucene/lucene-highlighter/4.5.1/lucene-highlighter-4.5.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/ow2/asm/asm-analysis/5.0.3/asm-analysis-5.0.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/geronimo/specs/geronimo-activation_1.1_spec/1.1/geronimo-activation_1.1_spec-1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/eclipse/emf/org.eclipse.emf.ecore.xmi/2.15.0/org.eclipse.emf.ecore.xmi-2.15.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-dbutils/commons-dbutils/1.4/commons-dbutils-1.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/ow2/asm/asm-tree/5.0.3/asm-tree-5.0.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-api/1.35.0/opentelemetry-api-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-cli/commons-cli/1.0/commons-cli-1.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-exporter-common/1.35.0/opentelemetry-exporter-common-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/itextpdf/itextpdf/5.5.0/itextpdf-5.5.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-metadata/25.0/gt-metadata-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/gov/pki/kalkan/knca_xmldsig_jce_kalkan/0.3.2-SNAPSHOT/knca_xmldsig_jce_kalkan-0.3.2-SNAPSHOT.jar"/>
+  <path value="C:/Users/user/.m2/repository/jaxen/jaxen/1.1.4/jaxen-1.1.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/relaxngDatatype/relaxngDatatype/20020414/relaxngDatatype-20020414.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/jnr/jnr-constants/0.9.6/jnr-constants-0.9.6.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/itextpdf/io/7.1.12/io-7.1.12.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/httpcomponents/httpclient/4.3.2/httpclient-4.3.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/crop/jt-crop/1.1.20/jt-crop-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/avalon-framework/avalon-framework-impl/4.2.0/avalon-framework-impl-4.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-streams/1.3.5/imageio-ext-streams-1.3.5.jar"/>
+  <path value="C:/Users/user/.m2/repository/tech/uom/lib/uom-lib-common/2.0/uom-lib-common-2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/xml/jaxrpc-api/1.1/jaxrpc-api-1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/poi/poi-ooxml-schemas/3.11/poi-ooxml-schemas-3.11.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.23/animal-sniffer-annotations-1.23.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/miglayout/miglayout/3.7/miglayout-3.7-swing.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlbeans/xmlbeans-xpath/2.6.0/xmlbeans-xpath-2.6.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/bouncycastle/bcpkix-jdk15on/1.64/bcpkix-jdk15on-1.64.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-utilities/1.3.5/imageio-ext-utilities-1.3.5.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/ant/ant/1.9.4/ant-1.9.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/ws/commons/schema/XmlSchema/1.4.7/XmlSchema-1.4.7.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/neethi/neethi/3.0.2/neethi-3.0.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/xalan/xalan/2.7.1/xalan-2.7.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/itextpdf/layout/7.1.12/layout-7.1.12.jar"/>
+  <path value="C:/Users/user/.m2/repository/tech/units/indriya/2.0.2/indriya-2.0.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.12.2/jackson-annotations-2.12.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/sun/xml/messaging/saaj/saaj-impl/1.3/saaj-impl-1.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/axis2/axis2-adb/1.6.2/axis2-adb-1.6.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/xml/soap/saaj-api/1.3/saaj-api-1.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/hyperledger/fabric-sdk-java/fabric-sdk-java/2.2.26/fabric-sdk-java-2.2.26.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/sun/xml/rpc/jaxrpc-impl/1.1.3_01/jaxrpc-impl-1.1.3_01.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jvnet/staxex/stax-ex/1.8/stax-ex-1.8.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/bouncycastle/bcprov-jdk18on/1.77/bcprov-jdk18on-1.77.jar"/>
+  <path value="C:/Users/user/.m2/repository/in/jlibs/jlibs-core/2.2.1/jlibs-core-2.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jdom/jdom/1.1/jdom-1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/poi/poi-scratchpad/3.11/poi-scratchpad-3.11.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-util/1.14/batik-util-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/intersys/cache/cachedb/5.0/cachedb-5.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/owasp/antisamy/antisamy/1.5.3/antisamy-1.5.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-shared-resources/1.14/batik-shared-resources-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/xml-apis/xml-apis-ext/1.3.04/xml-apis-ext-1.3.04.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/border/jt-border/1.1.20/jt-border-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/codehaus/woodstox/stax2-api/3.1.1/stax2-api-3.1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/sf/jacob-project/jacob/1.15-M2/jacob-1.15-M2.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/bandselect/jt-bandselect/1.1.20/jt-bandselect-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/ant/ant-launcher/1.9.4/ant-launcher-1.9.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/bouncycastle/bcprov-jdk15on/1.64/bcprov-jdk15on-1.64.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/lowagie/itext/2.1.7.js8/itext-2.1.7.js8.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/sun/istack/istack-commons-runtime/3.0.7/istack-commons-runtime-3.0.7.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/sf/barcode4j/barcode4j/2.1/barcode4j-2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/web3j/core/3.2.0/core-3.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/proto/opentelemetry-proto/1.1.0-alpha/opentelemetry-proto-1.1.0-alpha.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/jcraft/jsch/0.1.51/jsch-0.1.51.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/antlr/antlr-runtime/3.3/antlr-runtime-3.3.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlbeans/xmlbeans/2.6.0/xmlbeans-2.6.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/in/jlibs/jlibs-visitor/2.2.1/jlibs-visitor-2.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/zxing/core/3.3.0/core-3.3.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/sf/saxon/Saxon-HE/9.9.1-6/Saxon-HE-9.9.1-6.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-pool/commons-pool/1.5.4/commons-pool-1.5.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/jnr/jnr-unixsocket/0.15/jnr-unixsocket-0.15.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/nullop/jt-nullop/1.1.20/jt-nullop-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/james/apache-mime4j-core/0.7.2/apache-mime4j-core-0.7.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/checkerframework/checker-qual/3.37.0/checker-qual-3.37.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/lookup/jt-lookup/1.1.20/jt-lookup-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-constants/1.14/batik-constants-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/locationtech/jts/jts-core/1.16.1/jts-core-1.16.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/openoffice/ridl/3.2.1/ridl-3.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/classifier/jt-classifier/1.1.20/jt-classifier-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/binarize/jt-binarize/1.1.20/jt-binarize-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/gt-render/25.0/gt-render-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/algebra/jt-algebra/1.1.20/jt-algebra-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-configuration/commons-configuration/1.10/commons-configuration-1.10.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/logging/log4j/log4j-api/2.22.1/log4j-api-2.22.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/cloudant/cloudant-client/2.19.0/cloudant-client-2.19.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/scale2/jt-scale2/1.1.20/jt-scale2-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/geotools/ogc/net.opengis.ows/25.0/net.opengis.ows-25.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jdom/jdom2/2.0.6/jdom2-2.0.6.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jboss/spec/javax/jms/jboss-jms-api_1.1_spec/1.0.1.Final/jboss-jms-api_1.1_spec-1.0.1.Final.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/grpc/grpc-protobuf/1.61.1/grpc-protobuf-1.61.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/net/sf/geographiclib/GeographicLib-Java/1.49/GeographicLib-Java-1.49.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/buffer/jt-buffer/1.1.20/jt-buffer-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/instrumentation/opentelemetry-instrumentation-api-semconv/1.32.1-alpha/opentelemetry-instrumentation-api-semconv-1.32.1-alpha.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/pdfbox/pdfbox/2.0.21/pdfbox-2.0.21.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-sdk-trace/1.35.0/opentelemetry-sdk-trace-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/commons/commons-text/1.6/commons-text-1.6.jar"/>
+  <path value="C:/Users/user/.m2/repository/commons-dbcp/commons-dbcp/1.4/commons-dbcp-1.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/android/annotations/4.1.1.4/annotations-4.1.1.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/web3j/tuples/3.2.0/tuples-3.2.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jboss/jboss-common-core/2.2.14.GA/jboss-common-core-2.2.14.GA.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/imageio-ext/imageio-ext-tiff/1.3.5/imageio-ext-tiff-1.3.5.jar"/>
+  <path value="C:/Users/user/.m2/repository/oracle/xmlparserv2/11.1.1/xmlparserv2-11.1.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/antlr/stringtemplate/3.2.1/stringtemplate-3.2.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/sun/xsom/xsom/20140925/xsom-20140925.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/sun/xml/fastinfoset/FastInfoset/1.0.2/FastInfoset-1.0.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/translate/jt-translate/1.1.20/jt-translate-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/io/opentelemetry/opentelemetry-exporter-otlp-common/1.35.0/opentelemetry-exporter-otlp-common-1.35.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-svg-dom/1.14/batik-svg-dom-1.14.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-css/1.8/batik-css-1.8.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jfree/jfreechart/1.0.19/jfreechart-1.0.19.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/codehaus/castor/castor-xml/1.4.1/castor-xml-1.4.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/kz/tumar/sign-applet/1.0/sign-applet-1.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/systems/uom/systems-common/2.0.1/systems-common-2.0.1.jar"/>
+  <path value="C:/Users/user/.m2/repository/it/geosolutions/jaiext/errordiffusion/jt-errordiffusion/1.1.20/jt-errordiffusion-1.1.20.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/santuario/xmlsec/1.4.4/xmlsec-1.4.4.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/axis2/axis2-transport-http/1.6.2/axis2-transport-http-1.6.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/jaitools/jt-utils/1.6.0/jt-utils-1.6.0.jar"/>
+  <path value="C:/Users/user/.m2/repository/com/github/jnr/jnr-ffi/2.1.2/jnr-ffi-2.1.2.jar"/>
+  <path value="C:/Users/user/.m2/repository/org/apache/xmlgraphics/batik-ext/1.14/batik-ext-1.14.jar"/>
+ </paths>
+ <validation>
+  <el>
+   <linked-el length="14" name="%0" offset="824" path="%1"/>
+   <linked-el length="14" name="%0" offset="903" path="%1"/>
+   <linked-el length="50" name="%0" offset="1394" path="%1"/>
+   <linked-el length="21" name="%0" offset="2802" path="%1"/>
+   <linked-el length="39" name="%0" offset="1331" path="%1"/>
+   <linked-el length="39" name="%0" offset="1451" path="%1"/>
+   <linked-el length="50" name="%2" offset="1394" path="%1"/>
+   <linked-el length="28" name="%3" offset="2357" path="%1"/>
+   <linked-el length="28" name="%3" offset="2003" path="%1"/>
+   <linked-el length="40" name="%4" offset="2086" path="%1"/>
+   <linked-el length="18" name="%4" offset="4822" path="%1"/>
+   <linked-el length="18" name="%4" offset="2279" path="%1"/>
+   <linked-el length="18" name="%4" offset="3121" path="%1"/>
+   <linked-el length="18" name="%4" offset="4638" path="%1"/>
+   <linked-el length="18" name="%4" offset="5213" path="%1"/>
+   <linked-el length="18" name="%4" offset="5024" path="%1"/>
+   <linked-el length="18" name="%4" offset="2956" path="%1"/>
+   <linked-el length="18" name="%4" offset="3291" path="%1"/>
+   <linked-el length="35" name="%5" offset="2183" path="%1"/>
+   <linked-el length="28" name="%6" offset="2357" path="%1"/>
+   <linked-el length="28" name="%6" offset="2003" path="%1"/>
+   <linked-el length="40" name="%7" offset="2086" path="%1"/>
+   <linked-el length="35" name="%7" offset="2183" path="%1"/>
+   <linked-el length="18" name="%7" offset="2279" path="%1"/>
+   <linked-el length="18" name="%7" offset="4900" path="%1"/>
+   <linked-el length="15" name="%7" offset="1859" path="%1"/>
+   <linked-el length="18" name="%7" offset="4638" path="%1"/>
+   <linked-el length="18" name="%7" offset="5213" path="%1"/>
+   <linked-el length="18" name="%7" offset="5024" path="%1"/>
+   <linked-el length="18" name="%7" offset="3291" path="%1"/>
+   <linked-el length="18" name="%7" offset="4822" path="%1"/>
+   <linked-el length="18" name="%7" offset="5110" path="%1"/>
+   <linked-el length="28" name="%7" offset="2357" path="%1"/>
+   <linked-el length="18" name="%7" offset="5301" path="%1"/>
+   <linked-el length="18" name="%7" offset="3121" path="%1"/>
+   <linked-el length="28" name="%7" offset="2003" path="%1"/>
+   <linked-el length="18" name="%7" offset="4719" path="%1"/>
+   <linked-el length="18" name="%7" offset="1929" path="%1"/>
+   <linked-el length="18" name="%7" offset="2956" path="%1"/>
+   <linked-el length="40" name="%8" offset="2086" path="%1"/>
+   <linked-el length="15" name="%9" offset="1859" path="%1"/>
+   <linked-el length="35" name="%10" offset="2183" path="%1"/>
+   <linked-el length="18" name="%11" offset="5110" path="%1"/>
+   <linked-el length="18" name="%11" offset="5301" path="%1"/>
+   <linked-el length="35" name="%11" offset="2183" path="%1"/>
+   <linked-el length="18" name="%11" offset="4900" path="%1"/>
+   <linked-el length="18" name="%11" offset="4719" path="%1"/>
+   <linked-el length="18" name="%11" offset="1929" path="%1"/>
+  </el>
+ </validation>
+ <aliases>
+  <alias path="basedir" value="%0"/>
+  <alias path="server" value="%2"/>
+  <alias path="project.organization" value="%3"/>
+  <alias path="project.groupId" value="%4"/>
+  <alias path="build" value="%5"/>
+  <alias path="project.organization.name" value="%6"/>
+  <alias path="project" value="%7"/>
+  <alias path="project.artifactId" value="%8"/>
+  <alias path="/FcServices/pom.xml" value="%1"/>
+  <alias path="project.name" value="%9"/>
+  <alias path="build.number" value="%10"/>
+  <alias path="project.version" value="%11"/>
+ </aliases>
+ <includes/>
+ <uris/>
+</kb-project>

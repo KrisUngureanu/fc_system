@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" version="5">
+  <description>Or3 EAR project</description>
+  <display-name>Or3EAR</display-name>
+  <module>
+    <ejb>Or3EJB-1.0-SNAPSHOT.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>Or3WAR-1.0-SNAPSHOT.war</web-uri>
+      <context-root>/Or3WAR</context-root>
+    </web>
+  </module>
+  <library-directory>/lib</library-directory>
+</application>

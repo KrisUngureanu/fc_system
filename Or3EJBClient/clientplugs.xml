@@ -1,0 +1,7 @@
+<plugins>
+    <plugin name="Checker" var="Checks" class="com.cifs.or2.server.plugins.ClientChecker"></plugin>
+    <plugin name="KATO" var="KATO" class="kz.tamur.plugins.KATO"></plugin>
+    <plugin name="FLService" var="FLService" class="kz.tamur.plugins.FLService"></plugin>
+    <plugin name="ECP" var="ECP" class="kz.tamur.plugins.ECPPlugin"></plugin>
+    <plugin name="Barcode" var="Barcode" class="kz.tamur.plugins.BarcodePlugin"></plugin>    
+</plugins>

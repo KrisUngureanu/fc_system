@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fontFamilies>
+
+	<fontFamily name="Times New Roman">
+		<normal>fonts/TIMES.TTF</normal>
+		<bold>fonts/TIMESBD.TTF</bold>
+		<italic>fonts/TIMESBI.TTF</italic>
+		<boldItalic>fonts/TIMESI.TTF</boldItalic>
+		<pdfEncoding>Identity-H</pdfEncoding>
+		<pdfEmbedded>true</pdfEmbedded>
+		<exportFonts>
+			<export key="net.sf.jasperreports.html">'Times New Roman', Times, serif</export>
+			<export key="net.sf.jasperreports.xhtml">'Times New Roman', Times, serif</export>
+		</exportFonts>
+	</fontFamily>
+
+	<fontFamily name="Tahoma">
+		<normal>fonts/TAHOMA.TTF</normal>
+		<bold>fonts/TAHOMABD.TTF</bold>
+		<pdfEncoding>Identity-H</pdfEncoding>
+		<pdfEmbedded>true</pdfEmbedded>
+		<exportFonts>
+			<export key="net.sf.jasperreports.html">'Tahoma', serif</export>
+			<export key="net.sf.jasperreports.xhtml">'Tahoma', serif</export>
+		</exportFonts>
+	</fontFamily>
+		
+</fontFamilies>

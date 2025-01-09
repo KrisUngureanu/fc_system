@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Built-By: user
+Build-Jdk: 22.0.1
+Class-Path: log4j-1.2.17.jar commons-logging-1.1.jar logkit-1.0.1.jar av
+ alon-framework-4.1.3.jar servlet-api-2.3.jar
+Created-By: Maven Integration for Eclipse
+Implementation-Title: kz.tamur.or3.jdbc-log4j
+Implementation-Vendor: Tamur Ltd.
+Implementation-Vendor-Id: kz.tamur.or3
+Implementation-Version: 1.0-SNAPSHOT-b${build.number}
+Specification-Title: jdbc-log4j
+Specification-Vendor: Tamur Ltd.
+Specification-Version: 1.0-SNAPSHOT
+

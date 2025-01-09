@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 22
+Class-Path: jcifs-1.3.17.jar servlet-api-2.4.jar jstl-1.2.jar
+Created-By: Maven Integration for Eclipse
+Implementation-Title: kz.tamur.or3.Or3WAR
+Implementation-Vendor: Tamur Ltd.
+Implementation-Vendor-Id: kz.tamur.or3
+Implementation-Version: 1.0-SNAPSHOT-b${build.number}
+Specification-Title: Or3WAR
+Specification-Vendor: Tamur Ltd.
+Specification-Version: 1.0-SNAPSHOT
+

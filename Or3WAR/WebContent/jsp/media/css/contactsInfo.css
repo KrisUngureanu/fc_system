@@ -1,0 +1,7 @@
+.contactInfoTable th {
+	color: brown;
+}
+
+.contactInfoTable td {
+	line-height: 15px;
+}

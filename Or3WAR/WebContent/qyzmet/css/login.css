@@ -1,0 +1,370 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("fonts/Roboto-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("fonts/Manrope-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Inter Medium";
+  src: url("fonts/Inter-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+	background: #5A616B;
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#loginbox {
+	flex: 0 1 auto;
+	display: flex;
+}
+
+.logo-pane {
+	position: relative;
+	width: 725px;
+	height: 717px;
+	
+	background-image: url('img/main-image-1.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius: 20px 0px 0px 20px;
+}
+.main-pane-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.lang-button {
+	box-sizing: border-box;
+	width: 44px;
+	height: 40px;
+	background: #FDFEFF;
+	border: 1px solid #DCE5F0;
+	backdrop-filter: blur(4px);
+	border-radius: 10px;
+	
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	margin-left: 5px;
+	color: #4FD1C5;
+	cursor: pointer;
+}
+.lang-button.selected {
+	background: #4FD1C5;
+	color: #FFFFFF;
+}
+
+.gerb {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	width: 69px;
+	height: 69px;
+	background-image: url('img/img-gerb.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.logo-egov {
+	position: absolute;
+	left: 179px;
+	top: 90px;
+	width: 123px;
+	height: 37px;
+	background-image: url('img/logo-egov.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.system-name {
+	position: absolute;
+	left: 62px;
+	bottom: 77px;
+	font-family: 'Inter Medium';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 40px;
+	line-height: 48px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
+
+.main-pane {
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	width: 415px;
+	padding: 30px;
+	border-radius: 0px 20px 20px 0px;
+}
+
+.logo {
+	width: 173px;
+	height: 39px;
+	
+	background-image: url('img/logo-main.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.info {
+	padding: 30px 0;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 19px;
+	color: #64748B;
+}
+
+.select-login-type {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 10px;
+}
+
+.select-login-type .select-info {
+	grid-column: 1/3;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 19px;
+	color: #4B5768;
+	text-align: center;
+	padding-bottom: 12px;
+}
+
+.info-monroe {
+	text-align: center;
+	font-family: 'Manrope';
+}
+
+.btn-select-login {
+	width: 100%;
+	height: 32px;
+	border: 1px solid #D0D5DD;
+	border-radius: 5px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 14px;
+	color: #191D23;
+	cursor: pointer;
+}
+
+.btn-select-login.selected, .btn-select-login.selected:hover {
+	background: #5A616B;
+	opacity: 0.8;
+	color: #FFFFFF;
+}
+
+.btn-select-login:hover {
+	background: #d2d8dc;
+	opacity: 0.8;
+}
+
+.btn-select-login:active {
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+	-moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+	box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+}
+
+span.btn-icon {
+	padding: 5px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.selected .icon-login {
+	background-image: url('img/icon-account-white.svg');
+}
+.icon-login {
+	background-image: url('img/icon-account-black.svg');
+}
+.selected .icon-ecp {
+	background-image: url('img/icon-key-white.svg');
+}
+.icon-ecp {
+	background-image: url('img/icon-key-black.svg');
+}
+
+.icon-support {
+	background-image: url('img/icon-support.svg');
+}
+
+#login-pass-form {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 5px;
+}
+#login-pass-form, #login-ecp-form {
+}
+
+.main-pane label {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 16px;
+	
+	color: #191D23;
+	margin-top: 30px;
+}
+.label-forgot-pass {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 14px;
+	
+	text-align: right;
+	
+	color: #299F94;
+	margin-top: 30px;
+	cursor: pointer;
+}
+#password, #user {
+	grid-column: 1/3;
+	height: 40px;
+
+	border: 1.5px solid #828282;
+	border-radius: 5px;
+	padding: 0 12px;
+}
+
+.btn-login, .clearBtn {
+	height: 44px;
+	background: #299F94;
+	border-radius: 10px;
+	font-family: 'Manrope';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+	
+	text-align: center;
+	
+	color: #FFFFFF;
+}
+
+.btn-login:hover, .btn-login:focus, .clearBtn:hover, .clearBtn:focus {
+	background: #298F94;
+}
+
+.btn-login[disabled] {
+	opacity: 0.5;
+}
+
+#loginBtn {
+	grid-column: 1/3;
+	margin-top: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+}
+
+#clearBtn {
+	grid-column: 1/3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+}
+
+#loginEcpBtn {
+	width: 100%;
+	margin-top: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+}
+.login-error-text {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	
+	color: #DC2626;
+	padding: 10px 0;
+}
+.label-show-support {
+	padding-top: 30px;
+	cursor: pointer;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	color: #191D23;
+	text-decoration: none;
+}
+
+.tool-help {
+	margin-top: 10px;
+	position: relative; 
+	width: 500px;
+}.icon-refresh-animate {
+	animation-name: rotateThis;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	-webkit-animation-name: rotateThis; 
+	-webkit-animation-duration: 1s; 
+	-webkit-animation-iteration-count:  infinite;
+	-webkit-transition-timing-function: linear;
+	-moz-animation-name: rotateThis;
+	-moz-animation-duration: 1s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: linear;
+	-ms-animation-name: rotateThis;
+	-ms-animation-duration: 1s;
+	-ms-animation-iteration-count: infinite;
+	-ms-animation-timing-function: linear;
+}
+ 
+@keyframes rotateThis {
+  from { transform: scale( 1 ) rotate( 0deg );   }
+  to   { transform: scale( 1 ) rotate( 360deg ); }
+}
+@-ms-keyframes rotateThis {
+  from { transform: scale( 1 ) rotate( 0deg );   }
+  to   { transform: scale( 1 ) rotate( 360deg ); }
+}
+@-moz-keyframes rotateThis {
+  from { -moz-transform: scale( 1 ) rotate( 0deg );   }
+  to   { -moz-transform: scale( 1 ) rotate( 360deg ); }
+}
+@-webkit-keyframes rotateThis {
+  from { transform: scale( 1 ) rotate( 0deg );   }
+  to   { transform: scale( 1 ) rotate( 360deg ); }
+}

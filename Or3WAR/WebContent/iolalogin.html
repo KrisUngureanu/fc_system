@@ -1,0 +1,368 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Авторизация с помощью ЭЦП</title>
+    <link href="login.css" rel="StyleSheet" type="text/css">
+</head>
+<body bgcolor="#F0F8FF" style="margin:0">
+<form name="logonForm" action="/ekyzmet-ui/main" method="post" onSubmit="getSecretString(); return false;" onReset="resetForm();">
+<table style="width:100%;height:100%;" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td style="height:100%;" align="center" valign="middle">
+            <table border="0" cellpadding="0" cellspacing="5" class="designLoginPageForm"
+                   style="width:300px;height: 212px; background-image:url(loginBox.png);background-repeat:no-repeat;">
+                <tr>
+                    <td valign="middle" style="height:140px">
+                            <table width="100%" border="0" cellpadding="2" cellspacing="1">
+                                <tr height="40">
+                                    <td width="30%" rowspan="8" align="center" valign="middle" nowrap>
+                                    	<img src="key2.png" width="60" height="82" border="0" alt="" align="bottom" />
+                                    </td>
+                                    <td align="center" valign="middle" nowrap>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  	<td align="left" valign="bottom" nowrap><label class="label">Путь к ключу ЭЦП:</label></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+                                    	<input type="text" name="file" value="" class="input" id="file"/>
+                                    	<input name="sel" type="button" class="button" value="..." 
+                                    					onclick="selectFile(document.getElementById('file').value);"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><label class="label">Пароль:</label></td>
+                                </tr>
+                                <tr>
+                                  <td align="left" valign="middle"><input type="password" name="passwd" class="input"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><label class="label">Сервер:</label></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="middle"><select name="configNumber" class="input"></select></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="middle"><input name="submit" type="submit" class="button" value="Вход"/><input name="reset" type="reset" class="button" value="Очистить"/></td>
+                                </tr>
+																<TR valign="bottom" height="40">
+																	<td id="error" colspan="2" align="center" class="error"></td>
+																</TR>
+                            </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+<!--
+        <td align="center" valign="bottom" class="infofont"> (c) ТОО "Тамур" 2009. Все права защищены.</td>
+-->
+    </tr>
+</table>
+<input type="hidden" name="trg" value="top">
+<input type="hidden" name="bp" value="/ekyzmet-ui/iolalogin.html">
+<input type="hidden" name="windowName" value="">
+</form>
+<applet style="position:absolute; top:0;left:0;" width="1" height="1" code="kz.crypto.CryptoApplet" archive="commons-logging-1.1.1.jar, xmlsec-1.4.4.jar, iolajcp2.jar, crypto_applet-1.0.jar"
+		type="application/x-java-applet" mayscript="true" id="IolaApplet" name="IolaApplet">
+    <param name="code" value="kz.crypto.CryptoApplet">
+    <param name="archive" value="commons-logging-1.1.1.jar,xmlsec-1.4.4.jar,iolajcp2.jar,crypto_applet-1.0.jar">
+</applet>
+<script language="JavaScript" type="text/javascript">
+<!--
+var newwin;
+//document.forms["logonForm"].elements["name"].focus();
+
+var BrowserDetect = {
+		init: function () {
+			this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+			this.version = this.searchVersion(navigator.userAgent)
+				|| this.searchVersion(navigator.appVersion)
+				|| "an unknown version";
+			this.OS = this.searchString(this.dataOS) || "an unknown OS";
+		},
+		searchString: function (data) {
+			for (var i=0;i<data.length;i++)	{
+				var dataString = data[i].string;
+				var dataProp = data[i].prop;
+				this.versionSearchString = data[i].versionSearch || data[i].identity;
+				if (dataString) {
+					if (dataString.indexOf(data[i].subString) != -1)
+						return data[i].identity;
+				}
+				else if (dataProp)
+					return data[i].identity;
+			}
+		},
+		searchVersion: function (dataString) {
+			var index = dataString.indexOf(this.versionSearchString);
+			if (index == -1) return;
+			return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+		},
+		dataBrowser: [
+			{
+				string: navigator.userAgent,
+				subString: "Chrome",
+				identity: "Chrome"
+			},
+			{ 	string: navigator.userAgent,
+				subString: "OmniWeb",
+				versionSearch: "OmniWeb/",
+				identity: "OmniWeb"
+			},
+			{
+				string: navigator.vendor,
+				subString: "Apple",
+				identity: "Safari",
+				versionSearch: "Version"
+			},
+			{
+				prop: window.opera,
+				identity: "Opera",
+				versionSearch: "Version"
+			},
+			{
+				string: navigator.vendor,
+				subString: "iCab",
+				identity: "iCab"
+			},
+			{
+				string: navigator.vendor,
+				subString: "KDE",
+				identity: "Konqueror"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "Firefox",
+				identity: "Firefox"
+			},
+			{
+				string: navigator.vendor,
+				subString: "Camino",
+				identity: "Camino"
+			},
+			{		// for newer Netscapes (6+)
+				string: navigator.userAgent,
+				subString: "Netscape",
+				identity: "Netscape"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "MSIE",
+				identity: "Explorer",
+				versionSearch: "MSIE"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "Gecko",
+				identity: "Mozilla",
+				versionSearch: "rv"
+			},
+			{ 		// for older Netscapes (4-)
+				string: navigator.userAgent,
+				subString: "Mozilla",
+				identity: "Netscape",
+				versionSearch: "Mozilla"
+			}
+		],
+		dataOS : [
+			{
+				string: navigator.platform,
+				subString: "Win",
+				identity: "Windows"
+			},
+			{
+				string: navigator.platform,
+				subString: "Mac",
+				identity: "Mac"
+			},
+			{
+				   string: navigator.userAgent,
+				   subString: "iPhone",
+				   identity: "iPhone/iPod"
+		    },
+			{
+				string: navigator.platform,
+				subString: "Linux",
+				identity: "Linux"
+			}
+		]
+
+	};
+
+function selectFile(path) {
+  var f = document.getElementById('IolaApplet').selectFile("p12", "Файлы ключей ЭЦП в формате PKCS12", path);
+  if (f != null) {
+  	if (f.length > 7 && "[ERROR: " == f.substring(0, 8)) {
+    	document.getElementById("error").innerHTML = f.substring(8, f.length - 1);  	    	
+			document.forms["logonForm"].elements["submit"].disabled = false;
+  	} else {
+		  document.getElementById("error").innerHTML = "";
+		  document.getElementById('file').value = f;
+  	}
+  }
+}
+
+function popup(url) 
+{
+ 	var params  = 'directories=0,location=0,menubar=0,resizable=1,scrollbars=1,status=1,toolbar=0';
+ 	params += ',width='+screen.width;
+ 	params += ',height='+screen.height;
+ 	params += ',top=0,left=0';
+// 	params += ',fullscreen';
+ 	newwin=window.open(url, document.forms["logonForm"].elements["windowName"].value, params, false);
+ 	if (window.focus) {newwin.focus()}
+ 	return false;
+}
+
+function resetForm() {
+	document.forms["logonForm"].elements["submit"].disabled = false;
+	return true;
+} 
+
+function getSecretString() {
+	document.forms["logonForm"].elements["submit"].disabled = true;
+	document.getElementById("error").innerHTML = "Подождите идет авторизация...";
+	var url = "/ekyzmet-ui/main";
+  var post = "cmd=getSecret";
+  post += "&noCache=" + (new Date).getTime();
+  if (window.XMLHttpRequest) {
+    req = new XMLHttpRequest();
+  } else if (window.ActiveXObject) {
+    req = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  req.open("POST", url, true);
+  req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+ // req.setRequestHeader("Content-Length", post.length);
+  req.onreadystatechange = function() { login(req); };
+  req.send(post);
+} 
+
+function login(req) {
+  if (req.readyState == 4) {
+    if (req.status == 200) {
+      var d = document;
+      var responseTag = req.responseXML.getElementsByTagName("s")[0];
+	    var secret = responseTag.childNodes[0].nodeValue;
+
+	  	document.forms["logonForm"].elements["windowName"].value = 'Or3Frame' + (new Date).getTime();
+			document.forms["logonForm"].elements["submit"].disabled = true;
+			document.getElementById("error").innerHTML = "Подождите идет авторизация...";
+			var file = document.forms["logonForm"].elements["file"].value;
+			var pwd = document.forms["logonForm"].elements["passwd"].value;
+			var cnm = document.forms["logonForm"].elements["configNumber"].value;
+
+			var s = document.getElementById('IolaApplet').getSignAndCert(secret, 17, file, pwd)
+
+		  if (s != null) {
+  			if (s.length > 7 && "[ERROR: " == s.substring(0, 8)) {
+		    	document.getElementById("error").innerHTML = s.substring(8, s.length - 1);  	    	
+					document.forms["logonForm"].elements["submit"].disabled = false;
+  			} else {
+					var url = "/ekyzmet-ui/main";
+					var b1 = s.indexOf("sign=");
+					var b2 = s.indexOf("&cert=");
+
+					var sign = s.substring(b1 + 5, b2);
+					var cert = s.substring(b2 + 6);
+				  var post = "xml=1&sign=" + encodeURIComponent(sign) + "&cert=" + encodeURIComponent(cert) + "&passwd=" + pwd + "&configNumber=" + cnm+"&browser="+ BrowserDetect.browser+";"+BrowserDetect.version+";"+BrowserDetect.OS;
+				  var fpath = encodeURIComponent(document.getElementById('file').value);
+				  post += "&profile=" + fpath;
+				  post += "&noCache=" + (new Date).getTime();
+				  if (window.XMLHttpRequest) {
+    				req = new XMLHttpRequest();
+				  } else if (window.ActiveXObject) {
+    				req = new ActiveXObject("Microsoft.XMLHTTP");
+				  } 
+
+				  req.open("POST", url, true);
+				  req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			//	  req.setRequestHeader("Content-Length", post.length);
+				  req.onreadystatechange = function() { processLogin(req); };
+				  req.send(post);
+		  	}
+		  }
+    }
+  }            
+} 
+
+function processLogin(req)
+{
+  if (req.readyState == 4) {
+    if (req.status == 200) {
+      var d = document;
+      var responseTag = req.responseXML.getElementsByTagName("r")[0];
+
+      var tag = responseTag.getElementsByTagName("status")[0];
+      if (tag != null) {
+	      var id = tag.childNodes[0].nodeValue;
+
+  	    if (id == "1") {
+    	    var url = "/ekyzmet-ui/main?trg=top&bp=%2Fekyzmet-ui%2Fiolalogin.html";
+      	  url += "&noCache=" + (new Date).getTime();
+      	location.assign(url);
+//	      	popup(url);
+  				//window.close();
+  			}
+      } else {
+	      var tag = responseTag.getElementsByTagName("fatal")[0];
+  	    if (tag != null) {
+	      	var id = tag.childNodes[0].nodeValue;
+          d.getElementById("error").innerHTML = id;  	    	
+					d.forms["logonForm"].elements["submit"].disabled = false;
+  			}
+      }
+    }
+  }            
+}
+
+function getConfigs() {
+	var url = "/ekyzmet-ui/main";
+	var post = "cmd=getConfigs&noCache=" + (new Date).getTime();
+	if (window.XMLHttpRequest) {
+		req = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+  	  	req = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	//req.setRequestHeader("Content-Length", post.length);
+	req.onreadystatechange = function() { processGetConfigs(req); };
+	req.send(post);
+} 
+
+function processGetConfigs(req) {
+	if (req.readyState == 4) {
+		if (req.status == 200) {
+			var d = document;
+			var responseTag = req.responseXML.getElementsByTagName("r")[0];
+
+			var opTags = responseTag.getElementsByTagName("option");
+
+			var obj = d.forms["logonForm"].elements["configNumber"]
+			if (obj != null) {
+				for (var j = 0; j < opTags.length; j++) {
+					var opTag = opTags[j];
+					var op = d.createElement("option");
+					op.setAttribute("value", opTag.getAttribute("value"));
+					strVal = "";
+					if (opTag.childNodes.length > 0)
+						strVal = opTag.childNodes[0].nodeValue;
+					var text = d.createTextNode(strVal);
+					op.appendChild(text);
+					obj.appendChild(op);
+				}
+			}
+		}
+	}            
+}
+
+getConfigs();
+
+// -->
+</script>
+</BODY>
+</HTML>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:element name="SendResponse" type="SendResponse"/>
+	<xs:complexType name="SendResponse">
+		<xs:sequence>
+			<xs:element name="status" type="Status"/>
+			<xs:element name="response" type="Response"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Response">
+		<xs:sequence>
+			<xs:element name="dataObject">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dataObject" type="DataObject" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="schoolObject">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="schoolObject" type="SchoolObject" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataObject">
+		<xs:sequence>
+			<xs:element name="item">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="item" type="Item" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Item">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" minOccurs="0"/>
+			<xs:element name="value" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Status">
+		<xs:sequence>
+			<xs:element name="message" type="xs:string"/>
+			<xs:element name="messageCode" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SchoolObject">
+		<xs:sequence>
+			<xs:element name="item">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="item" type="Item" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

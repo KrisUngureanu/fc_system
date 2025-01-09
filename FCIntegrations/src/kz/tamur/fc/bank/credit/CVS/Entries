@@ -1,0 +1,36 @@
+/BatchComplexParams.java/1.1/Wed Nov 23 04:40:23 2022//
+/BatchFileDto.java/1.3/Wed Nov 23 04:40:23 2022//
+/BatchFileParams.java/1.1/Thu Oct  9 04:22:04 2014//
+/BatchFilesImportInfo.java/1.1/Thu Oct  9 04:22:04 2014//
+/BatchImportStatisticResult.java/1.1/Thu Oct  9 04:22:04 2014//
+/BatchPackageDto.java/1.1/Thu Oct  9 04:22:04 2014//
+/BatchPackageParams.java/1.1/Thu Oct  9 04:22:04 2014//
+/BatchProvidedDto.java/1.1/Thu Oct  9 04:22:04 2014//
+/BatchRecordDto.java/1.2/Tue Jul  7 03:28:35 2015//
+/BatchRecordsImportInfo.java/1.1/Thu Oct  9 04:22:04 2014//
+/ConstraintViolation.java/1.2/Wed Nov 23 04:40:23 2022//
+/DataSourceDto.java/1.1/Thu Oct  9 04:22:04 2014//
+/DateFromToParams.java/1.1/Thu Oct  9 04:22:04 2014//
+/ExcelFilterObject.java/1.1/Thu Oct  9 04:22:04 2014//
+/GetAvgTimeOneContractImport.java/1.1/Thu Oct  9 04:22:04 2014//
+/GetAvgTimeOneContractImportResponse.java/1.1/Thu Oct  9 04:22:04 2014//
+/GetImportDetailInfo.java/1.1/Thu Oct  9 04:22:04 2014//
+/GetImportDetailInfoResponse.java/1.1/Thu Oct  9 04:22:04 2014//
+/GetImportInfo.java/1.1/Thu Oct  9 04:22:04 2014//
+/GetImportInfoResponse.java/1.1/Thu Oct  9 04:22:04 2014//
+/GetImportInfoWithComplexParams.java/1.1/Wed Nov 23 04:40:23 2022//
+/GetImportInfoWithComplexParamsResponse.java/1.1/Wed Nov 23 04:40:23 2022//
+/ObjectFactory.java/1.2/Wed Nov 23 04:40:23 2022//
+/PaginationSupportDto.java/1.1/Thu Oct  9 04:22:04 2014//
+/PaginationSupportSearchParam.java/1.2/Wed Nov 23 04:40:23 2022//
+/ProcessFile.java/1.1/Thu Oct  9 04:22:04 2014//
+/ProcessFileResponse.java/1.1/Thu Oct  9 04:22:04 2014//
+/SaveResult.java/1.2/Wed Nov 23 04:40:23 2022//
+/ScbServiceFaultInfo.java/1.1/Thu Oct  9 04:22:04 2014//
+/UploadFile.java/1.1/Thu Oct  9 04:22:04 2014//
+/UploadFileResponse.java/1.1/Thu Oct  9 04:22:04 2014//
+/ValidationFaultBean.java/1.1/Thu Oct  9 04:22:04 2014//
+/VersionedDto.java/1.1/Thu Oct  9 04:22:04 2014//
+D/contract////
+D/guarantee////
+/package-info.java/1.1/Thu Oct  9 04:22:04 2014//

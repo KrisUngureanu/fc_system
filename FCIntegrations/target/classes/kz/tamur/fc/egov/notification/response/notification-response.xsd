@@ -1,0 +1,14 @@
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://notification-v2.egov.bee.kz/" version="1.0" xmlns:tns="http://notification-v2.egov.bee.kz/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="notificationResponse" type="tns:NotificationResponse"/>
+
+    <xs:complexType name="NotificationResponse">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="notificationId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

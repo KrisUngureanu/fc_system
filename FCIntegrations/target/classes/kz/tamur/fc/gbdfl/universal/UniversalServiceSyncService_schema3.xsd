@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://dictionaries.persistence.interactive.nat" xmlns:ns2="http://document.persistence.interactive.nat" targetNamespace="http://document.persistence.interactive.nat" version="1.0">
+	<xs:import namespace="http://dictionaries.persistence.interactive.nat" schemaLocation="UniversalServiceSyncService_schema4.xsd"/>
+	<xs:complexType name="Document">
+		<xs:annotation>
+			<xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="ns1:DocumentType">
+				<xs:annotation>
+					<xs:documentation>Тип документа (УДЛ, Паспорт, и т.д.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="number" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="series" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Серия документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="beginDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Срок действия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="issueOrganization" type="ns1:DocumentOrganization">
+				<xs:annotation>
+					<xs:documentation>Организация, выдавшая документ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="ns1:DocumentInvalidity">
+				<xs:annotation>
+					<xs:documentation>Признак действительности документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="invalidityDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата недействительности документа. Указывается в случаях, когда ДУЛ признан недействительным до наступления даты окончания срока его действия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="surname" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фамилия физического лица на момент выдачи документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Имя физического лица на момент выдачи документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="patronymic" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество физического лица на момент выдачи документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата рождения физического лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

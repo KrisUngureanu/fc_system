@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<jnlp spec="1.0+" codebase="http://192.168.13.63:8081/ekyzmet-ui/jsp/media/ucgo" href="ucgo.jnlp">
+	<information>
+		<title>УЦГО - вебсокет</title>
+		<vendor>ТОО "ТАМУР"</vendor>
+		<description>УП OR3</description>
+		<description kind="short">Приложение для взаимодействия с УЦГО</description>
+		<icon href="images/icon.jpg"/>
+		<shortcut online="true"> 
+			<menu submenu="TAMUR"/>
+			<desktop/> 
+		</shortcut>
+	</information>
+	<security>
+	  <all-permissions/>
+	</security>
+	<resources>
+		<j2se version="1.7+" java-vm-args="-Xmx512m"/>
+		
+		<jar href="ucgo-websocket-signed.jar-1.0.jar" download="eager" main="true"/>		
+		<jar href="crypto-hardware-1.0.jar" download="eager"/>
+		<jar href="crypto_applet_ucgo_hardware-1.0.jar" download="eager"/>
+
+		<jar href="javax.websocket-api-1.1.jar"/>
+		<jar href="gson-2.8.2.jar"/>
+		<jar href="tyrus-core-1.13.1.jar"/>
+		<jar href="tyrus-client-1.13.1.jar"/>
+		<jar href="tyrus-server-1.13.1.jar"/>
+		<jar href="tyrus-spi-1.13.1.jar"/>
+		<jar href="tyrus-container-grizzly-client-1.13.1.jar"/>
+		<jar href="tyrus-container-grizzly-server-1.13.1.jar"/>
+		<jar href="grizzly-http-2.3.25.jar"/>		
+		<jar href="grizzly-http-server-2.3.25.jar"/>
+		<jar href="grizzly-framework-2.3.25.jar"/>
+
+		<jar href="kalkancrypt-0.1.1.jar"/>
+		<jar href="kalkancrypt_xmldsig-0.1.jar"/>
+		<jar href="commons-logging-1.1.1.jar"/>
+		<jar href="xmlsec-1.4.4.jar"/>
+		<jar href="jdom.jar"/>
+
+		<!--Параметры-->                
+        	<property name="splash" value="SplashTSON.jpg"/>
+
+		<property name="selSrv" value="0"/>
+		<property name="reportType" value="jacob"/>
+		<property name="ref.fetch.depth" value="1"/>
+		<property name="serverType" value="Wildfly"/>
+		<property name="dsName" value="kdr_sed_tt_real"/>
+		<property name="host" value="192.168.13.58"/>
+		<property name="port" value="8181"/>
+
+	</resources>	
+	
+	<application-desc main-class="kz.tamur.crypto.websocket.WebsocketStartup"/>
+</jnlp>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:getDocumentInfosRequest xmlns:p="http://egov.bee.kz/eds/scanneddocuments/info/v1/" xmlns:p1="http://egov.bee.kz/eds/common/v1/" xmlns:p2="http://egov.bee.kz/eds/scanneddocuments/common/v1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://egov.bee.kz/eds/scanneddocuments/info/v1/ ScannedDocumentsInfo.v1.xsd ">
+  <p:filters>
+    <p:key>p:key</p:key>
+    <p:operation>EQUALS</p:operation>
+    <p:values>p:values</p:values>
+  </p:filters>
+  <p:sort>
+    <p1:orderNum>0</p1:orderNum>
+    <p:key>p:key</p:key>
+    <p:direction>ASC</p:direction>
+  </p:sort>
+  <p:credentials>
+    <p1:senderId>p1:senderId</p1:senderId>
+    <p1:password>p1:password</p1:password>
+  </p:credentials>
+</p:getDocumentInfosRequest>

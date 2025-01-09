@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://service.2fa-chain.kz/ns/kdp" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://service.2fa-chain.kz/ns/kdp" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="getUserDataResponse" type="getUserDataResponse"/>
+	<xs:complexType name="getUserDataResponse">
+		<xs:sequence>
+			<xs:element name="status" type="user-data-status">
+				<xs:annotation>
+					<xs:documentation>Статус запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код верификации, представленный в JWT-формате (если статус VALID)
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="public-key" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Публичный ключ, необходимый для проверки валидности кода</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ds:Signature"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="user-data-status">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="VALID">
+				<xs:annotation>
+					<xs:documentation>
+                        Доступ предоставлен
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="INVALID">
+				<xs:annotation>
+					<xs:documentation>
+                        В доступе отказано
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PENDING">
+				<xs:annotation>
+					<xs:documentation>
+                        Ожидание ответа субъекта персональных данных
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TIMEOUT">
+				<xs:annotation>
+					<xs:documentation>
+                        Время ожидания ответа субъекта персональных данных истекло
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NOT_FOUND">
+				<xs:annotation>
+					<xs:documentation>
+                        По указанному в запросе ИИН отсутствует номер телефона в БМГ
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ERROR">
+				<xs:annotation>
+					<xs:documentation>
+                        Ошибка, полученная при отправке SMS
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

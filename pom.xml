@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>kz.tamur</groupId>
+	<artifactId>or3</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>or3</name>
+	<description>Or3 all projects</description>
+	<organization>
+		<name>Tamur Ltd.</name>
+		<url>http://www.tamur.kz</url>
+	</organization>
+	<profiles>
+		<profile>
+			<id>cvs_conf</id>
+			<properties>
+				<cvs.user>ivan</cvs.user>
+				<cvs.password>ivan</cvs.password>
+			</properties>
+		</profile>
+	</profiles>
+	<modules>
+		<module>FCIntegrations</module>
+		<module>FcServices</module>
+		<module>jdbc-log4j</module>
+		<module>Or3Client</module>
+		<module>Or3Designer</module>
+		<module>Or3EAR</module>
+		<module>Or3EJB</module>
+		<module>Or3EJBClient</module>
+		<module>Or3Reports</module>
+		<module>Or3WAR</module>
+		<module>ShepIntegrations</module>
+		<module>ShepServices</module>
+	</modules>
+</project>

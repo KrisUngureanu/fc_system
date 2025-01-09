@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOSK (SHOCK) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:tns="http://gbdulinfobybin_v2.egp.gbdul.tamur.kz" targetNamespace="http://gbdulinfobybin_v2.egp.gbdul.tamur.kz">
+	<xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xsd:element name="Request" type="tns:RequestDataType">
+		<xsd:annotation>
+			<xsd:documentation>Запрос на предоставление регистрационных сведений по БИН для ИС ГО</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="Response" type="tns:ResponseDataType">
+		<xsd:annotation>
+			<xsd:documentation>Ответ на запрос</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="RequestDataType">
+		<xsd:annotation>
+			<xsd:documentation>Формат запроса</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RequestorBIN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>БИН владельца ИС ГО, отправившей запрос</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BIN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>БИН организации, для которой запрашивается справка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element ref="ds:Signature"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ResponseDataType">
+		<xsd:annotation>
+			<xsd:documentation>Формат ответа</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Status" type="tns:DirectoryType">
+				<xsd:annotation>
+					<xsd:documentation>Статус ответа</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Organization" type="tns:OrganizationType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сведения юрлице (филиале, представительстве)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IpsNerezident" type="tns:IpsNerezType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сведения по ИПс Нерезидент</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element ref="ds:Signature"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrganizationType">
+		<xsd:annotation>
+			<xsd:documentation>Основной тип, описывающий сведения об организации</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BIN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>БИН организации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegStatus" type="tns:DirectoryType">
+				<xsd:annotation>
+					<xsd:documentation>Статус юрлица, представительства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationDepartment" type="tns:DirectoryType">
+				<xsd:annotation>
+					<xsd:documentation>Орган юстиции, зарегистрировавший организацию</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Дата первичной регистрации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationLastDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дата последней перерегистрации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LiquidationDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дата ликвидации, реорганизации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FullNameRu" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Полное наименование на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FullNameKz" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Полное наименование на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FullNameEn" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Полное наименование на английском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ShortNameRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сокращенное наименование на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ShortNameKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сокращенное наименование на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ShortNameEn" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сокращенное наименование на английском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrgForm" type="tns:DirectoryType">
+				<xsd:annotation>
+					<xsd:documentation>Форма организации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FormOfLaw" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ОПФ юрлица</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PrivateEnterpriseType" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Тип частного предпринимательства юрлица</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TaxOrgStatus" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>1 - бездействующий,0-нет</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AddInfo" type="tns:AddInfoType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Классификационные данные юрлица</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Liquidation" type="tns:LiquidationType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сведения о ликвидации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrganizationLeader" type="tns:LeaderType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Руководитель организации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Activity" type="tns:ActivityType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Виды деятельности</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Address" type="tns:AddressType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Адрес местонахождения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AuthCapital" type="tns:AuthCapitalType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сведения об уставном капитале</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FoundersUL" type="tns:OrganizationShortType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Участники, учредители - юрлица</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FoundersFL" type="tns:PersonType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Участники, учредители - физлица</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FoundersCount" type="xsd:int" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Количество участников, учредителей</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FoundersCountUL" type="xsd:int" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Количество участников, учредителей
+юридических лиц</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FoundersCountFL" type="xsd:int" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Количество участников, учредителей
+физических лиц</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="HeaderOrganization" type="tns:HeadType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сведения о головной организации филиала или представительства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StatCommInfo" type="tns:StatCommInfoType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сведения актуализированные с Комитета по статистике</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AddInfoType">
+		<xsd:annotation>
+			<xsd:documentation>Основной тип, описывающий классификационные данные юрлица</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="CreationMethod" type="tns:DirectoryType">
+				<xsd:annotation>
+					<xsd:documentation>Способ образования</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PropertyType" type="tns:DirectoryType">
+				<xsd:annotation>
+					<xsd:documentation>Форма собственности</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TypicalCharter" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>1 - деятельность по типовому уставу; </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CommerceOrg" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>1 - коммерческая организация</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EnterpriseSubject" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>1 - субъект предпринимательства </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FundType" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Тип фонда</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GosCompanyType" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Тип государственного предприятия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StatusOO" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Статус ОО/РО</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Affiliated" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>1 - дочерняя организация </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="International" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>1 - международная организация;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ForeignInvest" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>1 - с участием иностранных инвесторов; </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OneCitizenShip" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>1-Участие лиц без гражданства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="branchesExistence" type="xsd:boolean" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>1-наличие филиалов и представительств</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PersonType">
+		<xsd:annotation>
+			<xsd:documentation>Тип описывающий учредителя - физлицо</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Country" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Страна постоянного местожительства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="NationalityRelation" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Отношение к гражданству</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CitizenCountry" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Страна гражданства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="TaxNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Налоговый номер в стране инкорпорации для иностранных лиц</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SurName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Фамилия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Имя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MiddleName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Отчество</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Value" type="xsd:double" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сумма вклада в тенге</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Percent" type="xsd:double" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Доля в %</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeaderType">
+		<xsd:annotation>
+			<xsd:documentation>Тип описывающий руководителя</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Position" type="tns:LeaderPositionType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Должность руководителя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Country" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Страна постоянного местожительства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CitizenCountry" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Страна гражданства</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="NationalityRelation" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Отношение к гражданству</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IIN" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="SurName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Фамилия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Имя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MiddleName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Отчество</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AddressType">
+		<xsd:annotation>
+			<xsd:documentation>Тип описывающий адрес местонахождения</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RKA" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный код адреса</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ZIPCode" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Почтовый индекс</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="KATO" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Код КАТО</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ATE" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Идентификатор АТЕ с ИС АР</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GeonimCode" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>код геонима по ИС АР</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DistrictRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Область на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DistrictKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Область на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegionRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Район на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegionKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Район на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RuralRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сельский округ на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RuralKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сельский округ на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CityRu" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Населенный пункт на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CityKz" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Населенный пункт на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StreetRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Название улицы на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StreetKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Название улицы на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BuildingType" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Тип строения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BuildingNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер строения!!!!!!!!!!!!!!!!!!!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Block" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер блока</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Corpus" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер корпуса!!!!!!!!!!!!!!!!!!!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RoomType" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Тип помещения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AppartmentNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер помещения!!!!!!!!!!!!!!!!!!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OfficeNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер офиса Не входящий в РКА</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AddressStatType">
+		<xsd:annotation>
+			<xsd:documentation>Тип описывающий адрес местонахождения  от Комитета Статистики</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RKA" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный код адреса</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="KATO" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Код КАТО</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="NameRu" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>адрес на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="NameKz" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>адрес на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ActivityType">
+		<xsd:annotation>
+			<xsd:documentation>Сведения о видах деятельности</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Main" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>Основной вид дейятельности?</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OKED" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>код ОКЭД</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ActivityNameKz" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Название вида деятельности на государственном</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ActivityNameRu" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Название вида деятельности на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LiquidationType">
+		<xsd:annotation>
+			<xsd:documentation>Тип, описывающий данные о ликвидации</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="LiqBase" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Основание ликвидации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LiqType" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Тип ликвидации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LiqDecisionDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дата решения о ликвидации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ReorgType" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Вид реорганизации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BinReceiver" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>БИН правоприемника</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrganizationShortType">
+		<xsd:annotation>
+			<xsd:documentation>Основной тип, описывающий учредителя-юрлицо</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BIN" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>БИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Country" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Страна инкорпорации для Неризидента РК </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер в стране инкорпорации для нерезидента РК</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationLastDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Дата последней перерегистрации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrganizationNameRu" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Наименование организации на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrganizationNameKz" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Наименование организации на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Activity" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Вид деятельности  для иностранных лиц</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Value" type="xsd:double" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сумма вклада в тенге</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Percent" type="xsd:double" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Доля в %</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HeadType">
+		<xsd:annotation>
+			<xsd:documentation>Основной тип, описывающий головную организацию</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BIN" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>БИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Country" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Страна инкорпорации для Неризидента РК </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Регистрационный номер в стране инкорпорации для нерезидента РК</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegistrationLastDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Дата последней перерегистрации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrganizationNameRu" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Наименование организации на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrganizationNameKz" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Наименование организации на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Activity" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Вид деятельности  для иностранных лиц</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DirectoryType">
+		<xsd:annotation>
+			<xsd:documentation>Тип, описывающий данные справочника</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Code" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>код</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="NameRu" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>значение на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="NameKz" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>значение нагосударственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AuthCapitalType">
+		<xsd:annotation>
+			<xsd:documentation>Сведения об уставном капитале</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ValueAll" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>Уставной капитал всего в тенге</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ValueGov" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>Доля государственного в тенге</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PercentGov" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>Доля государственного в %</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ValuePrivate" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>Доля частного в тенге</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PercentPrivate" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>Доля частного в %</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StatCommInfoType">
+		<xsd:annotation>
+			<xsd:documentation>Тип, описывающий сведения актуализированные с Комитета по статистике</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="OrgSize" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Размерность организации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ActivityAttr" type="tns:DirectoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Признак активности (ситуационный код)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AddressFact" type="tns:AddressStatType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Адрес фактический</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Activity" type="tns:ActivityType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Вид деятельности</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ActualDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дата получения актуализации</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeaderPositionType">
+		<xsd:annotation>
+			<xsd:documentation>Тип, описывающий сведения должность руководителя</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="PositionType" type="tns:DirectoryType">
+				<xsd:annotation>
+					<xsd:documentation>Должность руководителя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IssueDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дата назначения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LossDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дата отстранения от должности или Дата утраты силы должности управляющего </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RemovalType">
+		<xsd:annotation>
+			<xsd:documentation>Тип, описывающий сведения об отстранении от должности руководителя</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="IssueDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Дата внесения сведения об отстранении</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="IpsNerezType">
+		<xsd:annotation>
+			<xsd:documentation>Основной тип, описывающий сведения об ИПс Нерезидентов</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BIN" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>БИН </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegDate" type="xsd:date">
+				<xsd:annotation>
+					<xsd:documentation>Дата записи в Национальный реестр БИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LiquidationDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дата прекращения деятельности</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="FullNameRu" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Полное наименование на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrgForm" type="tns:DirectoryType">
+				<xsd:annotation>
+					<xsd:documentation>Организационная форма</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CountryFac" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="CountryNerezident" type="tns:DirectoryType" minOccurs="0"/>
+			<xsd:element name="RegStatus" type="tns:DirectoryType"/>
+			<xsd:element name="Leader" type="tns:LeaderIpsNerezType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Руководитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Address" type="tns:AddressIpsNerezType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Сведения об адресе</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeaderIpsNerezType">
+		<xsd:annotation>
+			<xsd:documentation>Тип руководителя Ипс Нерезидента</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="IIN" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ИИН</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SurName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Фамилия</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Name" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Имя</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MiddleName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Отчество</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AddressIpsNerezType">
+		<xsd:annotation>
+			<xsd:documentation>Тип описывающий адрес местонахождения Ипс Нерезидента</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="KATO" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Код КАТО</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DistrictRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Область на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="DistrictKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Область на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegionRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Район на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RegionKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Район на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CityRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Населенный пункт на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CityKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Населенный пункт на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StreetRu" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Название улицы на русском языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StreetKz" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Название улицы на государственном языке</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BuildingNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер строения!!!!!!!!!!!!!!!!!!!</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AppartmentNumber" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Номер квратиры, офиса</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

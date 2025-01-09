@@ -1,0 +1,389 @@
+* {
+	/*background: #F1F5F8;*/
+	scrollbar-width: thin;
+	scrollbar-color: #C7D5D6 #F1F5F8;
+}
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #F1F5F8;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #C7D5D6;
+}
+
+#processes-panel, #archive-panel, #dicts-panel {
+	display: flex;
+	flex-direction: column;
+}
+
+nav {
+	overflow-y: auto; 
+}
+.or3-hide {
+	display: none !important;
+}
+.panel-body {
+	background: #F1F5F8;	
+}
+.mCSB_container {
+	overflow: auto;
+	padding-right: 30px;
+	margin-right: 0;
+}
+
+.logo {
+  float: left;
+  margin: 44px 90px 0 42px;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+}
+.app-panel {
+}
+.container {
+  width: 100%;
+  padding: 15px;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+.container:after, .portlet-row:after, .widget-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+nav ul {
+  margin: 0;
+  padding: 20px 38px 0 37px;
+  list-style: none;
+}
+
+nav a {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 54px;
+
+	color: #8795A6;
+	text-decoration: none;
+	background-color: unset;
+}
+
+nav .selected a, nav li:hover a	 {
+	color: #1B2559;
+}
+
+.left-menu li {
+	height: 50px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.left-menu li.selected, .left-menu li:hover {
+	background: #FFFFFF;
+	border-radius: 10px;
+}
+
+.left-menu i {
+	float: left;
+	margin: 7px 10px;
+	padding: 0px;
+	width: 36px;
+	height: 36px;
+
+	background-color: #FFFFFF;
+	border-radius: 12px;
+}
+
+.left-menu .selected i, .left-menu li:hover i {
+	background-color: #4FD1C5;
+}
+
+.header {
+	display: flex;
+}
+.info {
+	width: 320px;
+	display: flex;
+	flex: 8 1 auto;
+	align-items: center;
+}
+.userInfo_container {
+	display: flex; 
+	flex-direction: column; 
+	justify-content: center; 
+	align-items: center; 
+	margin-top: 20px;
+}
+.server-ping {
+	margin-top: 10px; 
+	font-size: 10px; 
+	font-family: 'Inter';
+}
+#ping {
+	background-color: #4FD1C5;
+	padding: 5px;
+	border-radius: 10px;
+	font-weight: bold;
+}
+.page-title {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 21px;
+	color: #5EA89B;
+	display: flex;
+}
+.page-title i {
+	width: 20px;
+	height: 20px;
+	margin-right: 15px;
+	margin-top: -1px;
+}
+.department {
+	flex: 1 1 auto;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 16px;
+	color: #7F8284;
+	text-align: center;
+	padding: 5px;
+}
+.search {
+	flex: 1 1 auto;
+	padding-top: 30px;
+}
+.search i {
+	position: absolute;
+	padding: 13px;
+	z-index: 1;
+}
+.text-search{
+	box-sizing: border-box;
+	height: 40px;
+	width: 100%;
+	background: #FDFEFF;
+	border: 1px solid #DCE5F0;
+	backdrop-filter: blur(4px);
+	border-radius: 10px;
+	padding-left: 40px;
+	
+	font-family: 'DM Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 20px;
+	
+	letter-spacing: -0.02em;
+	
+	color: #8F9BBA;
+}
+
+
+.lang-selector{
+	margin: 30px 20px 0 6px;
+	/* margin: 5px 5px 0 6px; */
+}
+.lang-button, .lang-button-profile {
+	box-sizing: border-box;
+	width: 44px;
+	height: 40px;
+	background: #FDFEFF;
+	border: 1px solid #DCE5F0;
+	backdrop-filter: blur(4px);
+	border-radius: 10px;
+	
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	margin-left: 5px;
+	color: #4FD1C5;
+	cursor: pointer;
+	padding: 10px;
+	text-decoration: none;
+}
+.lang-button.selected {
+	background: #4FD1C5;
+	color: #FFFFFF;
+}
+.lang-button-profile {
+	margin-left: 0;
+}
+.lang-button-profile:hover {
+	background: #4FD1C5;
+	color: #fff;
+}
+.profile-section-lang {
+	padding-top: 10px;
+}
+.help {
+	display: flex;
+	flex-direction: column;
+	background: #4FD1C5;
+	border-radius: 12px;
+	width: 146px;
+	width: 146px;
+	margin: auto auto 30px;
+	padding: 10px 14px;
+}
+.help * {
+	/* background: #4FD1C5; */
+}
+.help .icon-help {
+	width: 25px;
+	height: 25px;
+}
+.help-large {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 11px;
+	line-height: 14px;
+	letter-spacing: 0.01em;
+	color: #FFFFFF;
+	margin-top: 7px;
+}
+.help-small {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 9px;
+	line-height: 10px;
+	letter-spacing: 0.01em;
+	color: #FFFFFF;
+}
+.help-btn {
+	background: #FFFFFF;
+	box-shadow: 1.16528px 2.33055px 2.33055px rgba(79, 42, 234, 0.17);
+	border-radius: 6px;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 9px;
+	line-height: 12px;
+	text-align: center;
+	letter-spacing: 0.01em;
+	color: #444444;
+	
+	width: 118px;
+	height: 24px;
+	border: none;
+	margin: 8px auto;
+}
+.user-info {
+	display: flex;
+	margin: 0 auto 40px;
+	cursor: pointer;
+}
+.user-image {
+	margin-right: 12px;
+}
+.user-image img {
+	width: 34px;
+	height: 34px;
+	object-fit: cover;
+	object-position: 0 50%;
+	border-radius: 17px;
+}
+.user-vert {
+	display: flex;
+	flex-direction: column;
+}
+.user-name {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: 0.01em;
+	color: #000000;
+}
+.user-position {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 14px;
+	letter-spacing: 0.01em;
+	color: #937EAD;
+}
+.user-info .icon-arrow-down {
+	margin-left: 30px;
+	margin-top: 6px;
+}
+
+.tamur-tabs {
+  width: 1024px;
+}
+
+.layout-split-west {
+  border-right: 5px solid #FDFEFF;
+}
+
+
+
+
+/* Window */
+
+.window {
+	padding: 0;
+	background-color: #EFFFF4;
+	background: linear-gradient(0deg, #C8E7D1 0%, #EFFFF4 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#E0ECFF,GradientType=0);
+}
+.window .window-header {
+  padding: 6px;
+  background: #F0F0F0;
+}
+.window, .window .window-body {
+  border-color: #B0B6D3;
+}
+.window, .window-shadow {
+  border-radius: 10px;
+}
+
+.window .window-header {
+	border: none;
+	border-bottom: 1px solid #B0B6D3;
+}
+
+.window .window-body {
+	border: none;
+}
+
+.window .window-header .panel-tool {
+	margin-top: -9px;
+	right: 4px;
+}
+
+/* Panel */
+
+.window .window-body .panel-title {
+	font-family: 'SF Pro Display';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 13px;
+	/*line-height: 13px;*/
+	color: #294A37;
+}
+.panel-tool a:hover {
+	background-color: #B4CFBC;
+}
+.panel-tool-close {
+  background: url('icons/icon-close.svg') no-repeat 0 0;
+}
+
+.messager-button {
+	border: none;
+}
+
+

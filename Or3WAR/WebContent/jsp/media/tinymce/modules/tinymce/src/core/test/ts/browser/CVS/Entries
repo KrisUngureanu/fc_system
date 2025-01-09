@@ -1,0 +1,54 @@
+/AddOnManagerTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/ClickContentEditableFalseTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/DragDropOverridesTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorForcedSettingsTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorManagerSetupTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorManagerTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorPaddEmptyWithBrTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorRemoveTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorRemovedApiTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorRtlTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorSettingsTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorUploadTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorViewIframeTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/EditorViewInlineTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/FontSelectCustomTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/FontSelectTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/ForceBlocksTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/FormatterApplyTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/FormatterCheckTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/FormatterRemoveForcedRootBlockFalseTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/FormatterRemoveTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/FormattingCommandsTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/InlineEditorRemoveTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/InlineEditorSaveTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/JqueryIntegrationTest.disabled/1.1/Mon Sep 21 11:09:59 2020/-kb/
+/MiscCommandsTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/ModeTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/NotificationManagerTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/ReadOnlyModeTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/ResourceTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/SelectionOverridesTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/ShortcutsTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/UndoManagerTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+/WindowManagerTest.ts/1.1/Mon Sep 21 11:09:59 2020//
+D/annotate////
+D/api////
+D/bookmark////
+D/caret////
+D/commands////
+D/content////
+D/delete////
+D/dom////
+D/file////
+D/fmt////
+D/focus////
+D/geom////
+D/html////
+D/init////
+D/keyboard////
+D/newline////
+D/selection////
+D/undo////
+D/util////

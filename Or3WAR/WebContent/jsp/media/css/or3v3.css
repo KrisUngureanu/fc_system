@@ -1,0 +1,207 @@
+/* CSS Document */
+#ui_startPage {background-image:url(or3/home-color.png)}
+#ui_personInfo{background-image:url(or3/iv-col.png)}
+#ui_Orders{background-image:url(or3/orders-color.png)}
+#ui_OrdersNotification{background-image:url(or3/notification-black.png)}
+#ui_process{background-image:url(or3/process-color.png)}
+#ui_staff{background-image:url(or3/staff-color.png)}
+#ui_arch{background-image:url(or3/arch-color.png)}
+#ui_dicts{background-image:url(or3/dicts-color.png)}
+#ui_stat{background-image:url(or3/stat-color.png)}
+#ui_right{background-image:url(or3/right-color.png)}
+#ui_actions{background-image:url(or3/mon-color.png)}
+#ui_help{background-image:url(or3/help-col.png)}
+#ui_admins{background-image:url(or3/right-col.png)}
+#ui_analytic{background-image:url(or3/stat.png)}
+
+/* menu items hover effects*/
+/*
+#ui_startPage:hover {background-image:url(or3/home-dark.png)}
+#ui_personInfo:hover {background-image:url(or3/iv-dark.png)}
+#ui_Orders:hover {background-image:url(or3/orders-dark.png)}
+#ui_process:hover {background-image:url(or3/process-dark.png)}
+#ui_staff:hover {background-image:url(or3/staff-dark.png)}
+#ui_arch:hover {background-image:url(or3/arch-dark.png)}
+#ui_dicts:hover {background-image:url(or3/dicts-dark.png)}
+#ui_stat:hover {background-image:url(or3/stat-dark.png)}
+#ui_right:hover {background-image:url(or3/right-dark.png)}
+#ui_actions:hover {background-image:url(or3/mon-dark.png)}
+*/
+/* menu active items styles block*/
+li.active a[href="#ui=start"] {
+  background-image:url(or3/home-color.png) !important;
+}
+
+li.active a[href="#ui=tasksList"], li.active a[href="#ui=notiInList"] {
+  background-image:url(or3/orders-color.png) !important;
+}
+
+li.active a[href="#ui=processesList&mode=layout"] {
+  background-image:url(or3/process-color.png) !important;
+}
+
+li.active a[href="#ui=archList&mode=layout"] {
+  background-image:url(or3/arch-color.png) !important;
+}
+
+li.active a[href="#ui=dictsList&mode=layout"] {
+  background-image:url(or3/dicts-color.png) !important;
+}
+
+li.active a[href*="#cmd=openArch&uid="] {
+  background-image:url(or3/stat-color.png) !important;
+}
+
+li.active a[href*="#cmd=openDict&uid="] {
+  background-image:url(or3/right-color.png) !important;
+}
+
+li.active a[id="ui_actions"] {
+  background-image:url(or3/mon-color.png) !important;
+}
+
+li.active a[id="ui_personInfo"] {
+  background-image:url(or3/iv-col.png) !important;
+}
+
+li.active a[id="ui_staff"] {
+  background-image:url(or3/staff-color.png) !important;
+}
+
+
+#processesList .panel-body div[id*="pList"] div,#archList .panel-body div[id*="aList"] div {
+  background-origin: border-box;
+  background-position: center 8px;
+  background-repeat: no-repeat;
+  border-radius: 5px 5px 5px 5px;
+}
+div[parentproc="30223634.30299877"]{ background-image:url(or3/new.png)}
+div[parentproc="17821.1005696"]{ background-image:url(or3/userprocc.png)}
+
+#logo[logoid="3"] {
+  left: 15px;
+  position: absolute;
+  top: 5px;
+}
+#logo[logoid="3"] > img {
+  width: 200px;
+}
+
+#logo[logoid="4"] > img {
+  /*height: 77px;*/
+  width: 55px;
+}
+
+#logo[logoid="4"] {
+  left: 21px;
+  position: absolute;
+  top: 2px;
+}
+
+#logo[logoid="5"] {
+  left: 5px;
+  position: absolute;
+  top: 0px;
+}
+
+#logo[logoid="6"] {
+  left: 20px;
+  position: absolute;
+  top: 1px;
+}
+
+#logo[logoid="6"] > img {
+  /*height: 88px;*/
+  width: 58px;
+}
+
+#logo[logoid="1"] {
+  left: 5px;
+  position: absolute;
+  top: 5px;
+}
+
+#logo[logoid="2"] {
+  left: 20px;
+  position: absolute;
+  top: 0;
+}
+
+#logo[logoid="2"] > img {
+  /*height: 88px;*/
+  width: 60px;
+}
+
+#logo[logoid="5"] > img {
+  width: 167px;
+}
+
+
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transform: translate(-300px, 0) scale(4);
+  font-size: 23px;
+  direction: ltr;
+  cursor: pointer;
+}
+.fileinput-button input:disabled {
+  cursor: default;
+}
+
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+.progress-animated .bar {
+  background: url(../img/progressbar.gif) !important;
+  filter: none;
+}
+.fileupload-loading {
+  float: right;
+  width: 32px;
+  height: 32px;
+  background: url(../img/loading.gif) center no-repeat;
+  background-size: contain;
+  display: none;
+}
+.fileupload-processing .fileupload-loading {
+  display: block;
+}
+.files audio,
+.files video {
+  max-width: 300px;
+}
+
+.or3-popup-panel {
+  clear: both;
+  display: inline-table;
+  height: auto;
+}
+
+.or3-popup-panel .ortable {
+  display: table;
+  width: auto;
+}
+.icon-faq{
+background: url(or3/faq-col.png) center no-repeat;	
+}
+.icon-help-s{
+background: url(or3/help-s-col.png) center no-repeat;	
+}
+.icon-npa{
+background: url(or3/npa-col.png) center no-repeat;	
+}
+.icon-about{
+background: url(or3/about-col.png) center no-repeat;	
+}
+

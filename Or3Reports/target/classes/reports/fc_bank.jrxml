@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38044ad0-292a-4c40-bb5f-6e0625299f8f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="95"/>
+	<style name="style1">
+		<pen lineWidth="0.5"/>
+		<box>
+			<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+		</box>
+	</style>
+	<parameter name="bankName" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="obl" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="city" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="department" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="fio" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="iin" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="dogovorNumber" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="dogovorDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="regNumber" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="regDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="barCodeImg" class="java.lang.Object" isForPrompting="false">
+		<parameterDescription><![CDATA[The letterhead image]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<title>
+		<band height="162" splitType="Stretch">
+			<image scaleImage="RealSize">
+				<reportElement x="0" y="0" width="555" height="162" uuid="c8d019bb-0fad-42f1-9e29-792e8fdcd9a0"/>
+				<imageExpression><![CDATA["D:\\tmp\\fc_head.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="448" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="77" width="140" height="20" uuid="b659127d-23f9-4bda-8d37-acbbc5104d8b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Банк]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="77" width="415" height="20" uuid="387736f7-9e8c-4cb0-93d7-e78b79e8e586"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bankName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="97" width="140" height="20" uuid="a708d67c-3788-4c3d-a6e3-b15c240c4b96"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Облыс /Область]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="117" width="140" height="35" uuid="ebd3cfd9-568f-482b-8a4a-b9da6bd370e0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Елді мекен/Населенный пункт]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="152" width="140" height="20" uuid="b9a53558-ae15-454d-8706-69a3d00b0cd2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Бөлімі/Отделение]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="172" width="140" height="35" uuid="7efd16da-b7d7-48e6-9f8a-3a0e323a8bcf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Салымшының ТАӘ/        ФИО вкладчика]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="207" width="140" height="20" uuid="d73144aa-3f63-4ea9-a289-5b3fac267faa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ЖСН/ИИН]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="227" width="140" height="35" uuid="4438fb9e-ef87-4e71-b975-8e177648a7d4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Салым шартының №/
+№ Договора вклада
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="262" width="140" height="45" uuid="587e4e31-fdd0-4e5e-b830-dc124bc02230"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Салым шарты жасалған күн/ Дата заключения договора вклада]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="307" width="140" height="45" uuid="bf52c212-c729-4e82-badf-69f61287c415"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Тіркеу/қайта тіркеу №/ №регистрации/
+перерегистрации
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="352" width="140" height="65" uuid="d6d2f110-e070-4f0b-bf49-3537fc8551cd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ШБТ*тіркелу /қайта тіркелу күні /Дата регистрации/
+перерегистрации в    ЕРД**
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="97" width="415" height="20" uuid="3226a69d-911e-4a30-aa23-bbbc822b34c9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{obl}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="117" width="415" height="35" uuid="b31a84e3-5a0a-4a8f-8946-c63fec4fe953"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{city}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="152" width="415" height="20" uuid="0b7bf42f-710f-4c58-91d7-5fadae4e4974"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{department}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="172" width="415" height="35" uuid="e3c655f5-ebca-4291-8354-d968af7f39d0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fio}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="207" width="415" height="20" uuid="22881bc5-7eb6-4379-9e7b-cda626276311"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{iin}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="227" width="415" height="35" uuid="10e5fbaf-dbce-4841-b524-44306c2ff73d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dogovorNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="262" width="415" height="45" uuid="030dce79-20fe-43b4-b06b-7be5d75d30c0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dogovorDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="307" width="415" height="45" uuid="ab2731f2-10b0-4e9c-95c7-ad68ba1ec710"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{regNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" x="140" y="352" width="415" height="65" uuid="3e041d1d-f67d-4b5e-8bac-ad4383512f3e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{regDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="15" width="470" height="45" uuid="62e7bd1f-0ff4-4643-84c0-4841bc46dc4d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Білім беру жинақтау салымы туралы шартты тіркеу/қайта тіркеу туралы анықтама
+Справка о регистрации/перерегистрации договора об образовательном накопительном вкладе
+]]></text>
+			</staticText>
+		</band>
+		<band height="187">
+			<image scaleImage="RealSize">
+				<reportElement x="0" y="0" width="150" height="150" uuid="03e98a28-1b63-489f-a7c7-fc3a43130a10"/>
+				<imageExpression><![CDATA[$P{barCodeImg}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="164" width="370" height="23" uuid="3eb7f34e-5f25-455c-83fd-0cd06ad0fcf4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[*Білім беру жинақтау салымы туралы шарттардың бірыңғай тізілімінде
+**Единый реестр договоровоб образовательном накопительном вкладе
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

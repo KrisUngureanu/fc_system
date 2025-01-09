@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbdRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cbdfincenter.xsd">
+  <orgCode>orgCode</orgCode>
+  <sender>sender</sender>
+  <paymentType>paymentType</paymentType>
+  <recipientIin>recipientIin</recipientIin>
+  <dependentIin>dependentIin</dependentIin>
+  <periodFrom>2001-12-31T12:00:00</periodFrom>
+  <periodTo>2001-12-31T12:00:00</periodTo>
+</cbdRequest>

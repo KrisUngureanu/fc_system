@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:ns1="http://divorceinfo.marriage.actualize.gbdfl.kz" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="http://divorceinfo.marriage.actualize.gbdfl.kz" schemaLocation="schema2.xsd"/>
+
+  <xs:complexType name="familyInfoDTO">
+    <xs:sequence>
+      <xs:element name="birthInfos" type="birthDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="divorceInfos" type="divorceDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="marriageInfos" type="marriageDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="birthDTO">
+    <xs:sequence>
+      <xs:element name="actDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="actNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="childBirthDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="childIIN" type="xs:string" minOccurs="0"/>
+      <xs:element name="childLifeStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="childName" type="xs:string" minOccurs="0"/>
+      <xs:element name="childPatronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="childSurName" type="xs:string" minOccurs="0"/>
+      <xs:element name="fatherBirthDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="fatherIIN" type="xs:string" minOccurs="0"/>
+      <xs:element name="fatherLifeStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="fatherName" type="xs:string" minOccurs="0"/>
+      <xs:element name="fatherPatronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="fatherSurName" type="xs:string" minOccurs="0"/>
+      <xs:element name="marriageActDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="marriageActNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="marriageActPlace" type="xs:string" minOccurs="0"/>
+      <xs:element name="motherApplication" type="xs:int"/>
+      <xs:element name="motherBirthDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="motherIIN" type="xs:string" minOccurs="0"/>
+      <xs:element name="motherLifeStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="motherName" type="xs:string" minOccurs="0"/>
+      <xs:element name="motherPatronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="motherSurName" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsNameKZ" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsNameRU" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="divorceDTO">
+    <xs:sequence>
+      <xs:element name="actDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="actNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandBirthDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="husbandIIN" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandLifeStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandName" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandPatronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandSurName" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandSurnameBefore" type="xs:string" minOccurs="0"/>
+      <xs:element name="marriageActDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="marriageActNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="marriageActPlace" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeBirthDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="wifeIIN" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeLifeStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeName" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifePatronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeSurName" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeSurnameBefore" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsNameKZ" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsNameRU" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="marriageDTO">
+    <xs:sequence>
+      <xs:element name="actDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="actNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="deathAR" type="ns1:DeathAR" minOccurs="0"/>
+      <xs:element name="divorceAR" type="ns1:divorceAR" minOccurs="0"/>
+      <xs:element name="divorceCourtAR" type="ns1:divorceCourtAR" minOccurs="0"/>
+      <xs:element name="husbandBirthDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="husbandIIN" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandLifeStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandName" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandPatronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandSurNameAfter" type="xs:string" minOccurs="0"/>
+      <xs:element name="husbandSurNameBefore" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeBirthDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="wifeIIN" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeLifeStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeName" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifePatronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeSurNameAfter" type="xs:string" minOccurs="0"/>
+      <xs:element name="wifeSurNameBefore" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsNameKZ" type="xs:string" minOccurs="0"/>
+      <xs:element name="zagsNameRU" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="searchDTO">
+    <xs:sequence>
+      <xs:element name="iin" type="xs:string" minOccurs="0"/>
+      <xs:element name="surName" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="patronymic" type="xs:string" minOccurs="0"/>
+      <xs:element name="birthDate" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

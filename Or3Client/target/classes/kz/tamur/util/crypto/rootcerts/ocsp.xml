@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ocspMap>
+	<defaultOcspAddress>http://ocsp.pki.gov.kz/</defaultOcspAddress>
+	<ocspParam>
+		<rootSerial>10a41fd3c95359a32795540d0eef40d370a2de0</rootSerial>
+		<rootDN>C=KZ,O=JSC Halyk Bank,CN=TEST HALYK Certificate Authority</rootDN>
+		<ocspAddress>http://proxy2.shep.kz:22682/halykocsp/</ocspAddress>
+	</ocspParam>
+</ocspMap>

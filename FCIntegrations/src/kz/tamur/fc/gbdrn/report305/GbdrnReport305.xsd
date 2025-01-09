@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:tns="http://types.305.reports.egov.rn3.tamur.kz" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://types.305.reports.egov.rn3.tamur.kz" elementFormDefault="qualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="response" type="tns:ResponseMessage" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент запроса_ответа Справки о зарегистрированных правах (обременениях) на недвижимое имущество и его технических характеристиках ФЛ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ResponseMessage">
+		<xs:annotation>
+			<xs:documentation>Формат запроса_ответа</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:BaseMessage">
+				<xs:sequence>
+					<xs:element name="businessData" type="tns:BussinesDataType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>бизнес данные запроса и ответа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ds:Signature" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BaseMessage">
+		<xs:annotation>
+			<xs:documentation>Формат служебных данных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="requestNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер запроса, присвоенный ПЭП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="declarantId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИИН/БИН заявителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата запроса системы, осуществляющей запрос через ПЭП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestSystemId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор системы осуществившей запрос через ПЭП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="tns:SysDirectoryType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BussinesDataType">
+		<xs:annotation>
+			<xs:documentation>Формат служебных данных</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RegistredRightsPersonRequest" type="tns:RegistredRightsPersonRequest" form="unqualified" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegisteredRightsEvidencePerson" type="tns:GbdrnRegisteredRightsEvidencePerson" form="unqualified" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные ответа на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegisteredRightsEvidencePersonKz" type="tns:GbdrnRegisteredRightsEvidencePerson" form="unqualified" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные ответа на государственном языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RegistredRightsPersonRequest">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий бизнес данные запроса</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DeclarantName" type="tns:PersonNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные заявителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclarantIIN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИИН заявителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclarantIdentityDoc" type="tns:IdentityDocType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о документе, удостоверяющем личность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjectType" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Вид объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjectLocation" type="tns:RealEstateObjectAddressType" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Адрес объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnerShort" type="tns:OwnerShort" nillable="true"/>
+			<xs:element name="CadastralNumber" type="xs:string" nillable="true"/>
+			<xs:element name="Language" type="tns:Language"/>
+			<xs:element name="Token" type="tns:TokenInfo" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RealEstateObjectAddressType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий адрес объекта недвижимости</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="arCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="streetCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="ConStreetCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="cooperativeCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="building" type="xs:string" minOccurs="0"/>
+			<xs:element name="corpus" type="xs:string" minOccurs="0"/>
+			<xs:element name="flat" type="xs:string" minOccurs="0"/>
+			<xs:element name="AddrStr" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OwnerShort">
+		<xs:annotation>
+			<xs:documentation>ФИО владельца объекта недвижимости</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LastName" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MiddleName" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Language">
+		<xs:annotation>
+			<xs:documentation>Язык запроса</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ru"/>
+			<xs:enumeration value="kz"/>
+			<xs:enumeration value="all"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="GbdrnRegisteredRightsEvidencePerson">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий бизнес данные ответа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StatementFeedPlace" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Регион, по которому запрашиваются данные (Республика, область)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatementNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatementDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Declarant" type="tns:PersonNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Заявитель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclarantIIN" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИИН заявителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclarantBirthDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата рождения заявителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdentityDoc" type="tns:IdentityDocType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные документа удостоверяющего личность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmptyLineForRights" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сообщение об отсутствии прав</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmptyLineForBurdens" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сообщение об отсутствии обременений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmptyLineForUPSes" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сообщение об отсутствии притязаний</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjectInfos" type="tns:ArrayOfGbdrnObjectInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения об объектах недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MessageProcessingResult" type="xs:string" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfGbdrnObjectInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения об объектах недвижимости</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GbdrnObjectInfoItem" type="tns:GbdrnObjectInfoType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GbdrnObjectInfoType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий сведения об объекте недвижимости</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ObjectTypeId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Название вида недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KadastrNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Кадастровый номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjectLocation" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjectEndUse" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Целевое назначение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QuantityPart" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество составляющих</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Storeys" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Этаж, этажность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SquareTotal" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Общая площадь</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BasicArea" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основная площадь</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DwellingArea" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Жилая площадь</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UsableArea" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Полезная площадь</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Divisibility" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Делимость</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecialNotes" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Особые отметки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Rights" type="tns:ArrayOfGbdrnImmovablesRightType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о зарегистрированных правах</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChargeList" type="tns:ArrayOfGbdrnChargeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о зарегистрированных обременениях</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ClaimsAndDeals" type="tns:ArrayOfGbdrnClaimsAndDealsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о зарегистрированных притязаниях</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfGbdrnImmovablesRightType">
+		<xs:annotation>
+			<xs:documentation>Сведения о правах на недвижимость</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ImmovablesRight" type="tns:GbdrnImmovablesRightType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GbdrnImmovablesRightType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные о праве на недвижимость</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RightType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вид права на недвижимость</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RightSubstance" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Содержание (сведения об объекте недвижимости и особые отметки)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RightOwner" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Правообладатель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnershipType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Форма общей собственности и доля</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RightFoundation" type="tns:ArrayOfGbdrnRightDocType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание возникновения права</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата возникновения права</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfGbdrnRightDocType">
+		<xs:annotation>
+			<xs:documentation>Сведения о документах основаниях правообладания</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocList" type="tns:GbdrnRightDocType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список документов оснований</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GbdrnRightDocType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий документ основание</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocTip" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Название документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocNo" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocDt" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfGbdrnChargeType">
+		<xs:annotation>
+			<xs:documentation>Сведения об обременениях на объект недвижимости</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Charge" type="tns:GbdrnChargeType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Зарегистрированные обременения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GbdrnChargeType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные об обременении</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ChargeType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вид обременения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChargeSubstance" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Содержание (описание объекта недвижимости)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChargeOwner" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Заинтересованное лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnershipType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вид множественности, форма общего права, доля</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChargeSum" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Сумма сделки, платы за наложение обременения  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrimaryObligationsRate" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Сумма залога, взыскания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChargePeriod" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Период, срок обременения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChargeFoundation" type="tns:ArrayOfGbdrnRightDocType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание наложения обременения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChargeRegistartionDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации обременения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Owner" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Владелец, на которого наложено обременение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfGbdrnClaimsAndDealsType">
+		<xs:annotation>
+			<xs:documentation>Сведения о притязаниях на объект недвижимости</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocList" type="tns:GbdrnClaimsAndDealsType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Зарегистрированные притязания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GbdrnClaimsAndDealsType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий данные о притязании</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Claim" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вид притязания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Subject" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Содержание (данные об объекте недвижимости)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Declarant" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Заинтересованное лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Foundation" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Основание наложения обременения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocDt" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации притязания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Owner" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Владелец, на которого наложено притязание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonNameType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий сведения о заявителе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LastName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirstName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MiddleName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ФИО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BornDt" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IdentityDocType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий документ удостоверяющий личность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TypeId" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Тип документа по ГБДФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Number" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssueDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SysDirectoryType">
+		<xs:annotation>
+			<xs:documentation>Тип, описывающий Status</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>код ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="tns:NameType">
+				<xs:annotation>
+					<xs:documentation>сообщение об ошибке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NameType">
+		<xs:annotation>
+			<xs:documentation>Тип названия в SysDirectoryType</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="en" type="xs:string"/>
+			<xs:element name="ru" type="xs:string"/>
+			<xs:element name="kk" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TokenInfo">
+		<xs:annotation>
+			<xs:documentation>Информация о токене</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Токен безопасности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PublicKey" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Публичный ключ, необходимый для проверки валидности токена безопасности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

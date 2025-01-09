@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://dictionaries.persistence.interactive.nat" targetNamespace="http://dictionaries.persistence.interactive.nat" version="1.0">
+	<xs:complexType name="Participant">
+		<xs:annotation>
+			<xs:documentation>Справочник участников информационного обмена</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MessageResult">
+		<xs:annotation>
+			<xs:documentation>Справочник 'Результат обработки сообщения'</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Gender">
+		<xs:annotation>
+			<xs:documentation>Справочник половой принадлежности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Nationality">
+		<xs:annotation>
+			<xs:documentation>Справочник национальностей</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Country">
+		<xs:annotation>
+			<xs:documentation>Справочник стран</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonStatus">
+		<xs:annotation>
+			<xs:documentation>Справочник статусов физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="District">
+		<xs:annotation>
+			<xs:documentation>Справочник областей</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Region">
+		<xs:annotation>
+			<xs:documentation>Справочник районов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AddressStatus">
+		<xs:annotation>
+			<xs:documentation>Справочник признаков регистрации по адресу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AddressInvalidity">
+		<xs:annotation>
+			<xs:documentation>Справочник причин снятия с регистрации по адресу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CapableStatus">
+		<xs:annotation>
+			<xs:documentation>Справочник статусов дееспособности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Court">
+		<xs:annotation>
+			<xs:documentation>Справочник судов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GpTerritorial">
+		<xs:annotation>
+			<xs:documentation>Справочник органов КПССУ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExcludeReason">
+		<xs:annotation>
+			<xs:documentation>Справочник признаков исключения/условного исключения физического лица из Национального реестра ИИН</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="repatriationStatus">
+		<xs:annotation>
+			<xs:documentation>Справочник признаков регистрации по адресу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="repatriationOrg">
+		<xs:annotation>
+			<xs:documentation>Справочник признаков регистрации по адресу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="repatriationReason">
+		<xs:annotation>
+			<xs:documentation>Справочник признаков регистрации по адресу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentType">
+		<xs:annotation>
+			<xs:documentation>Справочник типов документов удостоверяющих личность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentOrganization">
+		<xs:annotation>
+			<xs:documentation>Справочник организаций, выдающих документы удостоверяющие личность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentInvalidity">
+		<xs:annotation>
+			<xs:documentation>Описание действительности документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AddressType">
+		<xs:annotation>
+			<xs:documentation>Справочник типов адресов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="changeDate" type="xs:dateTime" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата последнего изменения справочного значения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

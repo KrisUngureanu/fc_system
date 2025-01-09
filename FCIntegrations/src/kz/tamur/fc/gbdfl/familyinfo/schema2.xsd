@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://divorceinfo.marriage.actualize.gbdfl.kz" xmlns:tns="http://divorceinfo.marriage.actualize.gbdfl.kz" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="DeathAR">
+    <xs:sequence>
+      <xs:element name="deathActNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="deathAktDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="deathAktZagsCode" type="tns:zags" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="zags">
+    <xs:sequence>
+      <xs:element name="code" type="xs:string" minOccurs="0"/>
+      <xs:element name="nameRu" type="xs:string" minOccurs="0"/>
+      <xs:element name="nameKz" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="divorceAR">
+    <xs:sequence>
+      <xs:element name="divorceActNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="divorceAktDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="divorceAktZags" type="tns:zags" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="divorceCourtAR">
+    <xs:sequence>
+      <xs:element name="caseNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="forceDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="court" type="tns:court" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="court">
+    <xs:sequence>
+      <xs:element name="code" type="xs:string" minOccurs="0"/>
+      <xs:element name="nameRu" type="xs:string" minOccurs="0"/>
+      <xs:element name="nameKz" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

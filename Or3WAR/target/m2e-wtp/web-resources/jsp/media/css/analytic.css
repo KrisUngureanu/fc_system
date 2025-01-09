@@ -1,0 +1,170 @@
+.acc-arrow {
+	cursor: pointer;
+	border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block !important;
+    padding: 5px;
+}
+
+.arrow-right {
+	margin: 6px -4px 6px -2px;
+	transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.arrow-left {
+	margin: 6px -30px 6px 12px;
+	transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.analytic-acc {
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+.full-size {
+	width: 100%;
+	height: 98%;
+}
+
+.full-height {
+	height: 100%;
+}
+
+.inherit-width {
+	width: 298px;
+}
+
+.analytic-coll-pan {
+	cursor: pointer;
+	width: 24px;
+	vertical-align: top;
+	background: #e4e5e8;
+}
+
+.analytic-coll-pan > div {
+	height: 100%;
+	width: 24px !important;
+}
+
+.analytic-coll-pan > div > .ttl-coll-pan-v {
+	height: 100%;
+}
+
+.analytic-cnt-coll-pan {
+	height: 100%;
+	width: 300px;
+	overflow: auto;
+	scrollbar-width: thin;
+	background: #e4e5e8;
+}
+
+.analytic-dimension-title {
+	display: inline-flex;
+	width: 100%;
+	align-content: center;
+}
+
+.analytic-title-text {
+	font-weight: bold; 
+	text-align: center;
+	padding: 6px;
+	width: 92%;
+}
+
+.arrow-width {
+	width: 8%;
+}
+
+.dimension-text {
+	padding: 6px 5px;
+	font-weight: bold;
+	background: #d2d2d2;
+}
+
+.analytic-tree {
+	width: 300px;
+	height: 28.3%;
+	overflow: auto
+}
+
+.analytic-apply {
+	width: 100%;
+	height: 30px;
+	background: #00acac;
+	color: #fff;
+	padding-top: 5px;
+}
+
+.analytic-apply:hover {
+	background: #00acac;
+	border: 1px solid #00acac;
+}
+
+.show-hide {
+	background: #2d353c;
+}
+
+.show-hide:hover {
+	background: #2d353c;
+	border: 1px solid #2d353c;
+}
+
+.axes-title {
+    height: 1%;
+    text-align: center;
+    font-size: 18px;
+    margin: 10px 0 3px 0;
+}
+
+.dimension {
+	display: flex;
+	background: #d2d2d2;
+}
+
+.dimension > div {
+	width: 66%;
+}
+
+.dimension > div > button {
+    height: 100%;
+    float: right;
+    background: none;
+    bborder: none;
+    margin-left: 3px;
+    border: none;
+}
+.dimension > div > button > div {
+    width: 24px;
+    height: 20px;
+}
+
+.amcharts-amexport-item-level-0 {
+	opacity: 1 !important;
+}
+
+.amcharts-amexport-item.amcharts-amexport-item-level-0 {
+	line-height: 30px !important;
+	width: 140px !important;
+}
+
+.icon-selectAll {
+	background:url('icons/selectAll.svg') no-repeat center center;
+}
+
+.icon-clearAll {
+	background:url('icons/clearAll.svg') no-repeat center center;
+}
+
+.or3-analytic
+	> div
+    > svg
+    > g
+    > g:nth-child(2)
+    > g:nth-child(2)
+    > g
+    > g[aria-labelledby] {
+        display: none;
+    }

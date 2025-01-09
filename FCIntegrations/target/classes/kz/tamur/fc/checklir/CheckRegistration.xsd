@@ -1,0 +1,35 @@
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xs:schema xmlns:ns0="http://services.sync.mtszn/" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.sync.mtszn/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="requestMessage" type="ns0:requestMessage"/>
+	<xs:complexType name="requestMessage">
+		<xs:sequence>
+			<xs:element name="iin" type="xs:string"/>
+			<xs:element ref="ds:Signature"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="responseMessage" type="ns0:responseMessage"/>
+	<xs:complexType name="responseMessage">
+		<xs:sequence>
+			<xs:element name="unitNum" type="xs:string" minOccurs="0"/>
+			<xs:element name="unitNameRU" type="xs:string" minOccurs="0"/>
+			<xs:element name="unitNameKZ" type="xs:string" minOccurs="0"/>
+			<xs:element name="iin" type="xs:string"/>
+			<xs:element name="isRegistered" type="xs:string"/>
+			<xs:element name="registrationNum" type="xs:int" minOccurs="0"/>
+			<xs:element name="registrationDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="firstMarkDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="firstMark" type="xs:string" minOccurs="0"/>
+			<xs:element name="secondMarkDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="secondMark" type="xs:string" minOccurs="0"/>
+			<xs:element name="thirdMarkDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="thirdMark" type="xs:string" minOccurs="0"/>
+			<xs:element name="finalMarkDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="finalMark" type="xs:string" minOccurs="0"/>
+			<xs:element name="employeeName" type="xs:string" minOccurs="0"/>
+			<xs:element name="descriptionRu" type="xs:string" minOccurs="0"/>
+			<xs:element name="descriptionKz" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ds:Signature"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

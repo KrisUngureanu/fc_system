@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP файл для JBoss-->
+
+<jnlp spec="1.0+" codebase="http://192.168.13.67/Or3WAR/jsp/media/scan" href="scanner.jnlp">
+	<information>
+		<title>Сканнер - вебсокет</title>
+		<vendor>ТОО "ТАМУР"</vendor>
+		<description>Приложение для работы со сканером, установленным на локальном компьютере пользователя, из веб-браузера посредством технологии WebSocket</description>
+		<description kind="short">Приложение для взаимодействия со сканером</description>
+		<icon href="images/icon.jpg"/>
+		<shortcut online="true"> 
+			<menu submenu="TAMUR"/>
+			<desktop/> 
+		</shortcut>
+	</information>
+	<security>
+	  <all-permissions/>
+	</security>
+  <resources>
+    <j2se version="1.7+" java-vm-args="-Xmx512m"/>
+		
+		<jar href="scan-websocket-signed-1.0.jar" download="eager" main="true"/>		
+
+		<jar href="javax.websocket-api-1.1.jar"/>
+		<jar href="gson-2.8.2.jar"/>
+		<jar href="tyrus-core-1.13.1.jar"/>
+		<jar href="tyrus-client-1.13.1.jar"/>
+		<jar href="tyrus-server-1.13.1.jar"/>
+		<jar href="tyrus-spi-1.13.1.jar"/>
+		<jar href="tyrus-container-grizzly-client-1.13.1.jar"/>
+		<jar href="tyrus-container-grizzly-server-1.13.1.jar"/>
+		<jar href="grizzly-http-2.3.25.jar"/>		
+		<jar href="grizzly-http-server-2.3.25.jar"/>
+		<jar href="grizzly-framework-2.3.25.jar"/>
+		<jar href="jna-5.5.0.jar"/>
+		<jar href="jna-platform-5.5.0.jar"/>
+
+		<!--Параметры-->                
+   	<property name="splash" value="SplashTSON.jpg"/>
+		<property name="selSrv" value="0"/>
+		<property name="reportType" value="jacob"/>
+		<property name="host" value="192.168.13.58"/>
+		<property name="port" value="8181"/>
+
+	</resources>	
+	
+	<application-desc main-class="kz.tamur.scan.server.WebsocketStartup"/>
+</jnlp>

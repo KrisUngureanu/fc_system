@@ -1,0 +1,136 @@
+/* CSS Document */
+#ui_startPage {background-image:url(or3/home.png)}
+#ui_personInfo{background-image:url(or3/iv.png)}
+#ui_Orders{background-image:url(or3/orders.png)}
+#ui_OrdersNotification{background-image:url(or3/notification.png)}
+#ui_process{background-image:url(or3/process.png)}
+#ui_staff{background-image:url(or3/staff.png)}
+#ui_arch{background-image:url(or3/arch.png)}
+#ui_dicts{background-image:url(or3/dicts.png)}
+#ui_stat{background-image:url(or3/stat.png)}
+#ui_right{background-image:url(or3/right.png)}
+#ui_actions{background-image:url(or3/mon.png)}
+#ui_help{background-image:url(or3/help.png)}
+#ui_admins{background-image:url(or3/right.png)}
+#ui_analytic{background-image:url(or3/stat.png)}
+
+
+#processesList .panel-body div[id*="pList"] div,#archList .panel-body div[id*="aList"] div {
+  background-origin: border-box;
+  background-position: center 8px;
+  background-repeat: no-repeat;
+  border-radius: 5px 5px 5px 5px;
+}
+div[parentproc="30223634.30299877"]{ background-image:url(or3/new.png)}
+div[parentproc="17821.1005696"]{ background-image:url(or3/userprocc.png)}
+
+#logo[logoid="3"] {
+  left: 25px;
+  position: absolute;
+  top: 16px;
+}
+#logo[logoid="3"] > img {
+  width: 245px;
+}
+
+#logo[logoid="4"] > img {
+  height: 77px;
+}
+
+#logo[logoid="4"] {
+  left: 15px;
+  position: absolute;
+  top: 5px;
+}
+
+#logo[logoid="5"],#logo[logoid="1"] {
+  left: 15px;
+  position: absolute;
+  top: 6px;
+}
+
+#logo[logoid="2"] {
+  left: 2px;
+  position: absolute;
+  top: 0;
+}
+
+#logo[logoid="2"] > img {
+  height: 88px;
+  width: 100%;
+}
+
+#logo[logoid="5"] > img {
+  width: 225px;
+}
+
+
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transform: translate(-300px, 0) scale(4);
+  font-size: 23px;
+  direction: ltr;
+  cursor: pointer;
+}
+.fileinput-button input:disabled {
+  cursor: default;
+}
+
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+.progress-animated .bar {
+  background: url(../img/progressbar.gif) !important;
+  filter: none;
+}
+.fileupload-loading {
+  float: right;
+  width: 32px;
+  height: 32px;
+  background: url(../img/loading.gif) center no-repeat;
+  background-size: contain;
+  display: none;
+}
+.fileupload-processing .fileupload-loading {
+  display: block;
+}
+.files audio,
+.files video {
+  max-width: 300px;
+}
+
+.or3-popup-panel {
+  clear: both;
+  display: inline-table;
+  height: auto;
+  width: 100%;
+}
+
+.or3-popup-panel .ortable {
+  display: table;
+  width: auto;
+}
+
+.icon-faq{
+background: url(or3/faq-col.png) center no-repeat;	
+}
+.icon-help-s{
+background: url(or3/help-s-col.png) center no-repeat;	
+}
+.icon-npa{
+background: url(or3/npa-col.png) center no-repeat;	
+}
+.icon-about{
+background: url(or3/about-col.png) center no-repeat;	
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6hudson-86  svn-revision#12773. -->
+<xsd:schema xmlns:ns0="http://schemas.letograf.kz/iiscon/mvd/driver" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.letograf.kz/iiscon/mvd/driver">
+	<xsd:complexType name="tvuInfoResponse">
+		<xsd:sequence>
+			<xsd:element name="categoryA" type="xsd:boolean"/>
+			<xsd:element name="categoryB" type="xsd:boolean"/>
+			<xsd:element name="categoryC" type="xsd:boolean"/>
+			<xsd:element name="categoryD" type="xsd:boolean"/>
+			<xsd:element name="categoryE" type="xsd:boolean"/>
+			<xsd:element name="categoryF" type="xsd:boolean"/>
+			<xsd:element name="dateOfBirth" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="dateOperate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="drivingDocDateEnd" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="iin" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="lastName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="middleName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="num" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="serial" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

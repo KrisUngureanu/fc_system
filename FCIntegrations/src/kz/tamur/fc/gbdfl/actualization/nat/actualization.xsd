@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xs:schema xmlns:ns1="http://dictionaries.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://actualization.persistence.interactive.nat" targetNamespace="http://actualization.persistence.interactive.nat" version="1.0">
+	<xs:import namespace="http://dictionaries.persistence.interactive.nat" schemaLocation="dictionaries.xsd"/>
+	<xs:element name="UNoticeSync" type="ns2:UNoticeSync"/>
+	<xs:complexType name="UNoticeSync">
+		<xs:sequence>
+			<xs:element name="messageId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Уникальный иденитификатор сообщения. Размерность не более 36 символов латиницы.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="messageDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время создания сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Иденитификатор запроса, в ответ на который сформирован ответ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sender" type="ns1:Participant">
+				<xs:annotation>
+					<xs:documentation>Участник взаимодействия - отправитель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="receiver" type="ns1:Participant">
+				<xs:annotation>
+					<xs:documentation>Участник взаимодействия - получатель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="messageResult" type="ns1:MessageResult">
+				<xs:annotation>
+					<xs:documentation>Результат обработки сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

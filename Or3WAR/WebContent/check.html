@@ -1,0 +1,105 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Вычисление и проверка ЭЦП</title>
+    <link href="login2.css" rel="StyleSheet" type="text/css">
+</head>
+<body bgcolor="#F0F8FF" style="margin:10; padding: 10;">
+
+<label class="label">Ключевой контейнер:</label>
+<br/><select id="name" value="" class="input"><option value="0"></option></select>
+<br/>
+<br/>
+<label class="label">Введите текст:</label>
+<br/>
+<textarea style="width: 500px; height: 120px;" id="inp" class="input"></textarea>
+<br/>
+<input name="sbut" type="button" class="button" value="Подписать" onclick="sign();"/>
+<br/>
+<br/>
+<label class="label">Введите ЭЦП:</label>
+<br/>
+<textarea style="width: 500px; height: 120px;" id="ecp" class="input"></textarea>
+<br/>
+<br/>
+<label class="label">Выберите сертификат:</label>
+<br/>
+<select id="cert" value="" class="input">
+<option value="0"></option>
+<option value="MIIDUDCCAtmgAwIBAgIgeesO2BFaC1FZVeHfkIriK72f+x94YPdxkf213DWFp3IwDgYKKwYBBAG1EQECAgUAMHkxIjAgBgkqhkiG9w0BCQEWE2Fpc3N1cHBvcnRAZ2FtbWEua3oxMDAuBgNVBAMMJ9Cj0LTQvtGB0YLQvtCy0LXRgNGP0Y7RidC40Lkg0KbQtdC90YLRgDEUMBIGA1UECgwL0KPQpiDQkNCY0KExCzAJBgNVBAYTAktaMCIYDzIwMTAwMjI0MTAyMDU4WhgPMjAxMTAyMjQxMDIwNThaMEcxEjAQBgNVBAMMCdCi0LXRgdGCMTENMAsGA1UECgwE0JDQnzEVMBMGA1UECAwM0JDRgdGC0LDQvdCwMQswCQYDVQQGEwJLWjBjMA4GCisGAQQBtREBAgIFAANRAAYCAAA6qgAAAEVDMQACAADRl/Kppt0dfnjVKKAnlcN01p9z7NmoqIQ8k54MGwhig5DYUs9IWa/9f+b6iPZqowVKTTFdms7e9Dwosci/Fdyfo4IBUTCCAU0wEwYJKwYBBAG1EQIKBAYEBCAAAAAwHwYKKAAMgm2yYoJDIAEBAQQOEwzF0d3EziDDziDQygAwgc4GA1UdIwSBxjCBw4AgKRM3ICh8f+7w48pmUAjDawIMBn2HE3wFAahl10D2g7mhfaR7MHkxIjAgBgkqhkiG9w0BCQEWE2Fpc3N1cHBvcnRAZ2FtbWEua3oxMDAuBgNVBAMMJ9Cj0LTQvtGB0YLQvtCy0LXRgNGP0Y7RidC40Lkg0KbQtdC90YLRgDEUMBIGA1UECgwL0KPQpiDQkNCY0KExCzAJBgNVBAYTAktagiApEzcgKHx/7vDjymZQCMNrAgwGfYcTfAUBqGXXQPaDuTApBgNVHQ4EIgQgeesO2BFaC1FZVeHfkIriK72f+x94YPdxkf213DWFp3IwCwYDVR0PBAQDAgXgMAwGA1UdEwQFMAMCAQAwDgYKKwYBBAG1EQECAgUAA2EAJHL45jqHpuoW7EndmaAX0ffLX2BX7KJ3DK5+CMk9d0JA0+Kb/S5jCVtT4lhYyzy6W6iC/6gQvTE5IesPg3EtJ3Sy9i7RnOb0XPB/mDyEMohat9uhmEoDkkSgTA5uZEiE">Тест 1</option>
+<option value="MIIDUDCCAtmgAwIBAgIgSNCD7XSQxLZXny5B2NTMDcKvzsc3GXDm0EOzgJ/wAOUwDgYKKwYBBAG1EQECAgUAMHkxIjAgBgkqhkiG9w0BCQEWE2Fpc3N1cHBvcnRAZ2FtbWEua3oxMDAuBgNVBAMMJ9Cj0LTQvtGB0YLQvtCy0LXRgNGP0Y7RidC40Lkg0KbQtdC90YLRgDEUMBIGA1UECgwL0KPQpiDQkNCY0KExCzAJBgNVBAYTAktaMCIYDzIwMTAwMjI0MTAyMjA0WhgPMjAxMTAyMjQxMDIyMDRaMEcxEjAQBgNVBAMMCdCi0LXRgdGCMjENMAsGA1UECgwE0JDQnzEVMBMGA1UECAwM0JDRgdGC0LDQvdCwMQswCQYDVQQGEwJLWjBjMA4GCisGAQQBtREBAgIFAANRAAYCAAA6qgAAAEVDMQACAACLieUpM1W6vXcRI/PPIKa7lrGgN+31uU1J7KOvJMsCQKd8X6JVXuzuKY+PV92HmaWuwOXyseHzREf+pO2h0pF5o4IBUTCCAU0wEwYJKwYBBAG1EQIKBAYEBCAAAAAwHwYKKAAMgm2yYoJDIAEBAQQOEwzF0d3EziDDziDQygAwgc4GA1UdIwSBxjCBw4AgKRM3ICh8f+7w48pmUAjDawIMBn2HE3wFAahl10D2g7mhfaR7MHkxIjAgBgkqhkiG9w0BCQEWE2Fpc3N1cHBvcnRAZ2FtbWEua3oxMDAuBgNVBAMMJ9Cj0LTQvtGB0YLQvtCy0LXRgNGP0Y7RidC40Lkg0KbQtdC90YLRgDEUMBIGA1UECgwL0KPQpiDQkNCY0KExCzAJBgNVBAYTAktagiApEzcgKHx/7vDjymZQCMNrAgwGfYcTfAUBqGXXQPaDuTApBgNVHQ4EIgQgSNCD7XSQxLZXny5B2NTMDcKvzsc3GXDm0EOzgJ/wAOUwCwYDVR0PBAQDAgXgMAwGA1UdEwQFMAMCAQAwDgYKKwYBBAG1EQECAgUAA2EAqKbsZcIcKd4DjIERNYwQweU/gwQI8smbbEidRkr4dlfQNrUCM/j2I192l2zRPMD3Ci5OcfUbNM1tAW3g/2TcAlaU+g3KvVHgUojkh7DH03Ys7k+5gySfpu226EeIBSk0">Тест 2</option>
+<option value="MIIDUDCCAtmgAwIBAgIgG2n4mAFk4KHdIuuvH4XFSoOFrVaxuaK/eZu7hijnt08wDgYKKwYBBAG1EQECAgUAMHkxIjAgBgkqhkiG9w0BCQEWE2Fpc3N1cHBvcnRAZ2FtbWEua3oxMDAuBgNVBAMMJ9Cj0LTQvtGB0YLQvtCy0LXRgNGP0Y7RidC40Lkg0KbQtdC90YLRgDEUMBIGA1UECgwL0KPQpiDQkNCY0KExCzAJBgNVBAYTAktaMCIYDzIwMTAwMjI0MTAyMjUxWhgPMjAxMTAyMjQxMDIyNTFaMEcxEjAQBgNVBAMMCdCi0LXRgdGCMzENMAsGA1UECgwE0JDQnzEVMBMGA1UECAwM0JDRgdGC0LDQvdCwMQswCQYDVQQGEwJLWjBjMA4GCisGAQQBtREBAgIFAANRAAYCAAA6qgAAAEVDMQACAAD6GP0DNA/KIKyt1gvoP5cCiuc7ohPQbM6BLEW1A/Drpu3PfLOwIiY2CNuxbFLNPXw2dYW2duQSA4f/DNkqRO1uo4IBUTCCAU0wEwYJKwYBBAG1EQIKBAYEBCAAAAAwHwYKKAAMgm2yYoJDIAEBAQQOEwzF0d3EziDDziDQygAwgc4GA1UdIwSBxjCBw4AgKRM3ICh8f+7w48pmUAjDawIMBn2HE3wFAahl10D2g7mhfaR7MHkxIjAgBgkqhkiG9w0BCQEWE2Fpc3N1cHBvcnRAZ2FtbWEua3oxMDAuBgNVBAMMJ9Cj0LTQvtGB0YLQvtCy0LXRgNGP0Y7RidC40Lkg0KbQtdC90YLRgDEUMBIGA1UECgwL0KPQpiDQkNCY0KExCzAJBgNVBAYTAktagiApEzcgKHx/7vDjymZQCMNrAgwGfYcTfAUBqGXXQPaDuTApBgNVHQ4EIgQgG2n4mAFk4KHdIuuvH4XFSoOFrVaxuaK/eZu7hijnt08wCwYDVR0PBAQDAgXgMAwGA1UdEwQFMAMCAQAwDgYKKwYBBAG1EQECAgUAA2EAG0MRw8W4JVZT5AUjCf0frjEuqPKm8En8CJ6HmfGEKWqwiId+WKtScpLcg+ikvb/1fK5XvE7yWhgkEQG0gHl9Ak3CAZWcUEky374Qj0dLBfaH415xi71zmysZzfL8UOlF">Тест 3</option>
+</select>
+<input name="vbut" type="button" class="button" value="Проверить" onclick="verify();"/>
+<br/>
+<br/>
+<label class="label">Результат валидации:</label>
+<br/>
+<input id="res" type="text" class="input" style="width: 500px;"/>
+																	<div id="error" class="error"></div>
+
+<applet code="kz.tumar.Signer32.class" style="position:absolute; top:0;left:0;" width="0%" height="0%" NAME="app" archive="sign-applet.jar,commons-logging.jar,crypto.gammaprov.jar,xmlsec-1.3.0.jar">
+</applet>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+var obj = document.getElementById('name');
+if(obj != null) {
+	var err = document.app.getLastError();
+	if (err == "") {
+		var ps = document.app.getProfileNames(";");
+		var pss = ps.split(";");
+		for (i=0; i<pss.length; i++) {
+			var p = pss[i];
+			if (p.length > 0) {
+	    	var op = document.createElement("option");
+		    if (p.length > 9 && "profile://" == p.substring(0,10)) p = p.substring(10, p.length);
+		    op.setAttribute("value", p);
+	      if (p == "ESEDO004") {
+			    op.setAttribute("selected", 1);
+	      }
+    	  var text = document.createTextNode(p);
+      	op.appendChild(text);
+	      obj.appendChild(op);
+    	}
+		}
+//	 	obj.value = "ESEDO004";
+	 	if (obj.selectedIndex < 1) {
+	  	document.getElementById("error").innerHTML = "Не установлен профайл ESEDO004! Проверьте настройки конфигуратора Тумар.";
+	 	}
+	} else {
+  	document.getElementById("error").innerHTML = err;
+	}
+}
+
+function sign() {
+	var profile = document.getElementById('name').value;
+	var str = document.getElementById('inp').value;
+	var pwd = "";
+	
+	var signed = document.app.signString(str, profile, pwd, "");
+	document.getElementById('ecp').value = signed;
+
+} 
+
+function verify() {
+	var signed= document.getElementById('ecp').value;
+	var str = document.getElementById('inp').value;
+	var pwd = "";
+
+var cert = document.getElementById('cert').value;
+	
+	var r= document.app.verifyString(str, cert, signed);
+	document.getElementById('res').value = (r == 1) ? "Проверка прошла успешно" : "Проверка прошла не успешно";
+	if (r == 1)
+		document.getElementById('res').style.color = "green";
+	else
+		document.getElementById('res').style.color = "red";
+
+} 
+
+
+// -->
+</script>
+</BODY>
+</HTML>

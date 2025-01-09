@@ -1,0 +1,716 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2.0-1 (tags/2.2.0u1-7139; 2012-06-02T10:55:19+0000) JAXWS-RI/2.2.6-2 JAXWS/2.2 svn-revision#unknown. --><wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://ws.creditinfo.com" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="https://ws.creditinfo.com">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://ws.creditinfo.com">
+      <s:element name="UploadZippedData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="docBinaryArray" type="s:base64Binary"/>
+            <s:element minOccurs="1" maxOccurs="1" name="schemaVersion" type="s:double"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadZippedDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadZippedDataResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="batchId" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBatchStatusResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVersionResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecordStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="batchId" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="recordId" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecordStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecordStatusResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Upload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlData">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="schemaVersion" type="s:double"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CigWsHeader" type="tns:CigWsHeader"/>
+      <s:complexType name="CigWsHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Culture" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SecurityToken" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int"/>
+        </s:sequence>
+        <s:anyAttribute/>
+      </s:complexType>
+      <s:element name="UploadZippedData2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="zippedXML" type="s:base64Binary"/>
+            <s:element minOccurs="1" maxOccurs="1" name="schemaId" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadZippedData2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadZippedData2Result">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchStatus2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="batchId" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchStatus2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBatchStatus2Result">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchStatus3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="batchId" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchStatus3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBatchStatus3Result">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataPumpStatistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dateFrom" type="s:dateTime"/>
+            <s:element minOccurs="1" maxOccurs="1" name="dateTo" type="s:dateTime"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataPumpStatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataPumpStatisticsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataPumpStatus">
+        <s:complexType/>
+      </s:element>
+      <s:element name="GetDataPumpStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataPumpStatusResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="batchId" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="includeData" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBatchInfoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchema2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="schemaId" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSchema2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSchema2Result">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVersion2">
+        <s:complexType/>
+      </s:element>
+      <s:element name="GetVersion2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVersion2Result" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UploadZippedDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadZippedData"/>
+  </wsdl:message>
+  <wsdl:message name="UploadZippedDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadZippedDataResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBatchStatus"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBatchStatusResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVersion"/>
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetRecordStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecordStatus"/>
+  </wsdl:message>
+  <wsdl:message name="GetRecordStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecordStatusResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UploadSoapIn">
+    <wsdl:part name="parameters" element="tns:Upload"/>
+  </wsdl:message>
+  <wsdl:message name="UploadSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UploadCigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:message name="UploadZippedData2SoapIn">
+    <wsdl:part name="parameters" element="tns:UploadZippedData2"/>
+  </wsdl:message>
+  <wsdl:message name="UploadZippedData2SoapOut">
+    <wsdl:part name="parameters" element="tns:UploadZippedData2Response"/>
+  </wsdl:message>
+  <wsdl:message name="UploadZippedData2CigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchStatus2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetBatchStatus2"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchStatus2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetBatchStatus2Response"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchStatus2CigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchStatus3SoapIn">
+    <wsdl:part name="parameters" element="tns:GetBatchStatus3"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchStatus3SoapOut">
+    <wsdl:part name="parameters" element="tns:GetBatchStatus3Response"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchStatus3CigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:message name="GetDataPumpStatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataPumpStatistics"/>
+  </wsdl:message>
+  <wsdl:message name="GetDataPumpStatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataPumpStatisticsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetDataPumpStatisticsCigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:message name="GetDataPumpStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataPumpStatus"/>
+  </wsdl:message>
+  <wsdl:message name="GetDataPumpStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataPumpStatusResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetDataPumpStatusCigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBatchInfo"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBatchInfoResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetBatchInfoCigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:message name="GetSchema2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetSchema2"/>
+  </wsdl:message>
+  <wsdl:message name="GetSchema2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetSchema2Response"/>
+  </wsdl:message>
+  <wsdl:message name="GetSchema2CigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:message name="GetVersion2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVersion2"/>
+  </wsdl:message>
+  <wsdl:message name="GetVersion2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVersion2Response"/>
+  </wsdl:message>
+  <wsdl:message name="GetVersion2CigWsHeader">
+    <wsdl:part name="CigWsHeader" element="tns:CigWsHeader"/>
+  </wsdl:message>
+  <wsdl:portType name="DataPumpServiceSoap">
+    <wsdl:operation name="UploadZippedData">
+      <wsdl:input message="tns:UploadZippedDataSoapIn"/>
+      <wsdl:output message="tns:UploadZippedDataSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus">
+      <wsdl:input message="tns:GetBatchStatusSoapIn"/>
+      <wsdl:output message="tns:GetBatchStatusSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input message="tns:GetVersionSoapIn"/>
+      <wsdl:output message="tns:GetVersionSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordStatus">
+      <wsdl:input message="tns:GetRecordStatusSoapIn"/>
+      <wsdl:output message="tns:GetRecordStatusSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="Upload">
+      <wsdl:input message="tns:UploadSoapIn"/>
+      <wsdl:output message="tns:UploadSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="UploadZippedData2">
+      <wsdl:input message="tns:UploadZippedData2SoapIn"/>
+      <wsdl:output message="tns:UploadZippedData2SoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus2">
+      <wsdl:input message="tns:GetBatchStatus2SoapIn"/>
+      <wsdl:output message="tns:GetBatchStatus2SoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus3">
+      <wsdl:input message="tns:GetBatchStatus3SoapIn"/>
+      <wsdl:output message="tns:GetBatchStatus3SoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPumpStatistics">
+      <wsdl:input message="tns:GetDataPumpStatisticsSoapIn"/>
+      <wsdl:output message="tns:GetDataPumpStatisticsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPumpStatus">
+      <wsdl:input message="tns:GetDataPumpStatusSoapIn"/>
+      <wsdl:output message="tns:GetDataPumpStatusSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchInfo">
+      <wsdl:input message="tns:GetBatchInfoSoapIn"/>
+      <wsdl:output message="tns:GetBatchInfoSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchema2">
+      <wsdl:input message="tns:GetSchema2SoapIn"/>
+      <wsdl:output message="tns:GetSchema2SoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion2">
+      <wsdl:input message="tns:GetVersion2SoapIn"/>
+      <wsdl:output message="tns:GetVersion2SoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataPumpServiceSoap" type="tns:DataPumpServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UploadZippedData">
+      <soap:operation soapAction="https://ws.creditinfo.com/UploadZippedData" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetBatchStatus" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetVersion" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordStatus">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetRecordStatus" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Upload">
+      <soap:operation soapAction="https://ws.creditinfo.com/Upload" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:UploadCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:UploadCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadZippedData2">
+      <soap:operation soapAction="https://ws.creditinfo.com/UploadZippedData2" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:UploadZippedData2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:UploadZippedData2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus2">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetBatchStatus2" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetBatchStatus2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetBatchStatus2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus3">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetBatchStatus3" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetBatchStatus3CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetBatchStatus3CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPumpStatistics">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetDataPumpStatistics" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetDataPumpStatisticsCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetDataPumpStatisticsCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPumpStatus">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetDataPumpStatus" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetDataPumpStatusCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetDataPumpStatusCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchInfo">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetBatchInfo" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetBatchInfoCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetBatchInfoCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchema2">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetSchema2" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetSchema2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetSchema2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion2">
+      <soap:operation soapAction="https://ws.creditinfo.com/GetVersion2" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetVersion2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+        <soap:header message="tns:GetVersion2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataPumpServiceSoap12" type="tns:DataPumpServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UploadZippedData">
+      <soap12:operation soapAction="https://ws.creditinfo.com/UploadZippedData" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetBatchStatus" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetVersion" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordStatus">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetRecordStatus" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Upload">
+      <soap12:operation soapAction="https://ws.creditinfo.com/Upload" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:UploadCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:UploadCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadZippedData2">
+      <soap12:operation soapAction="https://ws.creditinfo.com/UploadZippedData2" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:UploadZippedData2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:UploadZippedData2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus2">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetBatchStatus2" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetBatchStatus2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetBatchStatus2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchStatus3">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetBatchStatus3" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetBatchStatus3CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetBatchStatus3CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPumpStatistics">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetDataPumpStatistics" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetDataPumpStatisticsCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetDataPumpStatisticsCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPumpStatus">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetDataPumpStatus" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetDataPumpStatusCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetDataPumpStatusCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchInfo">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetBatchInfo" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetBatchInfoCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetBatchInfoCigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchema2">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetSchema2" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetSchema2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetSchema2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion2">
+      <soap12:operation soapAction="https://ws.creditinfo.com/GetVersion2" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetVersion2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+        <soap12:header message="tns:GetVersion2CigWsHeader" part="CigWsHeader" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataPumpService">
+    <wsdl:port name="DataPumpServiceSoap" binding="tns:DataPumpServiceSoap">
+      <soap:address location="http://www-test2.1cb.kz:80/DataPumpService/DataPumpService"/>
+    </wsdl:port>
+    <wsdl:port name="DataPumpServiceSoap12" binding="tns:DataPumpServiceSoap12">
+      <soap12:address location="http://www-test2.1cb.kz/DataPump/DataPumpService.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

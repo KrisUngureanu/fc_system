@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://egov.bee.kz/eds/scanneddocuments/info/v1/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://egov.bee.kz/eds/common/v1/" xmlns:ns3="http://egov.bee.kz/eds/scanneddocuments/common/v1/" targetNamespace="http://egov.bee.kz/eds/scanneddocuments/info/v1/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://egov.bee.kz/eds/common/v1/" schemaLocation="EdsCommonTypes.v1.xsd"/>
+	<xs:import namespace="http://egov.bee.kz/eds/scanneddocuments/common/v1/" schemaLocation="ScannedDocumentsCommonTypes.v1.xsd"/>
+	<xs:element name="getDocumentInfosRequest" type="GetDocumentInfosRequest">
+		<xs:annotation>
+			<xs:documentation>Данные запроса для получения списка информации о документах</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="getDocumentInfosResponse" type="GetDocumentInfosResponse">
+		<xs:annotation>
+			<xs:documentation>Результат запроса на получение списка информации о документах</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DocumentFilter">
+		<xs:annotation>
+			<xs:documentation>Фильтр документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="key" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ключ для применения фильтра</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="operation" type="FilterOperation">
+				<xs:annotation>
+					<xs:documentation>Операция фильтра</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="values" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Значения для фильтра</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentInfo">
+		<xs:annotation>
+			<xs:documentation>Информация о документе</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ns2:Sortable">
+				<xs:sequence>
+					<xs:element name="documentId" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Идентификатор документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="version" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Версия документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="documentName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Название документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="documentStatus" type="DocumentStatus">
+						<xs:annotation>
+							<xs:documentation>Статус документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="documentType" type="DocumentType">
+						<xs:annotation>
+							<xs:documentation>Тип документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="deleted" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>Признак удален ли документ </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="savingDateTime" type="xs:dateTime">
+						<xs:annotation>
+							<xs:documentation>Дата и время сохранения документа в ХЭДе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="deletionDateTime" type="xs:dateTime" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата время удаления документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="scOperatorId" type="ns2:IINBIN" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Идентификатор оператора ЦОНа, поставившего соответствие</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="gaEmploeeId" type="ns2:IINBIN" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Идентификатор сотрудника государственного органа, подтвердившего документ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="documentUsers" type="ns3:DocumentUserInfo" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Информация о пользователях, имеющих доступ к документу</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="downloadUrl" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Адрес для скачивания документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="meta" type="ns2:Properties">
+						<xs:annotation>
+							<xs:documentation>Метаданные документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="categories" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Коды категорий документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DocumentSort">
+		<xs:annotation>
+			<xs:documentation>Информация о сортировке документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ns2:Sortable">
+				<xs:sequence>
+					<xs:element name="key" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Ключ для сортировки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="direction" type="DocumentSortDirection" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Направление сортировки (умолчанию "ASC")</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DocumentType">
+		<xs:annotation>
+			<xs:documentation>Тип документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Версия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="ns2:Translate">
+				<xs:annotation>
+					<xs:documentation>Название</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetDocumentInfosRequest">
+		<xs:annotation>
+			<xs:documentation>Данные запроса для получения списка информации о документах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="filters" type="DocumentFilter" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Данные для фильтрации документов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sort" type="DocumentSort" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Данные для сортировки документов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="credentials" type="ns2:SenderInfo">
+				<xs:annotation>
+					<xs:documentation>Данные для авторизации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetDocumentInfosResponse">
+		<xs:annotation>
+			<xs:documentation>Результат запроса на получение списка информации о документах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="processStatus" type="ns2:ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Статус процесса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentInfos" type="DocumentInfo" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список информации о документах</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="DocumentSortDirection">
+		<xs:annotation>
+			<xs:documentation>Направление сортировки</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ASC"/>
+			<xs:enumeration value="DESC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentStatus">
+		<xs:annotation>
+			<xs:documentation>Статус документа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NEW"/>
+			<xs:enumeration value="MATCHES"/>
+			<xs:enumeration value="CONFIRMED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FilterOperation">
+		<xs:annotation>
+			<xs:documentation>Операция фильтра</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EQUALS"/>
+			<xs:enumeration value="NOT_EQUALS"/>
+			<xs:enumeration value="GREATER"/>
+			<xs:enumeration value="NOT_GREATER"/>
+			<xs:enumeration value="LESS"/>
+			<xs:enumeration value="NOT_LESS"/>
+			<xs:enumeration value="BETWEEN"/>
+			<xs:enumeration value="NOT_BETWEEN"/>
+			<xs:enumeration value="EMPTY"/>
+			<xs:enumeration value="NOT_EMPTY"/>
+			<xs:enumeration value="CONTAINS"/>
+			<xs:enumeration value="NOT_CONTAINS"/>
+			<xs:enumeration value="STARTS_WITH"/>
+			<xs:enumeration value="NOT_STARTS_WITH"/>
+			<xs:enumeration value="ENDS_WITH"/>
+			<xs:enumeration value="NOT_ENDS_WITH"/>
+			<xs:enumeration value="IN"/>
+			<xs:enumeration value="NOT_IN"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

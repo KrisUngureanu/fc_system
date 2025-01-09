@@ -1,0 +1,132 @@
+<xsd:schema xmlns="http://esb.sergek.kz/cxf/post-status" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://esb.sergek.kz/cxf/post-status" elementFormDefault="qualified">
+	<xsd:complexType name="onPost">
+		<xsd:annotation>
+			<xsd:documentation>Тип описывающий бизнес данные запроса</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="post_status">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="service_id">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="36"/>
+									<xsd:minLength value="36"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="client_id">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="36"/>
+									<xsd:minLength value="36"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="send_at" type="xsd:dateTime" nillable="false"/>
+						<xsd:element name="event">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:integer"/>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="code" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="255"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="barcode">
+							<xsd:annotation>
+								<xsd:documentation>ШПИ отправления</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:minLength value="1"/>
+									<xsd:maxLength value="255"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="date" type="xsd:dateTime" nillable="false">
+							<xsd:annotation>
+								<xsd:documentation>Дата заведения статуса в системе </xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="status">
+							<xsd:annotation>
+								<xsd:documentation>Статусы: «Прием», «Вручено», «Возврат», «Доставлено в а/я». </xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:minLength value="1"/>
+									<xsd:maxLength value="255"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="operator">
+							<xsd:annotation>
+								<xsd:documentation>ФИО почтальона</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:minLength value="1"/>
+									<xsd:maxLength value="255"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="recipient">
+							<xsd:annotation>
+								<xsd:documentation>Получатель</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:minLength value="1"/>
+									<xsd:maxLength value="255"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="returnReason" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Причина возврата</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="255"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="onPostResponse">
+		<xsd:annotation>
+			<xsd:documentation>Тип описывающий бизнес данные ответа</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="success" type="xsd:boolean"/>
+			<xsd:element name="message" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Request">
+		<xsd:annotation>
+			<xsd:documentation>Запрос статуса доставки корреспонденции</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="onPost" type="onPost"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Response">
+		<xsd:annotation>
+			<xsd:documentation>Ответ с данными</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="onPostResponse" type="onPostResponse"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

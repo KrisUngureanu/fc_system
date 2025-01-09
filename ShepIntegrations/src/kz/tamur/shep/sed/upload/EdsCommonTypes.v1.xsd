@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://egov.bee.kz/eds/common/v1/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://egov.bee.kz/eds/common/v1/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="ProcessStatus">
+		<xs:annotation>
+			<xs:documentation>Статус</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код статуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Текст статуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Детальное сообщение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Properties">
+		<xs:annotation>
+			<xs:documentation>Свойства</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="properties" type="Property" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Элементы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Property">
+		<xs:annotation>
+			<xs:documentation>Свойство</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="key" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ключ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Значение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SenderInfo">
+		<xs:annotation>
+			<xs:documentation>Информация об отправителе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="senderId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор отправителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="password" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Пароль</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Sortable">
+		<xs:annotation>
+			<xs:documentation>Базовый класс с числовым полем, предназначенным для сортировки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="orderNum" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер, для сортировки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Translate">
+		<xs:annotation>
+			<xs:documentation>Переводы различных текстов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="kk" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Значение на казахском</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ru" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Значение на русском</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="en" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Значение на английском</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="IINBIN">
+		<xs:annotation>
+			<xs:documentation>ИИН физического лица/БИН юридического лица</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

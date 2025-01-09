@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("fonts/Roboto-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Roboto Medium";
+  src: url("fonts/Roboto-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Inter Medium";
+  src: url("fonts/Inter-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}		
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("fonts/DMSans-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "DM Sans Medium";
+  src: url("fonts/DMSans-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "SF UI Display";
+  font-style: normal;
+  font-weight: normal;
+  src: local('SF UI Display'), url('fonts/sf-ui-display-light.woff') format('woff');
+}

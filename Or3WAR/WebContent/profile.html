@@ -1,0 +1,123 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Авторизация с помощью ключевого контейнера</title>
+    <link href="login.css" rel="StyleSheet" type="text/css">
+</head>
+<body bgcolor="#F0F8FF" style="margin:0">
+<table style="width:100%;height:100%;" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td style="height:100%;" align="center" valign="middle">
+            <table border="0" cellpadding="0" cellspacing="5" class="designLoginPageForm"
+                   style="width:300px;height: 212px; background-image:url(loginBox.png);background-repeat:no-repeat;">
+            	<tr>
+                    <td colspan="2" valign="middle" style="height:140px">
+                            <table width="100%" border="0" cellpadding="4" cellspacing="2">
+				<TR>
+					<td id="error" colspan="2" align="center" class="error" style="margin: 15px;"></td>
+				</TR>
+                            </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td>
+		</td></tr>
+    <tr>
+        <td align="center" valign="bottom" class="infofont"> (c) ТОО "Тамур" 2009. Все права защищены.</td>
+    </tr>
+</table>
+<applet code="kz.tumar.Signer32.class" style="position:absolute; top:0;left:0;" width="0%" height="0%" NAME="app" archive="sign-applet.jar,commons-logging.jar,crypto.gammaprov.jar,xmlsec-1.3.0.jar">
+</applet>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+	var err = document.app.getLastError();
+	if (err == "") {
+ 	  login();
+	} else {
+	  	document.getElementById("error").innerHTML = err;
+	}
+
+function gup( name )
+{
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+
+function login() {
+	document.getElementById("error").innerHTML = "Идет авторизация с помощью ключевого контейнера.<br/>Пожалуйста, подождите...";
+	var profile = "ESEDO004";
+	var pwd = "";//document.forms["logonForm"].elements["passwd"].value;
+
+	var cert = gup('cert');
+	var user = gup('user');
+	var flow = gup('flow');
+	var signed = document.app.signSecretString(profile, pwd, decodeURIComponent(cert));
+//	alert(signed);
+	if (signed.length == 0) {
+	  document.getElementById("error").innerHTML = document.app.getLastError();  	    	
+	} else {
+		var url = "/kadry/main";
+  	var post = "xml=1&name=" + user + "&flow=" + flow + "&cert=" + cert
+  					 + "&profile=" + profile + "&sign=" + encodeURIComponent(signed);
+	  post += "&noCache=" + (new Date).getTime();
+  	if (window.XMLHttpRequest) {
+	    req = new XMLHttpRequest();
+  	} else if (window.ActiveXObject) {
+    	req = new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+
+  	req.open("POST", url, true);
+	  req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  	//req.setRequestHeader("Content-Length", post.length);
+	  req.onreadystatechange = function() { processLogin(req); };
+  	req.send(post);
+  }
+} 
+
+function processLogin(req)
+{
+  if (req.readyState == 4) {
+    if (req.status == 200) {
+      var d = document;
+      var responseTag = req.responseXML.getElementsByTagName("r")[0];
+
+      var tag = responseTag.getElementsByTagName("status")[0];
+      if (tag != null) {
+	      var id = tag.childNodes[0].nodeValue;
+
+  	    if (id == "1") {
+					var flow = gup('flow');
+    	    var url = "/kadry/main?trg=top&flow=" + flow;
+      	  url += "&noCache=" + (new Date).getTime();
+
+      	  location.assign(url);
+      	  
+      	  //popup(url);
+			  	//fr = window.open(url, 'Or3Frame', 'directories=no,height=650,location=no,menubar=no,resizable=yes,scrollbars=yes, status=yes, toolbar=no, width=800');  
+  				//fr.moveTo(screen.availWidth/2-400, screen.availHeight/2-325);
+  				//window.close();
+  			}
+      } else {
+	      var tag = responseTag.getElementsByTagName("fatal")[0];
+  	    if (tag != null) {
+	      	var id = tag.childNodes[0].nodeValue;
+          d.getElementById("error").innerHTML = id;  	    	
+  			}
+      }
+    }
+  }            
+}
+
+// -->
+</script>
+</BODY>
+</HTML>

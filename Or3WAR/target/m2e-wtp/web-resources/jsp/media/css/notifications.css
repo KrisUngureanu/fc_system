@@ -1,0 +1,108 @@
+#notificationsPanel {
+	position: fixed;
+	bottom: 0;
+	right: 5px;
+	width: 350px;
+	background: #fff;
+}
+
+.notificationsHeader {
+	font-weight:bold;
+	color:#fff;
+	text-shadow:1px 1px #000;
+	font-size:11px;
+	border-radius:5px 5px 0px 0px;
+	height:25px;
+}
+
+.notificationsHeader div {
+	padding: 4px 4px;
+}
+
+.brd1 {
+	border: #fb420e 1px solid;
+}
+
+.bar1 {
+	background: rgb(226, 228, 90);
+	background: -moz-linear-gradient(top, rgba(226, 228, 90, 1) 0%, rgba(255, 94, 0, 1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(226, 228, 90, 1)), color-stop(100%, rgba(255, 94, 0, 1)));
+	background: -webkit-linear-gradient(top, rgba(226, 228, 90, 1) 0%, rgba(255, 94, 0, 1) 100%);
+	background: -o-linear-gradient(top, rgba(226, 228, 90, 1) 0%, rgba(255, 94, 0, 1) 100%);
+	background: -ms-linear-gradient(top, rgba(226, 228, 90, 1) 0%, rgba(255, 94, 0, 1) 100%);
+	background: linear-gradient(to bottom, rgba(226, 228, 90, 1) 0%, rgba(255, 94, 0, 1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= '#a7cfdf ', endColorstr= '#23538a ', GradientType=0);
+}
+
+#notificationsControlBtn {
+	display: none;
+	float: right;
+	height: 20px;
+	width: 20px;
+	background: transparent none repeat scroll 0% 0%;
+	border: medium none;
+}
+
+#notificationsList {
+	max-height:500px;
+	overflow-y:auto;		
+}
+
+#notificationsTable {
+	width: 100%;
+	-webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+#notificationsTitle {
+	color:#fff;
+	text-transform: uppercase;
+}
+
+.collapsedNotificationsPanel {
+	width: 15px;
+	background-image: url(icons/collapseNotidicationsPanel.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.restoredNotificationsPanel {
+	width: 15px;
+	background-image: url(icons/restoreNotidicationsPanel.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#deleteAllNotifications {
+	width: 15px;
+	background-image: url(icons/deleteAllNotifications.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.bord1 {
+	border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+	background-color: #ffe1b4;
+	padding: 5px 0px 5px 5px;
+	border-top: 1px solid #ff9840;
+	border-left: 1px solid #ff9840;
+	border-bottom: 1px solid #ff9840;
+}
+
+.bord2 {
+	width: 20px;
+	border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+	background-color: #ffe1b4;
+	padding: 5px 5px 5px 0px;
+	border-top: 1px solid #ff9840;
+	border-right: 1px solid #ff9840;
+	border-bottom: 1px solid #ff9840;
+	
+	background-image: url(icons/deleteNotification.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}

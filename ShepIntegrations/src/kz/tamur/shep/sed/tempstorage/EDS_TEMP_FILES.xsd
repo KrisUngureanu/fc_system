@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xs:schema xmlns="http://egov.bee.kz/eds/tempstorage/v2/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://egov.bee.kz/eds/common/v1/" targetNamespace="http://egov.bee.kz/eds/tempstorage/v2/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Описание типов данных для сервиса временных файлов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="tempStorageRequest" type="TempStorageRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос к временному хранилищу</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="tempStorageResponse" type="TempStorageResponse">
+		<xs:annotation>
+			<xs:documentation>Результат выполнения запроса ко временному хранилищу</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ConfirmRequest">
+		<xs:annotation>
+			<xs:documentation>Данные запроса на подтверждение скачивания файлов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileIdentifiers" type="xs:string" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Идентификаторы подтверждаемых файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConfirmResponse">
+		<xs:annotation>
+			<xs:documentation>Результат запроса на подтверждение скачивания файлов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileConfirmResults" type="FileConfirmResult" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Результаты подтверждения файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Общий статус процесса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DownloadRequest">
+		<xs:annotation>
+			<xs:documentation>Данные запроса на скачивание файлов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileIdentifiers" type="xs:string" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Идентификаторы скачиваемых из ХЭД файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DownloadResponse">
+		<xs:annotation>
+			<xs:documentation>Результат запроса на скачивание файлов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileDownloadResults" type="FileDownloadResult" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Результаты запроса на скачивание из ХЭД файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Общий статус процесса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FileConfirmResult">
+		<xs:annotation>
+			<xs:documentation>Информация о результате подтверждения скачивания файла</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Статус подтверждения файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileIdentifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FileDownloadResult">
+		<xs:annotation>
+			<xs:documentation>Информация о скачиваемом файле и его содержимое</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Статус скачивания файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileIdentifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="content" type="xs:base64Binary" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Содержимое файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="meta" type="FileInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Метаинформация файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FileInfo">
+		<xs:annotation>
+			<xs:documentation>Информация о файле</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Название файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mime" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип содержимого</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uploadDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время загрузки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uploaderSystem" type="System">
+				<xs:annotation>
+					<xs:documentation>Загрузившая система</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expirationTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время окончания жизни файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="needToBeConfirmed" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак необходимости подтверждения скачивания файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Размер файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deleted" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Признак удаления файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deletionTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время удаления файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="confirmed" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Признак подтверждения скачивания файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="confirmedSystem" type="System" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Подтвердившая скачивание система</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="confirmationTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время подтверждения скачивания файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FileInfoResult">
+		<xs:annotation>
+			<xs:documentation>Результат поиска метаинформации файла</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Статус поиска метаинформации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileIdentifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="meta" type="FileInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Метаинформация файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FileUploadResult">
+		<xs:annotation>
+			<xs:documentation>Результат загрузки файла в ХЭД</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileProcessIdentifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор файла, переданный загружающей системой (для связи информации о файле в запросе и в ответе)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Статус загрузки файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileIdentifier" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор файла, присвоенный системой ХЭД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lifeTime" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Присвоенное файлу время жизни</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetFileInfoRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос метаинформации файлов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileIdentifiers" type="xs:string" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Идентификаторы файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetFileInfoResponse">
+		<xs:annotation>
+			<xs:documentation>Результат запроса метаинформации файлов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileInfoResults" type="FileInfoResult" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Результаты поиска метаинформации файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Общий статус процесса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProcessStatus">
+		<xs:annotation>
+			<xs:documentation>Статус выполнения</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код статуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Текст статуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Детальное сообщение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SenderInfo">
+		<xs:annotation>
+			<xs:documentation>Информация об отправителе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="senderId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор отправителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="password" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Пароль</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="System">
+		<xs:annotation>
+			<xs:documentation>Система (отправитель или получатель)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор системы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TempStorageRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос ко временному хранилищу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="TempStorageRequestType">
+				<xs:annotation>
+					<xs:documentation>Тип запроса:
+                        - UPLOAD - загрузка файлов
+                        - DOWNLOAD - скачивание файлов
+                        - CONFIRM - подтверждение скачивания файлов
+                        - GET_FILE_INFO - получение информации о файлах</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uploadRequest" type="UploadRequest" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные запроса на загрузку файлов; используется при типе запроса "UPLOAD"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="downloadRequest" type="DownloadRequest" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные запроса на скачивание файлов; используется при типе запроса "DOWNLOAD"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="confirmRequest" type="ConfirmRequest" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные запроса на подтверждение скачивания файлов; используется при типе запроса "CONFIRM"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="getFileInfoRequest" type="GetFileInfoRequest" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные запроса на получение информации о файлах; используется при типе запроса "GET_FILE_INFO"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="credentials" type="SenderInfo">
+				<xs:annotation>
+					<xs:documentation>Данные авторизации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TempStorageResponse">
+		<xs:annotation>
+			<xs:documentation>Результат выполнения запроса ко временному хранилищу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="TempStorageRequestType">
+				<xs:annotation>
+					<xs:documentation>Тип запроса:
+                        - UPLOAD - загрузка файлов
+                        - DOWNLOAD - скачивание файлов
+                        - CONFIRM - подтверждение скачивания файлов
+                        - GET_FILE_INFO - получение информации о файлах</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uploadResponse" type="UploadResponse" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Результат выполнения запроса на загрузку файлов; заполняется при типе запроса "UPLOAD"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="downloadResponse" type="DownloadResponse" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Результат выполнения запроса на скачивание файлов; заполняется при типе запроса "DOWNLOAD"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="confirmResponse" type="ConfirmResponse" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Результат выполнения запроса на подтверждение скачивания файлов; заполняется при типе запроса "CONFIRM"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="getFileInfoResponse" type="GetFileInfoResponse" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Результат выполнения запроса на получение информации о файлах; заполняется при типе запроса "GET_FILE_INFO"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UploadFileRequest">
+		<xs:annotation>
+			<xs:documentation>Информация о загружаемом в ХЭД файле и его содержимое</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileProcessIdentifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор файла, переданный загружающей системой (для связи информации о файле в запросе и в ответе)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="content" type="xs:base64Binary">
+				<xs:annotation>
+					<xs:documentation>Содержимое файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Название файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mime" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Тип содержимого</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lifeTime" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Время жизни файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="needToBeConfirmed" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак необходимости подтверждения скачивания файла</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UploadRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос на загрузку файлов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileUploadRequests" type="UploadFileRequest" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Список загружаемых файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UploadResponse">
+		<xs:annotation>
+			<xs:documentation>Результат запроса на загрузку файлов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uploadFileResults" type="FileUploadResult" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Результаты загрузки файлов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="ProcessStatus">
+				<xs:annotation>
+					<xs:documentation>Общий статус процесса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="TempStorageRequestType">
+		<xs:annotation>
+			<xs:documentation>Тип запроса:
+                - UPLOAD - загрузка файлов
+                - DOWNLOAD - скачивание файлов
+                - CONFIRM - подтверждение скачивания файлов
+                - GET_FILE_INFO - получение информации о файлах</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UPLOAD"/>
+			<xs:enumeration value="DOWNLOAD"/>
+			<xs:enumeration value="CONFIRM"/>
+			<xs:enumeration value="GET_FILE_INFO"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

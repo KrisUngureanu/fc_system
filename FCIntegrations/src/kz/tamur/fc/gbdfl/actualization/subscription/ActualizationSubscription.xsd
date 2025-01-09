@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://nitec.kz/gbdfl/api/actualizationsubscription" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://nitec.kz/gbdfl/api/actualizationsubscription">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="request" type="tns:ActualizationSubscriptionRequest">
+		<xs:annotation>
+			<xs:documentation>Запрос на подписку на человека для актуализации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActualizationSubscriptionRequest">
+		<xs:annotation>
+			<xs:documentation>Формат бизнес данных запроса</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="senderCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код отправителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iin" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИИН человека</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unsubscribe" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Отписаться от человека</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ds:Signature"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="response" type="tns:ActualizationSubscriptionResponse">
+		<xs:annotation>
+			<xs:documentation>Ответ на запрос</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActualizationSubscriptionResponse">
+		<xs:annotation>
+			<xs:documentation>Формат бизнес данных ответа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="tns:Status">
+				<xs:annotation>
+					<xs:documentation>Статус</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ds:Signature"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Status">
+		<xs:annotation>
+			<xs:documentation>Тип описывающий статус ответа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код статуса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameRu" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nameKz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование на казахском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

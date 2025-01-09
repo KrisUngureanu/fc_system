@@ -1,0 +1,8 @@
+<plugins>
+    <plugin name="Excel" var="Excel" class="kz.tamur.plugins.ClientExcel"></plugin>
+    <plugin name="Checker" var="Checks" class="kz.tamur.plugins.Checker"></plugin>
+    <plugin name="KATO" var="KATO" class="kz.tamur.plugins.KATO"></plugin>
+    <plugin name="FLService" var="FLService" class="kz.tamur.plugins.FLService"></plugin>
+    <plugin name="ECP" var="ECP" class="kz.tamur.plugins.ECPPlugin"></plugin>
+    <plugin name="IolaSigner" var="IolaSigner" class="kz.tamur.or3.client.plugins.IolaSigner"></plugin>
+</plugins>

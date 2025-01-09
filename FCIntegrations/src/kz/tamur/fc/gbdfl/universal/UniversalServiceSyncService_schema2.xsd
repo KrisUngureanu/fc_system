@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://dictionaries.persistence.interactive.nat" xmlns:ns2="http://person.persistence.interactive.nat" xmlns:ns3="http://document.persistence.interactive.nat" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ns4="http://message.persistence.interactive.nat" targetNamespace="http://message.persistence.interactive.nat" version="1.0">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:import namespace="http://dictionaries.persistence.interactive.nat" schemaLocation="UniversalServiceSyncService_schema4.xsd"/>
+	<xs:import namespace="http://person.persistence.interactive.nat" schemaLocation="UniversalServiceSyncService_schema1.xsd"/>
+	<xs:import namespace="http://document.persistence.interactive.nat" schemaLocation="UniversalServiceSyncService_schema3.xsd"/>
+	<xs:complexType name="Request">
+		<xs:annotation>
+			<xs:documentation>Сообщение запроса на поиск физического лица. Поля messageId, messageDate, senderCode обязательны для заполнения. Поддерживатеся 3 типа запроса: поиск по ИИН, по ФИО и дате рождения, по номеру документа удостоверяющего личность (ДУЛ). Для поиска по ИИН следует заполнить поле iin. Для поиска по ФИО и дате рождения следует заполнить поля surname, firstname, secondname, birthDate. Для этого критерия поиска обязательными являются поле birthDate и одно из surname или firstname. При этом, если не указано, например, поле firstname, то будет осуществляться поиск человека с указанной в критерии поиска фамлилией и без имени, а не всех физических лиц с такой фамилией, т.е., такой критерий должен использоваться только для поиска оралманов. Для поиска по номеру ДУЛ следует заполнить поле documentNumber. При выборе конкретного типа запроса следует заполнить только поля критериев поиска, относящиеся именно к этому типу, остальные же критерии оставить пустыми.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="messageId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Уникальный иденитификатор сообщения. Размерность не более 36 символов латиницы.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="messageDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время создания сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="senderCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код участника взаимодействия - отправителя запроса. Выдается Системе при согласовании Правил взаимодействия с ИЧ ГБД ФЛ.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iin" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="surname" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="patronymic" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="birthDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата рождения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="documentNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер документа удостоверяющего личность (кроме свидетельства о рождении)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Response">
+		<xs:annotation>
+			<xs:documentation>Сообщение ответа на поиск физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="messageId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Уникальный иденитификатор сообщения. Размерность не более 36 символов латиницы.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="messageDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата и время создания сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Иденитификатор запроса, в ответ на который сформирован ответ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sender" type="ns1:Participant">
+				<xs:annotation>
+					<xs:documentation>Участник взаимодействия - отправитель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="receiver" type="ns1:Participant">
+				<xs:annotation>
+					<xs:documentation>Участник взаимодействия - получатель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="messageResult" type="ns1:MessageResult">
+				<xs:annotation>
+					<xs:documentation>Результат обработки сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="persons" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="person" type="ns2:Person" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Список физических лиц, найденных в соответствии с критериями запроса</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

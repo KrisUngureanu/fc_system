@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+  <handler-chain>
+  	<handler>
+      <handler-name>SoapActionRemoveHandler</handler-name>
+      <handler-class>kz.tamur.shep.handler.SoapActionRemoveHandler</handler-class>
+    </handler>
+    <handler>
+      <handler-name>DumpMessageHandler</handler-name>
+      <handler-class>kz.tamur.shep.handler.DumpMessageHandler</handler-class>
+    </handler>
+    <handler>
+      <handler-name>AsyncDataSignatureHandlerIn</handler-name>
+      <handler-class>kz.tamur.shep.handler.AsyncDataSignatureHandlerIn</handler-class>
+    </handler>
+    <handler>
+      <handler-name>BodySignatureHandlerIn</handler-name>
+      <handler-class>kz.tamur.shep.handler.BodySignatureHandlerIn</handler-class>
+    </handler>  
+  </handler-chain>
+</handler-chains>

@@ -1,0 +1,471 @@
+options
+{
+	MULTI=true;
+	VISITOR=true;
+	VISITOR_EXCEPTION="Exception";
+	NODE_DEFAULT_VOID=true;
+    STATIC=false;
+    UNICODE_INPUT=true;
+}
+
+PARSER_BEGIN(Parser)
+package kz.tamur.lang.parser;
+
+import java.io.*;
+import java.util.*;
+
+public class Parser {
+
+}
+
+PARSER_END(Parser)
+
+/* White spaces */
+
+SKIP : {" " | "\r" | "\n" | "\f" | "\t"}
+
+/* COMMENTS */
+
+MORE :
+{
+  "/*" : IN_MULTI_LINE_COMMENT
+}
+
+<IN_MULTI_LINE_COMMENT>
+SPECIAL_TOKEN :
+{
+  <MULTI_LINE_COMMENT: "*/" > : DEFAULT
+}
+
+<IN_MULTI_LINE_COMMENT>
+MORE :
+{
+  < ~[] >
+}
+
+SPECIAL_TOKEN :
+{
+  <SINGLE_LINE_COMMENT: "//"(~["\n","\r"])*("\n"|"\r"|"\r\n")?>
+}
+
+// Reserved words
+TOKEN : {
+	<IN : "in">
+	| <NEW : "new">
+	| <TRUE : "true">
+	| <FALSE : "false">
+	| <NULL : "null">
+}
+
+TOKEN : /* LITERALS */
+{
+  < INTEGER_LITERAL: "0" | (["1"-"9"] (["0"-"9"])*) >
+|
+  < HEX_LITERAL: "0" ["x","X"] (["0"-"9","a"-"f","A"-"F"])+ >
+|
+  < OCTAL_LITERAL: "0" (["0"-"7"])* >
+|
+  < FLOAT_LITERAL: (["0"-"9"])+ ("." (["0"-"9"])+)>
+|
+  < STRING_LITERAL:
+      "\""
+      (   (~["\"","\\","\n","\r"])
+        | ("\\"
+            ( ["n","t","b","r","f","\\","'","\""]
+            | ["0"-"7"] ( ["0"-"7"] )?
+            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+            )
+          )
+      )*
+      "\""
+  >
+}
+
+TOKEN : {
+  <IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>)* >
+  | <#DIGIT : ["0"-"9"]>
+  | <#LETTER : ["_","a"-"z","A"-"Z","\u0410"-"\u044f"]>
+}
+
+ASTStart Start() #Start :
+{
+}
+{
+	(LOOKAHEAD(Type() Var()) DeclDir() | Directive() | Expression())*
+	<EOF>
+	{ return jjtThis; }
+}
+
+void Directive() :
+{
+}
+{
+	SetDir()
+	| IfDir()
+	| ForeachDir()
+	| WhileDir()
+	| ReturnDir()
+	| BreakDir()
+	| ContinueDir()
+	| Try()
+	| Throw()
+	| FuncDir()
+}
+
+void DeclDir() #Decl :
+{
+}
+{
+	Type() Var() ("=" Expression())?
+}
+
+void FuncDir() #Func :
+{
+	Token t;
+}
+{
+	"#function"
+	t = <IDENTIFIER>
+	{ jjtThis.setName(t.image); jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"(" ((Var() ("," Var())*)?) #FuncArgs(>0) ")"
+	Block()
+	"#end"
+}
+
+void SetDir() #Set :
+{
+}
+{
+    { jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"#set" "(" Var() "=" Expression() ")"
+}
+
+void ReturnDir() #Return :
+{
+}
+{
+    { jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"#return" [LOOKAHEAD(2) Expression() ]
+}
+
+void BreakDir() #Break :
+{
+}
+{
+    { jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"#break"
+}
+
+void ContinueDir() #Continue :
+{
+}
+{
+    { jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"#continue"
+}
+
+void IfDir() #If :
+{
+	ASTBlock b;
+	ASTIf parent;
+}
+{
+	{ parent = jjtThis; jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"#if" "(" Expression() ")"
+	b = Block() { jjtThis.setBlock(b); }
+	(("#elseif" "(" Expression() ")" b = Block() { jjtThis.setBlock(b); parent.addElif(jjtThis); }) #If )*
+	("#else" b = Block() { jjtThis.setElseBlock(b); })?
+	"#end"
+}
+
+ASTBlock Block() #Block :
+{
+}
+{
+	(LOOKAHEAD(2) Directive() | Expression())* { return jjtThis; }
+}
+
+void ForeachDir() #Foreach :
+{
+}
+{
+    { jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"#foreach" "(" Var() <IN> Expression() ")"
+	Block()
+	"#end"
+}
+
+void WhileDir() #While :
+{
+}
+{
+    { jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"#while" "(" Expression() ")"
+	Block()
+	"#end"
+}
+
+void Var() #Var :
+{
+	Token t;
+}
+{
+	"$" t = <IDENTIFIER>
+	{ jjtThis.setName(t.image); jjtThis.setLine(jj_input_stream.getEndLine()); }
+}
+
+void GlobalCall() #GlobalCall:
+{
+}
+{
+    Method()
+}
+
+void Exec() #Exec :
+{
+}
+{
+    { jjtThis.setLine(jj_input_stream.getEndLine()); }
+	"#exec" ParamList()
+}
+
+void Method() #Method :
+{
+	Token t;
+}
+{
+    t = <IDENTIFIER> { jjtThis.setName(t.image); jjtThis.setLine(jj_input_stream.getEndLine());}
+    ParamList()
+}
+
+void Type() #Type :
+{
+	Token t;
+	StringBuilder typeName = new StringBuilder();
+}
+{
+	t = <IDENTIFIER> { jjtThis.addName(t.image); }
+	( LOOKAHEAD(".", {getToken(2).kind == IDENTIFIER
+	                  && !getToken(3).image.equals("(")
+	                  && !getToken(3).image.equals("[")})
+	  "." t = <IDENTIFIER>
+	  {jjtThis.addName(t.image);})*
+	{ jjtThis.setLine(jj_input_stream.getEndLine()); }
+}
+
+void ParamList() :
+{
+}
+{
+	"(" (Expression() ("," Expression())*)? ")"
+}
+
+void Expression() :
+{
+}
+{
+	Or()
+}
+
+void Or() :
+{
+}
+{
+	(
+		And() (LOOKAHEAD(2) "||" And())*
+		{ jjtThis.addOp(ASTBinary.OR); jjtThis.setLine(jj_input_stream.getEndLine());}
+	) #Binary(>1)
+}
+
+void And() :
+{
+}
+{
+	(
+		Relational() (LOOKAHEAD(2) "&&" Relational())*
+		{ jjtThis.addOp(ASTBinary.AND); jjtThis.setLine(jj_input_stream.getEndLine());}
+	) #Binary(>1)
+}
+
+void Relational() :
+{
+}
+{
+	(
+        	Sub()
+		((LOOKAHEAD(2) "<=" { jjtThis.addOp(ASTBinary.LE); jjtThis.setLine(jj_input_stream.getEndLine());}
+		| ">=" { jjtThis.addOp(ASTBinary.GE); jjtThis.setLine(jj_input_stream.getEndLine());}
+		| "<"  { jjtThis.addOp(ASTBinary.LT); jjtThis.setLine(jj_input_stream.getEndLine());}
+		| ">"  { jjtThis.addOp(ASTBinary.GT); jjtThis.setLine(jj_input_stream.getEndLine());}
+		| "==" { jjtThis.addOp(ASTBinary.EQ); jjtThis.setLine(jj_input_stream.getEndLine());}
+		| "!=" { jjtThis.addOp(ASTBinary.NE); jjtThis.setLine(jj_input_stream.getEndLine());}
+		) Sub())?
+	) #Binary(>1)
+}
+
+void Sub() :
+{
+}
+{
+	(
+		Mod() ((LOOKAHEAD(2) "+" { jjtThis.addOp(ASTBinary.ADD);}
+		|	"-" { jjtThis.addOp(ASTBinary.SUB);}
+		) Mod())*
+		{ jjtThis.setLine(jj_input_stream.getEndLine());}
+	) #Binary(>1)
+}
+
+void Mod() :
+{
+}
+{
+	(
+		BitOp() ((LOOKAHEAD(2) "%" { jjtThis.addOp(ASTBinary.MOD);}
+		| "/" { jjtThis.addOp(ASTBinary.DIV);}
+		| "*" { jjtThis.addOp(ASTBinary.MUL);}
+		) BitOp())*
+		{ jjtThis.setLine(jj_input_stream.getEndLine());}
+	) #Binary(>1)
+}
+
+void BitOp() :
+{
+}
+{
+	(
+		Unary() ((LOOKAHEAD(2) "|" { jjtThis.addOp(ASTBinary.BITOR);}
+		| "&" { jjtThis.addOp(ASTBinary.BITAND);}
+		) Unary())*
+		{ jjtThis.setLine(jj_input_stream.getEndLine()); }
+	) #Binary(>1)
+	
+}
+
+void Unary() :
+{
+    int op = 0;
+}
+{
+	(("+" { op = ASTUnary.PLUS; }
+		| "-" { op = ASTUnary.MINUS; }
+		| "!" { op = ASTUnary.NOT; }
+	)? Access() { jjtThis.setOp(op); jjtThis.setLine(jj_input_stream.getEndLine()); } ) #Unary(op > 0)
+}
+
+void Field() #Field :
+{
+	Token t;
+}
+{
+    t = <IDENTIFIER> { jjtThis.setName(t.image); jjtThis.setLine(jj_input_stream.getEndLine());}
+}
+
+void Access() :
+{
+}
+{
+	( Primary()
+		(Index() | "." (LOOKAHEAD(2) Method() | Field()))*
+	)  #Access(>1)
+}
+
+void Index() #Index :
+{
+}
+{
+	"[" Expression() "]"
+}
+
+void Primary() :
+{
+}
+{
+	Exec()
+	| LOOKAHEAD(2) GlobalCall()
+	| Type()
+	| Construct()
+	| Var()
+	| String()
+	| Number()
+	| Boolean()
+	| Null()
+	| "(" Expression() ")"
+}
+
+void Construct() #Construct :
+{
+}
+{
+	<NEW> Type() ParamList()
+}
+
+void Number() #Number :
+{
+	Token t;
+}
+{
+	t = <FLOAT_LITERAL>
+	{ jjtThis.setValue(Double.valueOf(t.image)); }
+	| t = <INTEGER_LITERAL>
+	{ jjtThis.setValue(Integer.valueOf(t.image)); }
+	| t = <OCTAL_LITERAL>
+	{ jjtThis.setValue(Integer.valueOf(t.image, 8)); }
+	| t = <HEX_LITERAL>
+	{ jjtThis.setValue(Integer.valueOf(t.image.substring(2, t.image.length()), 16)); }
+}
+
+void String() #String :
+{
+	Token t;
+}
+{
+	t = <STRING_LITERAL> { jjtThis.setText(t.image.substring(1, t.image.length() - 1)); jjtThis.setLine(jj_input_stream.getEndLine());}
+}
+
+void Boolean() #Boolean :
+{
+	Token t;
+}
+{
+	t = <TRUE> { jjtThis.setValue(Boolean.TRUE); }
+	| t = <FALSE> { jjtThis.setValue(Boolean.FALSE); }
+}
+
+void Null() #Null :
+{
+	Token t;
+}
+{
+	t = <NULL>
+}
+
+void Try() #Try :
+{
+}
+{
+	"#try"
+	Block()
+	(((Catch())+ (Finally())?) | Finally())
+	"#end"
+}
+
+void Catch() #Catch :
+{
+}
+{
+	"#catch" "(" Type() Var() ")" Block()
+}
+
+void Finally() #Finally :
+{
+}
+{
+	"#finally" Block()
+}
+
+void Throw() #Throw :
+{
+}
+{
+	"#throw" Expression() 
+}

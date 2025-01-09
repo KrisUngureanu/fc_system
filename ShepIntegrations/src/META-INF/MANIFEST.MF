@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Dependencies: org.apache.cxf, org.apache.cxf.impl
+Class-Path: Or3Client.jar 
+ xbean.jar 
+ Gbdul.jar
+

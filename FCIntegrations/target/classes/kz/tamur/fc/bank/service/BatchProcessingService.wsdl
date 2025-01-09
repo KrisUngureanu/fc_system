@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://data.chdb.scb.kz" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="BatchProcessingService" targetNamespace="http://data.chdb.scb.kz">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://data.chdb.scb.kz" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://data.chdb.scb.kz">
+			<xs:element name="batchComplexParams" type="tns:batchComplexParams"/>
+			<xs:element name="batchFileDto" type="tns:batchFileDto"/>
+			<xs:element name="batchFileParams" type="tns:batchFileParams"/>
+			<xs:element name="batchFilesImportInfo" type="tns:batchFilesImportInfo"/>
+			<xs:element name="batchImportStatisticResult" type="tns:batchImportStatisticResult"/>
+			<xs:element name="batchPackageDto" type="tns:batchPackageDto"/>
+			<xs:element name="batchPackageParams" type="tns:batchPackageParams"/>
+			<xs:element name="batchProvidedDto" type="tns:batchProvidedDto"/>
+			<xs:element name="batchRecordDto" type="tns:batchRecordDto"/>
+			<xs:element name="batchRecordsImportInfo" type="tns:batchRecordsImportInfo"/>
+			<xs:element name="dataSourceDto" type="tns:dataSourceDto"/>
+			<xs:element name="dateFromToParams" type="tns:dateFromToParams"/>
+			<xs:element name="getAvgTimeOneContractImport" type="tns:getAvgTimeOneContractImport"/>
+			<xs:element name="getAvgTimeOneContractImportResponse" type="tns:getAvgTimeOneContractImportResponse"/>
+			<xs:element name="getImportDetailInfo" type="tns:getImportDetailInfo"/>
+			<xs:element name="getImportDetailInfoResponse" type="tns:getImportDetailInfoResponse"/>
+			<xs:element name="getImportInfo" type="tns:getImportInfo"/>
+			<xs:element name="getImportInfoResponse" type="tns:getImportInfoResponse"/>
+			<xs:element name="getImportInfoWithComplexParams" type="tns:getImportInfoWithComplexParams"/>
+			<xs:element name="getImportInfoWithComplexParamsResponse" type="tns:getImportInfoWithComplexParamsResponse"/>
+			<xs:element name="processFile" type="tns:processFile"/>
+			<xs:element name="processFileResponse" type="tns:processFileResponse"/>
+			<xs:element name="saveResult" type="tns:saveResult"/>
+			<xs:element name="scbServiceFaultInfo" type="tns:scbServiceFaultInfo"/>
+			<xs:element name="uploadFile" type="tns:uploadFile"/>
+			<xs:element name="uploadFileResponse" type="tns:uploadFileResponse"/>
+			<xs:element name="versionedDto" type="tns:versionedDto"/>
+			<xs:complexType name="getAvgTimeOneContractImport">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="params" type="tns:dateFromToParams"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="dateFromToParams">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="fromDate" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="toDate" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getAvgTimeOneContractImportResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="result" type="xs:double"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="uploadFile">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="file" type="xs:base64Binary"/>
+					<xs:element minOccurs="0" name="fileName" type="xs:string"/>
+					<xs:element name="fileType" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="uploadFileResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="batchPackageId" type="xs:long"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="scbServiceFaultInfo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="faultCode" type="xs:string"/>
+					<xs:element minOccurs="0" name="faultDescription" type="xs:string"/>
+					<xs:element minOccurs="0" name="faultId" type="xs:string"/>
+					<xs:element minOccurs="0" name="faultTimestamp" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="faultType" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="placeholders" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ValidationFaultBean">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="constraintViolations" nillable="true" type="tns:constraintViolation"/>
+					<xs:element minOccurs="0" name="dto" type="tns:batchProvidedDto"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="constraintViolation">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="code" type="xs:string"/>
+					<xs:element minOccurs="0" name="description" type="xs:string"/>
+					<xs:element minOccurs="0" name="placeholder" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="placeholders" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="batchProvidedDto">
+				<xs:complexContent>
+					<xs:extension base="tns:dataSourceDto">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="batchId" type="xs:long"/>
+							<xs:element minOccurs="0" name="batchRecordId" type="xs:long"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="dataSourceDto">
+				<xs:complexContent>
+					<xs:extension base="tns:versionedDto">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="dataSource" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="versionedDto">
+				<xs:sequence>
+					<xs:element name="optimisticLockVersion" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="saveResult">
+				<xs:complexContent>
+					<xs:extension base="tns:versionedDto">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="id" type="xs:long"/>
+							<xs:element minOccurs="0" name="finId" type="xs:long"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="getImportInfo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="params" type="tns:batchPackageParams"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchPackageParams">
+				<xs:complexContent>
+					<xs:extension base="tns:paginationSupportSearchParam">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="packageId" type="xs:long"/>
+							<xs:element minOccurs="0" name="addTime" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="language" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="paginationSupportSearchParam">
+				<xs:complexContent>
+					<xs:extension base="tns:excelFilterObject">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="paginationSupportDto" type="tns:paginationSupportDto"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="excelFilterObject">
+				<xs:sequence/>
+			</xs:complexType>
+			<xs:complexType name="paginationSupportDto">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="firstResult" type="xs:int"/>
+					<xs:element minOccurs="0" name="maxResults" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getImportInfoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="filesImportInfo" type="tns:batchFilesImportInfo"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchFilesImportInfo">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="batchFileDtoList" nillable="true" type="tns:batchFileDto"/>
+					<xs:element name="count" type="xs:long"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchFileDto">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="fileId" type="xs:long"/>
+					<xs:element minOccurs="0" name="fileNumber" type="xs:int"/>
+					<xs:element minOccurs="0" name="fileScheme" type="xs:string"/>
+					<xs:element minOccurs="0" name="fileName" type="xs:string"/>
+					<xs:element minOccurs="0" name="batchFile" type="xs:string"/>
+					<xs:element minOccurs="0" name="uploadedTime" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="batchUploadStatus" type="xs:string"/>
+					<xs:element minOccurs="0" name="numberOfContracts" type="xs:int"/>
+					<xs:element minOccurs="0" name="numberOfSubjects" type="xs:int"/>
+					<xs:element minOccurs="0" name="updatedContracts" type="xs:int"/>
+					<xs:element minOccurs="0" name="updatedSubjects" type="xs:int"/>
+					<xs:element minOccurs="0" name="newContracts" type="xs:int"/>
+					<xs:element minOccurs="0" name="newSubjects" type="xs:int"/>
+					<xs:element minOccurs="0" name="mergedContracts" type="xs:int"/>
+					<xs:element minOccurs="0" name="skippedContracts" type="xs:int"/>
+					<xs:element minOccurs="0" name="skippedSubjects" type="xs:int"/>
+					<xs:element minOccurs="0" name="mergedSubjects" type="xs:int"/>
+					<xs:element minOccurs="0" name="numberOfErrors" type="xs:int"/>
+					<xs:element minOccurs="0" name="batchPackage" type="tns:batchPackageDto"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchPackageDto">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="packageId" type="xs:long"/>
+					<xs:element minOccurs="0" name="packageName" type="xs:string"/>
+					<xs:element minOccurs="0" name="addTime" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="creditor" type="xs:string"/>
+					<xs:element minOccurs="0" name="employee" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="batchFiles" nillable="true" type="tns:batchFileDto"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="processFile">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="filePath" type="xs:string"/>
+					<xs:element minOccurs="0" name="fileName" type="xs:string"/>
+					<xs:element name="fileType" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="processFileResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="batchPackageId" type="xs:long"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getImportInfoWithComplexParams">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="params" type="tns:batchComplexParams"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchComplexParams">
+				<xs:complexContent>
+					<xs:extension base="tns:paginationSupportSearchParam">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="fromPackageId" type="xs:long"/>
+							<xs:element minOccurs="0" name="toPackageId" type="xs:long"/>
+							<xs:element minOccurs="0" name="fromPackageAddTime" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="toPackageAddTime" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="fromFileStartProcessingTime" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="toFileStartProcessingTime" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="fromFileFinishProcessingTime" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="toFileFinishProcessingTime" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="creditorId" type="xs:long"/>
+							<xs:element minOccurs="0" name="fileStatus" type="xs:int"/>
+							<xs:element minOccurs="0" name="employeeId" type="xs:long"/>
+							<xs:element minOccurs="0" name="fileName" type="xs:string"/>
+							<xs:element minOccurs="0" name="fileType" type="xs:string"/>
+							<xs:element minOccurs="0" name="numberOfErrors" type="xs:int"/>
+							<xs:element minOccurs="0" name="numberOfErrorsArgs" type="xs:int"/>
+							<xs:element minOccurs="0" name="language" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="getImportInfoWithComplexParamsResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="filesImportInfo" type="tns:batchFilesImportInfo"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getImportDetailInfo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="params" type="tns:batchFileParams"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchFileParams">
+				<xs:complexContent>
+					<xs:extension base="tns:paginationSupportSearchParam">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="fileId" type="xs:long"/>
+							<xs:element minOccurs="0" name="recordGroupStatus" type="xs:string"/>
+							<xs:element minOccurs="0" name="language" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="getImportDetailInfoResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="recordsImportInfo" type="tns:batchRecordsImportInfo"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchRecordsImportInfo">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="batchRecordDtoList" nillable="true" type="tns:batchRecordDto"/>
+					<xs:element name="count" type="xs:long"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchRecordDto">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="recordId" type="xs:long"/>
+					<xs:element minOccurs="0" name="subjectId" type="xs:long"/>
+					<xs:element minOccurs="0" name="subjectName" type="xs:string"/>
+					<xs:element minOccurs="0" name="rnn" type="xs:string"/>
+					<xs:element minOccurs="0" name="iinBin" type="xs:string"/>
+					<xs:element minOccurs="0" name="contractId" type="xs:long"/>
+					<xs:element minOccurs="0" name="contractPhase" type="xs:string"/>
+					<xs:element minOccurs="0" name="contractCode" type="xs:string"/>
+					<xs:element minOccurs="0" name="creditDiscriminator" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="result" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="resultMessage" type="xs:string"/>
+					<xs:element minOccurs="0" name="resultMessageDescription" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="resultMessagePlaceholders" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="numberOfRow" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="batchImportStatisticResult">
+				<xs:sequence>
+					<xs:element name="averageImportTimeMillis" type="xs:double"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ScbSystemFault" nillable="true" type="tns:scbServiceFaultInfo"/>
+			<xs:element name="ValidationFault" nillable="true" type="tns:ValidationFaultBean"/>
+			<xs:element name="ScbBusinessFault" nillable="true" type="tns:scbServiceFaultInfo"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getAvgTimeOneContractImport">
+		<wsdl:part name="parameters" element="tns:getAvgTimeOneContractImport">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ScbBusinessFault">
+		<wsdl:part name="ScbBusinessFault" element="tns:ScbBusinessFault">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getImportDetailInfo">
+		<wsdl:part name="parameters" element="tns:getImportDetailInfo">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getImportDetailInfoResponse">
+		<wsdl:part name="parameters" element="tns:getImportDetailInfoResponse">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getImportInfo">
+		<wsdl:part name="parameters" element="tns:getImportInfo">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="processFileResponse">
+		<wsdl:part name="parameters" element="tns:processFileResponse">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getImportInfoResponse">
+		<wsdl:part name="parameters" element="tns:getImportInfoResponse">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="uploadFile">
+		<wsdl:part name="parameters" element="tns:uploadFile">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="uploadFileResponse">
+		<wsdl:part name="parameters" element="tns:uploadFileResponse">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="processFile">
+		<wsdl:part name="parameters" element="tns:processFile">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAvgTimeOneContractImportResponse">
+		<wsdl:part name="parameters" element="tns:getAvgTimeOneContractImportResponse">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getImportInfoWithComplexParams">
+		<wsdl:part name="parameters" element="tns:getImportInfoWithComplexParams">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ScbValidationFault">
+		<wsdl:part name="ScbValidationFault" element="tns:ValidationFault">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getImportInfoWithComplexParamsResponse">
+		<wsdl:part name="parameters" element="tns:getImportInfoWithComplexParamsResponse">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ScbSystemFault">
+		<wsdl:part name="ScbSystemFault" element="tns:ScbSystemFault">
+    </wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="BatchProcessingInterface">
+		<wsdl:operation name="getAvgTimeOneContractImport">
+			<wsdl:input name="getAvgTimeOneContractImport" message="tns:getAvgTimeOneContractImport">
+    </wsdl:input>
+			<wsdl:output name="getAvgTimeOneContractImportResponse" message="tns:getAvgTimeOneContractImportResponse">
+    </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="uploadFile">
+			<wsdl:input name="uploadFile" message="tns:uploadFile">
+    </wsdl:input>
+			<wsdl:output name="uploadFileResponse" message="tns:uploadFileResponse">
+    </wsdl:output>
+			<wsdl:fault name="ScbSystemFault" message="tns:ScbSystemFault">
+    </wsdl:fault>
+			<wsdl:fault name="ScbValidationFault" message="tns:ScbValidationFault">
+    </wsdl:fault>
+			<wsdl:fault name="ScbBusinessFault" message="tns:ScbBusinessFault">
+    </wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getImportInfo">
+			<wsdl:input name="getImportInfo" message="tns:getImportInfo">
+    </wsdl:input>
+			<wsdl:output name="getImportInfoResponse" message="tns:getImportInfoResponse">
+    </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="processFile">
+			<wsdl:input name="processFile" message="tns:processFile">
+    </wsdl:input>
+			<wsdl:output name="processFileResponse" message="tns:processFileResponse">
+    </wsdl:output>
+			<wsdl:fault name="ScbSystemFault" message="tns:ScbSystemFault">
+    </wsdl:fault>
+			<wsdl:fault name="ScbValidationFault" message="tns:ScbValidationFault">
+    </wsdl:fault>
+			<wsdl:fault name="ScbBusinessFault" message="tns:ScbBusinessFault">
+    </wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getImportInfoWithComplexParams">
+			<wsdl:input name="getImportInfoWithComplexParams" message="tns:getImportInfoWithComplexParams">
+    </wsdl:input>
+			<wsdl:output name="getImportInfoWithComplexParamsResponse" message="tns:getImportInfoWithComplexParamsResponse">
+    </wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getImportDetailInfo">
+			<wsdl:input name="getImportDetailInfo" message="tns:getImportDetailInfo">
+    </wsdl:input>
+			<wsdl:output name="getImportDetailInfoResponse" message="tns:getImportDetailInfoResponse">
+    </wsdl:output>
+			<wsdl:fault name="ScbBusinessFault" message="tns:ScbBusinessFault">
+    </wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BatchProcessingServiceSoapBinding" type="tns:BatchProcessingInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getAvgTimeOneContractImport">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getAvgTimeOneContractImport">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getAvgTimeOneContractImportResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="uploadFile">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="uploadFile">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="uploadFileResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ScbSystemFault">
+				<soap:fault name="ScbSystemFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="ScbValidationFault">
+				<soap:fault name="ScbValidationFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="ScbBusinessFault">
+				<soap:fault name="ScbBusinessFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getImportInfo">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getImportInfo">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getImportInfoResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="processFile">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="processFile">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="processFileResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ScbSystemFault">
+				<soap:fault name="ScbSystemFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="ScbValidationFault">
+				<soap:fault name="ScbValidationFault" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="ScbBusinessFault">
+				<soap:fault name="ScbBusinessFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getImportDetailInfo">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getImportDetailInfo">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getImportDetailInfoResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ScbBusinessFault">
+				<soap:fault name="ScbBusinessFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getImportInfoWithComplexParams">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getImportInfoWithComplexParams">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getImportInfoWithComplexParamsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="BatchProcessingService">
+		<wsdl:port name="BatchProcessingPort" binding="tns:BatchProcessingServiceSoapBinding">
+			<soap:address location="https://ws.mkb.kz/creditHistoryDataServices/BatchProcessingService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

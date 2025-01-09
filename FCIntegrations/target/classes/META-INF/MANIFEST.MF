@@ -1,0 +1,48 @@
+Manifest-Version: 1.0
+Built-By: user
+Build-Jdk: 22.0.1
+Class-Path: Or3Client-1.0-SNAPSHOT.jar jboss-ejb-api_3.1_spec-1.0.1.Fina
+ l.jar knca_provider_jce_kalkan-0.7-20220602.052649-1.jar knca_xmldsig_j
+ ce_kalkan-0.3.2-20220602.052603-1.jar xmlsec-1.4.4.jar commons-logging-
+ 1.1.jar logkit-1.0.1.jar avalon-framework-4.1.3.jar servlet-api-2.3.jar
+  gef-0.12.1.jar jacob-1.15-M2.jar jdom2-2.0.6.jar jdom-1.1.jar poi-ooxm
+ l-3.11.jar poi-3.11.jar poi-ooxml-schemas-3.11.jar poi-scratchpad-3.11.
+ jar crypto-applet-kalkan-1.3.jar joda-time-1.3.jar xalan-2.7.1.jar seri
+ alizer-2.7.1.jar commons-net-3.3.jar jsch-0.1.51.jar mail-1.4.7.jar act
+ ivation-1.1.jar log4j-1.2.17.jar ant-1.9.4.jar ant-launcher-1.9.4.jar c
+ ommons-lang-2.6.jar itextpdf-5.5.0.jar xmlworker-5.5.0.jar kernel-7.1.1
+ 2.jar bcpkix-jdk15on-1.64.jar bcprov-jdk15on-1.64.jar slf4j-api-1.7.13.
+ jar io-7.1.12.jar layout-7.1.12.jar xmlbeans-2.6.0.jar commons-httpclie
+ nt-3.1.jar httpclient-4.3.2.jar httpcore-4.3.1.jar jfreechart-1.0.19.ja
+ r jcommon-1.0.23.jar null-uri-resolver-1.4.4.jar esapi-2.1.0.1.jar comm
+ ons-configuration-1.10.jar commons-beanutils-core-1.8.3.jar commons-fil
+ eupload-1.3.1.jar commons-io-2.2.jar commons-collections-3.2.2.jar xom-
+ 1.2.5.jar xml-apis-1.3.03.jar xercesImpl-2.8.0.jar bsh-core-2.0b4.jar a
+ ntisamy-1.5.3.jar nekohtml-1.9.16.jar batik-css-1.8.jar json-20180130.j
+ ar core-3.3.0.jar javase-3.3.0.jar jcommander-1.48.jar jai-imageio-core
+ -1.3.1.jar jasperreports-6.17.0.jar commons-beanutils-1.9.4.jar commons
+ -digester-2.1.jar commons-collections4-4.2.jar itext-2.1.7.js8.jar ecj-
+ 3.21.0.jar castor-xml-1.4.1.jar castor-core-1.4.1.jar javax.inject-1.ja
+ r jackson-core-2.12.2.jar jackson-databind-2.12.2.jar jackson-annotatio
+ ns-2.12.2.jar barcode4j-2.1.jar avalon-framework-impl-4.2.0.jar commons
+ -cli-1.0.jar batik-bridge-1.14.jar batik-anim-1.14.jar batik-awt-util-1
+ .14.jar batik-dom-1.14.jar batik-gvt-1.14.jar batik-parser-1.14.jar bat
+ ik-script-1.14.jar batik-shared-resources-1.14.jar batik-util-1.14.jar 
+ batik-constants-1.14.jar batik-i18n-1.14.jar batik-xml-1.14.jar xmlgrap
+ hics-commons-2.6.jar xml-apis-ext-1.3.04.jar batik-svg-dom-1.14.jar bat
+ ik-ext-1.14.jar rhino-1.7.14.jar jasperreports-fonts-6.1.1.jar crypto.g
+ ammaprov-4.2.jar sign-applet-1.0.jar gamma-hardware-1.0.0.352.jar esedo
+ -sign-1.0.jar rest-api-client-1.0.0.jar jersey-client-1.18.jar jersey-c
+ ore-1.18.jar slf4j-simple-1.7.12.jar pdfbox-2.0.21.jar fontbox-2.0.21.j
+ ar commons-codec-1.9.jar wss4j-1.6.19.jar opensaml-2.5.1-1.jar openws-1
+ .4.2-1.jar xmltooling-1.3.2-1.jar Saxon-HE-9.9.1-6.jar
+Created-By: Maven Integration for Eclipse
+Dependencies: org.apache.cxf,org.apache.cxf.impl
+Implementation-Title: kz.tamur.or3.FCIntegrations
+Implementation-Vendor: Tamur Ltd.
+Implementation-Vendor-Id: kz.tamur.or3
+Implementation-Version: 1.0-SNAPSHOT-b${build.number}
+Specification-Title: FCIntegrations
+Specification-Vendor: Tamur Ltd.
+Specification-Version: 1.0-SNAPSHOT
+

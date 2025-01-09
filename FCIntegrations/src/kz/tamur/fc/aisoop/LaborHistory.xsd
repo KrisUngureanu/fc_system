@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://aisOOP.kz" targetNamespace="http://aisOOP.kz" elementFormDefault="unqualified">
+	<xs:element name="request" type="tns:request"/>
+	<xs:element name="response" type="tns:response"/>
+	<xs:complexType name="request">
+		<xs:sequence>
+			<xs:element name="senderId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор отправителя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tokenKey" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Токен безопасности КИБТокен безопасности КИБ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeRequest" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОСО (OSO) определение типа запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="iin" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИИН ФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="response">
+		<xs:sequence>
+			<xs:element name="MainMessage" type="tns:MainMessage"/>
+			<xs:element name="status" type="xs:string"/>
+			<xs:element name="ResPersonInfos" type="tns:ResPersonInfos"/>
+			<xs:element name="PersonIIN" type="tns:PersonIin"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MainMessage">
+		<xs:sequence>
+			<xs:element name="typeRequest" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОСО (OSO) определение типа запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор заявки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Текст сообщения о статусе запроса</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PersonIIN" type="tns:PersonIin">
+				<xs:annotation>
+					<xs:documentation>Информация по ИИН ФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ResPersonInfos" type="tns:ResPersonInfos">
+				<xs:annotation>
+					<xs:documentation>Массив данных по физическим лицам</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonIin">
+		<xs:sequence>
+			<xs:element name="iin" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResPersonInfos">
+		<xs:sequence>
+			<xs:element name="ResPersonInfo" type="tns:ResPersonInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Данные по физическому лицу</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResPersonInfo">
+		<xs:sequence>
+			<xs:element name="orgBin" type="xs:string"/>
+			<xs:element name="orgName" type="xs:string"/>
+			<xs:element name="beginDate" type="xs:dateTime"/>
+			<xs:element name="endDate" type="xs:dateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

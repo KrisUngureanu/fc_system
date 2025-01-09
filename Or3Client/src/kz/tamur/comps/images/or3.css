@@ -1,0 +1,18 @@
+body {
+  font-family: Tahoma;
+  font-size: 10px;
+  color: #000000;
+  MARGIN: 0px;
+  PADDING: 0px;
+}
+a {
+  font-family: Tahoma;
+  font-size: 10px;
+  font-weight: bold;
+  color: #003366;
+  text-decoration: underline;
+}
+
+img {
+  border: none;
+}

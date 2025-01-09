@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsd="http://www.w3.org/2001/XMLSchema" jaxb:version="2.0">
+  <jaxb:bindings schemaLocation="GbdulSignupActualData.xsd"  node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="kz.tamur.fc.gbdul.signup.actualdata"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+  <jaxb:bindings schemaLocation="xmldsig-core-schema.xsd"  node="/xsd:schema">
+    <jaxb:schemaBindings>
+      <jaxb:package name="kz.tamur.egov.signature"/>
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+</jaxb:bindings>

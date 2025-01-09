@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewLocationWizard">
+		<list key="ConfigurationWizardMainPage.STORE_USERNAME_ID">
+			<item value="ivan"/>
+		</list>
+		<list key="ConfigurationWizardMainPage.STORE_HOSTNAME_ID">
+			<item value="192.168.13.15"/>
+		</list>
+		<list key="ConfigurationWizardMainPage.STORE_PATH_ID">
+			<item value="/var/local/cvsroot"/>
+		</list>
+	</section>
+	<section name="CheckoutAsWizard">
+	</section>
+	<section name="CommitWizard">
+		<item key="VWeight1" value="500"/>
+		<item key="VWeight2" value="500"/>
+		<item key="ShowCompare" value="false"/>
+		<item key="height" value="682"/>
+		<item key="width" value="400"/>
+	</section>
+	<section name="org.eclipse.team.ccvs.ui.RepositoriesView">
+		<item key="selectedOrderBy" value="0"/>
+		<item key="selectedSortingOrder" value="true"/>
+	</section>
+	<section name="org.eclipse.team.internal.ccvs.ui.CVSHistoryPage">
+		<item key="SASH_WEIGHTS" value="650;200;150;"/>
+		<item key="INNER_SASH_WEIGHTS" value="500;500;"/>
+		<item key="SORT_ORDER" value="true"/>
+	</section>
+	<section name="org.eclipse.team.internal.ccvs.ui.CVSHistoryTableProvider">
+		<item key="COL_REVISIONID" value="189"/>
+		<item key="COL_BRANCHES" value="189"/>
+		<item key="COL_TAGS" value="189"/>
+		<item key="COL_DATE" value="188"/>
+		<item key="COL_AUTHOR" value="188"/>
+		<item key="COL_COMMENT" value="188"/>
+		<item key="SORT_COL_NAME" value="COL_DATE"/>
+		<item key="SORT_COL_DIRECTION" value="1024"/>
+	</section>
+</section>

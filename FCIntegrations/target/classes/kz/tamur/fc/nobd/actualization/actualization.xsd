@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices.actualization.kz/EducationDataActualizationService/schema" xmlns="http://webservices.actualization.kz/EducationDataActualizationService/schema" targetNamespace="http://webservices.actualization.kz/EducationDataActualizationService/schema" elementFormDefault="qualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation>Описания сервиса для принятие Документов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="SendResponse" type="SendResponse"/>
+	<xs:element name="SendRequest" type="SendRequest"/>
+	<xs:complexType name="SendResponse">
+		<xs:sequence>
+			<xs:element name="Status" type="tns:Status"/>
+			<xs:element name="Response" type="tns:Response" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Response">
+		<xs:sequence>
+			<xs:element name="dataObject" type="tns:DataObject" maxOccurs="unbounded"/>
+			<xs:element name="schoolObject" type="tns:SchoolObject" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataObject">
+		<xs:sequence>
+			<xs:element name="item" type="tns:Item" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SchoolObject">
+		<xs:sequence>
+			<xs:element name="item" type="tns:Item" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Item">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" minOccurs="0"/>
+			<xs:element name="value" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Status">
+		<xs:sequence>
+			<xs:element name="message" type="xs:string"/>
+			<xs:element name="messageCode" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SendRequest">
+		<xs:sequence>
+			<xs:element name="Period" type="tns:Period" minOccurs="0"/>
+			<xs:element name="Organization" type="tns:Organization" minOccurs="0"/>
+			<xs:element name="Config" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Period">
+		<xs:sequence>
+			<xs:element name="startDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата начало
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата конца
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Organization">
+		<xs:sequence>
+			<xs:element name="bin" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Бин организации
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="schoolId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ID школы
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

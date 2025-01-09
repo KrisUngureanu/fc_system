@@ -1,0 +1,1 @@
+"C:\opt\java\jdk1.8.0_231-x86\bin\jarsigner.exe" -signedjar scan-websocket-signed-1.0.jar -storepass 07L4zrHG -keystore tamur.jks scan-websocket.jar tamur

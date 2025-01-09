@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://service.2fa-chain.kz/ns/kdp" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://service.2fa-chain.kz/ns/kdp" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="getUserDataRequest" type="getUserDataRequest"/>
+	<xs:complexType name="getUserDataRequest">
+		<xs:sequence>
+			<xs:element name="uin" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИИН</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="company" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="company_bin" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>БИН/ИИН организации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="company_responsible" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование организации, у которой запрашиваются данные</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="employee_name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ФИО сотрудника из организации, запрашивающей персональные данные (третьей
+                        стороны)
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="access_name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование госуслуги</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="personal_data_name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование персональных данных (например, ФИО запросить ИИН)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expiresIn" type="xs:int" default="600000" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="ru">Срок действия кода в миллисекундах</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="omit-sms" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Запрос персональных данных получен иным путем, значение по умолчанию False
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ds:Signature"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

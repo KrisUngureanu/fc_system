@@ -1,0 +1,167 @@
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by SHOCK (SHOCK) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.ddm.nedb.kz/" targetNamespace="http://ws.ddm.nedb.kz/" elementFormDefault="unqualified" version="1.0">
+	<xs:element name="allDataItemsRequest" type="tns:allDataItemsRequest"/>
+	<xs:element name="allDataItemsResponse" type="tns:allDataItemsResponse"/>
+	<xs:element name="allDataSetsResponse" type="tns:allDataSetsResponse"/>
+	<xs:element name="dataItem" type="tns:dataItem"/>
+	<xs:element name="getAllDataItems" type="tns:getAllDataItems"/>
+	<xs:element name="getAllDataItemsResponse" type="tns:getAllDataItemsResponse"/>
+	<xs:element name="getAllDataSets" type="tns:getAllDataSets"/>
+	<xs:element name="getAllDataSetsResponse" type="tns:getAllDataSetsResponse"/>
+	<xs:element name="mapElements" type="tns:mapElements"/>
+	<xs:complexType name="getAllDataItems">
+		<xs:sequence>
+			<xs:element name="arg0" type="tns:allDataItemsRequest" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="allDataItemsRequest">
+		<xs:sequence>
+			<xs:element name="domainSetCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="onDate" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getAllDataItemsResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:allDataItemsResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="allDataItemsResponse">
+		<xs:sequence>
+			<xs:element name="allDataItems" type="tns:dataItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dataItem">
+		<xs:sequence>
+			<xs:element name="itemFields" type="tns:mapElementsArray" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="code" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="mapElements">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" minOccurs="0"/>
+			<xs:element name="value" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getAllDataSets">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getAllDataSetsResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:allDataSetsResponse" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="allDataSetsResponse">
+		<xs:sequence>
+			<xs:element name="allDataSets" type="tns:ddmDataSet" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ddmDataSet">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="0"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+			<xs:element name="items">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="key" type="xs:string" minOccurs="0"/>
+									<xs:element name="value" type="tns:ddmDataItem" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="itemsList" type="tns:ddmDataItem" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="kkName" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastUpdated" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="lastUpdatedBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="metadata" type="tns:ddmMetadata" minOccurs="0"/>
+			<xs:element name="ruName" type="xs:string" minOccurs="0"/>
+			<xs:element name="version" type="xs:long" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ddmDataItem">
+		<xs:complexContent>
+			<xs:extension base="tns:linkedHashMap">
+				<xs:sequence>
+					<xs:element name="code" type="xs:string" minOccurs="0"/>
+					<xs:element name="entryDate" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="fromDate" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="newVersion" type="xs:boolean"/>
+					<xs:element name="toDate" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="version" type="xs:double" minOccurs="0"/>
+					<xs:element name="versions">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="key" type="xs:string" minOccurs="0"/>
+											<xs:element name="value" type="tns:ddmDataItem" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="linkedHashMap">
+		<xs:complexContent>
+			<xs:extension base="tns:hashMap">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="hashMap">
+		<xs:complexContent>
+			<xs:extension base="tns:abstractMap">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="abstractMap" abstract="true">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="ddmMetadata">
+		<xs:sequence>
+			<xs:element name="attributes" type="tns:ddmAttrMetadata" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ddmAttrMetadata">
+		<xs:sequence>
+			<xs:element name="link" type="tns:ddmLink" minOccurs="0"/>
+			<xs:element name="list" type="xs:boolean"/>
+			<xs:element name="name" type="xs:string" minOccurs="0"/>
+			<xs:element name="type" type="tns:ddmMetadataType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ddmLink">
+		<xs:sequence>
+			<xs:element name="href" type="xs:string" minOccurs="0"/>
+			<xs:element name="id" type="xs:string" minOccurs="0"/>
+			<xs:element name="rel" type="tns:ddmReferenceType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ddmReferenceType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DATASET"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ddmMetadataType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TEXT"/>
+			<xs:enumeration value="NUMBER"/>
+			<xs:enumeration value="REFERENCE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="mapElementsArray" final="#all">
+		<xs:sequence>
+			<xs:element name="item" type="tns:mapElements" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

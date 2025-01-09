@@ -1,0 +1,321 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Авторизация</title>
+    <link href="login.css" rel="StyleSheet" type="text/css">
+</head>
+<body bgcolor="#F0F8FF" style="margin:0;">
+<form name="logonForm" action="/ekyzmet-ui/main" method="post" onSubmit="login(); return false;" onReset="resetForm();">
+<table style="width:100%;height:93%;" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td style="height:100%;" align="center" valign="middle">
+            <table border="0" cellpadding="0" cellspacing="5" class="designLoginPageForm"
+                   style="width:300px;height: 212px; background-image:url(loginBox.png);background-repeat:no-repeat;">
+                <tr>
+                    <td valign="middle" style="height:140px">
+                            <table width="100%" border="0" cellpadding="2" cellspacing="1">
+                                <tr height="40">
+                                    <td width="30%" rowspan="8" align="center" valign="middle" nowrap>
+                                    	<img src="key2.png" width="60" height="82" border="0" alt="" align="bottom" />
+                                    </td>
+                                    <td align="center" valign="middle" nowrap>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                  	<td align="left" valign="bottom" nowrap><label class="label">Имя пользователя:</label></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" valign="top"><input type="text" name="name" value="" class="input"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><label class="label">Пароль:</label></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="middle"><input type="password" name="passwd" class="input"/></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="middle"><label class="label">Сервер:</label></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="middle"><select name="configNumber" class="input"></select></td>
+                                </tr>
+                                <tr>
+                                  <td align="center" valign="middle"><input name="submit" type="submit" class="button" value="Вход"/><input name="reset" type="reset" class="button" value="Очистить"/></td>
+                                </tr>
+																<TR valign="bottom" height="40">
+																	<td id="error" colspan="2" align="center" class="error"></td>
+																</TR>
+																<TR height="20">
+																	<td colspan="2" align="center" class="error"><a href="http://192.168.13.125/BossPanel.war/kyzmet2.jsp?cube=1" style="font-size: 12px;">Переход к аналитической подсистеме</a></td>
+																</TR>
+                            </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+<!--
+        <td align="center" valign="bottom" class="infofont"> (c) ТОО "Тамур" 2009. Все права защищены.</td>
+-->
+    </tr>
+</table>
+<input type="hidden" name="trg" value="top">
+<input type="hidden" name="bp" value="/index2.html">
+<input type="hidden" name="windowName" value="">
+</form>
+<script language="JavaScript" type="text/javascript">
+<!--
+var newwin;
+document.forms["logonForm"].elements["name"].focus();
+
+function popup(url) 
+{
+ 	var params  = 'directories=0,location=0,menubar=0,resizable=1,scrollbars=1,status=1,toolbar=0';
+ 	params += ',width='+screen.width;
+ 	params += ',height='+screen.height;
+ 	params += ',top=0,left=0';
+// 	params += ',fullscreen';
+ 	newwin=window.open(url, document.forms["logonForm"].elements["windowName"].value, params, false);
+ 	if (window.focus) {newwin.focus()}
+ 	return false;
+}
+
+var BrowserDetect = {
+		init: function () {
+			this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+			this.version = this.searchVersion(navigator.userAgent)
+				|| this.searchVersion(navigator.appVersion)
+				|| "an unknown version";
+			this.OS = this.searchString(this.dataOS) || "an unknown OS";
+		},
+		searchString: function (data) {
+			for (var i=0;i<data.length;i++)	{
+				var dataString = data[i].string;
+				var dataProp = data[i].prop;
+				this.versionSearchString = data[i].versionSearch || data[i].identity;
+				if (dataString) {
+					if (dataString.indexOf(data[i].subString) != -1)
+						return data[i].identity;
+				}
+				else if (dataProp)
+					return data[i].identity;
+			}
+		},
+		searchVersion: function (dataString) {
+			var index = dataString.indexOf(this.versionSearchString);
+			if (index == -1) return;
+			return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+		},
+		dataBrowser: [
+			{
+				string: navigator.userAgent,
+				subString: "Chrome",
+				identity: "Chrome"
+			},
+			{ 	string: navigator.userAgent,
+				subString: "OmniWeb",
+				versionSearch: "OmniWeb/",
+				identity: "OmniWeb"
+			},
+			{
+				string: navigator.vendor,
+				subString: "Apple",
+				identity: "Safari",
+				versionSearch: "Version"
+			},
+			{
+				prop: window.opera,
+				identity: "Opera",
+				versionSearch: "Version"
+			},
+			{
+				string: navigator.vendor,
+				subString: "iCab",
+				identity: "iCab"
+			},
+			{
+				string: navigator.vendor,
+				subString: "KDE",
+				identity: "Konqueror"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "Firefox",
+				identity: "Firefox"
+			},
+			{
+				string: navigator.vendor,
+				subString: "Camino",
+				identity: "Camino"
+			},
+			{		// for newer Netscapes (6+)
+				string: navigator.userAgent,
+				subString: "Netscape",
+				identity: "Netscape"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "MSIE",
+				identity: "Explorer",
+				versionSearch: "MSIE"
+			},
+			{
+				string: navigator.userAgent,
+				subString: "Gecko",
+				identity: "Mozilla",
+				versionSearch: "rv"
+			},
+			{ 		// for older Netscapes (4-)
+				string: navigator.userAgent,
+				subString: "Mozilla",
+				identity: "Netscape",
+				versionSearch: "Mozilla"
+			}
+		],
+		dataOS : [
+			{
+				string: navigator.platform,
+				subString: "Win",
+				identity: "Windows"
+			},
+			{
+				string: navigator.platform,
+				subString: "Mac",
+				identity: "Mac"
+			},
+			{
+				   string: navigator.userAgent,
+				   subString: "iPhone",
+				   identity: "iPhone/iPod"
+		    },
+			{
+				string: navigator.platform,
+				subString: "Linux",
+				identity: "Linux"
+			}
+		]
+
+	};
+
+function resetForm() {
+	document.forms["logonForm"].elements["submit"].disabled = false;
+	return true;
+} 
+
+function gup(name) {
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+
+function login() {
+	BrowserDetect.init();
+	document.forms["logonForm"].elements["windowName"].value = 'Or3Frame' + (new Date).getTime();
+	document.forms["logonForm"].elements["submit"].disabled = true;
+	document.getElementById("error").innerHTML = "Идет авторизация. Пожалуйста, подождите...";
+	var un = document.forms["logonForm"].elements["name"].value;
+	var pwd = document.forms["logonForm"].elements["passwd"].value;
+	var cnm = document.forms["logonForm"].elements["configNumber"].value;
+
+	var flow = gup('flow');
+
+	var url = "/ekyzmet-ui/main";
+  	var post = "xml=1&name=" + un + "&passwd=" + pwd + "&configNumber=" + cnm+"&browser="+ BrowserDetect.browser+";"+BrowserDetect.version+";"+BrowserDetect.OS;
+	if (flow != null && flow.length > 0)
+		post += "&flow=" + flow;
+  	post += "&noCache=" + (new Date).getTime();
+  if (window.XMLHttpRequest) {
+    req = new XMLHttpRequest();
+  } else if (window.ActiveXObject) {
+    req = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  req.open("POST", url, true);
+  req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+ // req.setRequestHeader("Content-Length", post.length);
+  req.onreadystatechange = function() { processLogin(req); };
+  req.send(post);
+} 
+
+function processLogin(req) {
+  if (req.readyState == 4) {
+    if (req.status == 200) {
+      var d = document;
+      var responseTag = req.responseXML.getElementsByTagName("r")[0];
+      var tag = responseTag.getElementsByTagName("status")[0];
+      if (tag != null) {
+	      var id = tag.childNodes[0].nodeValue;
+
+  	    if (id == "1") {
+    	    var url = "/ekyzmet-ui/main?trg=top&bp=%2Fekyzmet-ui%2Findex2.html";
+			var flow = gup('flow');
+			if (flow != null && flow.length > 0)
+				url += "&flow=" + flow;
+      	  	url += "&noCache=" + (new Date).getTime();
+      	  	popup(url);
+  		}
+      } else {
+	    var tag = responseTag.getElementsByTagName("fatal")[0];
+  	  	if (tag != null) {
+	    	var id = (tag.childNodes.length > 0) ? tag.childNodes[0].nodeValue : "Неизвестная ошибка! Пожалуйста, обратитесь к разработчику";
+          	d.getElementById("error").innerHTML = id;  	    
+			d.forms["logonForm"].elements["submit"].disabled = false;
+  		}
+      }
+    }
+  }            
+}
+
+function getConfigs() {
+	var url = "/ekyzmet-ui/main";
+	var post = "cmd=getConfigs&noCache=" + (new Date).getTime();
+	if (window.XMLHttpRequest) {
+		req = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+  	  	req = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+	req.open("POST", url, true);
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	//req.setRequestHeader("Content-Length", post.length);
+	req.onreadystatechange = function() { processGetConfigs(req); };
+	req.send(post);
+} 
+
+function processGetConfigs(req) {
+	if (req.readyState == 4) {
+		if (req.status == 200) {
+			var d = document;
+			var responseTag = req.responseXML.getElementsByTagName("r")[0];
+
+			var opTags = responseTag.getElementsByTagName("option");
+
+			var obj = d.forms["logonForm"].elements["configNumber"]
+			if (obj != null) {
+				for (var j = 0; j < opTags.length; j++) {
+					var opTag = opTags[j];
+					var op = d.createElement("option");
+					op.setAttribute("value", opTag.getAttribute("value"));
+					strVal = "";
+					if (opTag.childNodes.length > 0)
+						strVal = opTag.childNodes[0].nodeValue;
+					var text = d.createTextNode(strVal);
+					op.appendChild(text);
+					obj.appendChild(op);
+				}
+			}
+		}
+	}            
+}
+
+getConfigs();
+
+// -->
+</script>
+</BODY>
+</HTML>

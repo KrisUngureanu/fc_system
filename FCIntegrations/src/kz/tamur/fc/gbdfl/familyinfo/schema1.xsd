@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://message.persistence.interactive.nat" xmlns:ns1="http://dictionaries.persistence.interactive.nat" xmlns:tns="http://message.persistence.interactive.nat" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import schemaLocation="root.xsd"/>
+
+  <xs:import namespace="http://dictionaries.persistence.interactive.nat" schemaLocation="schema3.xsd"/>
+
+  <xs:complexType name="ResponseFamilyInfo">
+    <xs:complexContent>
+      <xs:extension base="tns:ResponseShepSyncDTO">
+        <xs:sequence>
+          <xs:element name="familyInfoList" type="familyInfoDTO" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ResponseShepSyncDTO">
+    <xs:sequence>
+      <xs:element name="messageId" type="xs:string"/>
+      <xs:element name="messageDate" type="xs:dateTime"/>
+      <xs:element name="requestId" type="xs:string"/>
+      <xs:element name="receiver" type="ns1:Participant"/>
+      <xs:element name="sender" type="ns1:Participant"/>
+      <xs:element name="messageResult" type="ns1:MessageResult"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RequestFamily">
+    <xs:sequence>
+      <xs:element name="messageId" type="xs:string"/>
+      <xs:element name="messageDate" type="xs:dateTime"/>
+      <xs:element name="senderCode" type="xs:string"/>
+      <xs:element name="searchParam" type="searchDTO"/>
+      <xs:element name="kdpToken" type="xs:string"/>
+      <xs:element name="publicKey" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Built-By: user
+Build-Jdk: 22.0.1
+Class-Path: javassist-3.18.1-GA.jar
+Created-By: Maven Integration for Eclipse
+Implementation-Title: kz.tamur.or3.FCServices
+Implementation-Vendor: Tamur Ltd.
+Implementation-Vendor-Id: kz.tamur.or3
+Implementation-Version: 1.0-SNAPSHOT-b${build.number}
+Specification-Title: FCServices
+Specification-Vendor: Tamur Ltd.
+Specification-Version: 1.0-SNAPSHOT
+

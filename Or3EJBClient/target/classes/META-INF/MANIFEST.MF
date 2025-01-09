@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Built-By: user
+Build-Jdk: 22.0.1
+Class-Path: jboss-ejb-api_3.1_spec-1.0.1.Final.jar commons-logging-1.1.j
+ ar logkit-1.0.1.jar avalon-framework-4.1.3.jar servlet-api-2.3.jar acti
+ vation-1.1.jar log4j-1.2.17.jar httpclient-4.3.2.jar xml-apis-1.3.03.ja
+ r commons-codec-1.9.jar notes-7.0.3.jar javahelp-2.0.05.jar jaxrpc-impl
+ -1.1.3_01.jar jaxrpc-api-1.1.jar saaj-impl-1.3.jar saaj-api-1.3.jar jax
+ rpc-spi-1.1.3_01.jar FastInfoset-1.0.2.jar fl-1.0.jar crypto-applet-kal
+ kan-1.3.jar jcalendar-1.2.2.jar jboss-ejb-client-1.0.5.Final.jar jboss-
+ remote-naming-1.0.2.Final.jar jboss-logging-3.1.0.GA.jar jboss-marshall
+ ing-1.3.11.GA.jar jboss-marshalling-river-1.3.11.GA.jar jboss-remoting-
+ 3.2.3.GA.jar jboss-sasl-1.0.0.Final.jar jboss-transaction-api_1.1_spec-
+ 1.0.0.Final.jar xnio-api-3.0.3.GA.jar xnio-nio-3.0.3.GA.jar jboss-as-bu
+ ild-config-7.1.1.Final.jar jboss-jms-api_1.1_spec-1.0.1.Final.jar commo
+ ns-collections-3.2.1.jar jaxen-1.1.6.jar lucene-core-4.5.1.jar lucene-a
+ nalyzers-common-4.5.1.jar lucene-queryparser-4.5.1.jar lucene-queries-4
+ .5.1.jar lucene-sandbox-4.5.1.jar jakarta-regexp-1.4.jar lucene-highlig
+ hter-4.5.1.jar lucene-memory-4.5.1.jar org.eclipse.swt.win32.win32.x86_
+ 64-4.3.jar nativeswing-swt-1.0.2.jar nativeswing-1.0.2.jar red5-client-
+ 1.0.4-RELEASE.jar red5-server-common-1.0.4-RELEASE.jar spring-web-4.0.8
+ .RELEASE.jar quartz-2.1.7.jar c3p0-0.9.1.1.jar spring-context-support-4
+ .0.8.RELEASE.jar jboss-servlet-api_3.0_spec-1.0.2.Final.jar red5-io-1.0
+ .4-RELEASE.jar commons-pool-1.5.6.jar spring-aop-4.0.8.RELEASE.jar spri
+ ng-expression-4.0.8.RELEASE.jar antlr-3.1.3.jar antlr-runtime-3.1.3.jar
+  stringtemplate-3.2.jar antlr-2.7.7.jar cglib-nodep-2.2.2.jar jaudiotag
+ ger-2.0.4-20170110.050038-1.jar xercesImpl-2.9.1.jar isoparser-1.0.4.2.
+ jar aspectjrt-1.8.2.jar aopalliance-1.0.jar spring-core-4.0.8.RELEASE.j
+ ar bcprov-jdk15on-1.51.jar commons-beanutils-1.9.2.jar httpcore-4.3.2.j
+ ar commons-lang3-3.3.2.jar jcl-over-slf4j-1.7.9.jar jul-to-slf4j-1.7.9.
+ jar log4j-over-slf4j-1.7.9.jar spring-beans-4.0.8.RELEASE.jar spring-co
+ ntext-4.0.8.RELEASE.jar ehcache-core-2.5.0.jar commons-io-2.4.jar slf4j
+ -api-1.7.7.jar slf4j-log4j12-1.7.7.jar
+Created-By: Maven Integration for Eclipse
+Implementation-Title: kz.tamur.or3.Or3EJBClient
+Implementation-Vendor: Tamur Ltd.
+Implementation-Vendor-Id: kz.tamur.or3
+Implementation-Version: 1.0-SNAPSHOT-b${build.number}
+Specification-Title: Or3EJBClient
+Specification-Vendor: Tamur Ltd.
+Specification-Version: 1.0-SNAPSHOT
+

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+	<xs:complexType name="xmlSlice" final="extension restriction">
+		<xs:sequence>
+			<xs:element name="dataObject" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="pageNumber" type="xs:int"/>
+			<xs:element name="pageSize" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="questionnaireFlatData">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" minOccurs="0"/>
+			<xs:element name="passportValues" type="questionnaireValue" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="questionnaireValue" final="extension restriction">
+		<xs:sequence>
+			<xs:element name="simpleValue" type="xs:string" minOccurs="0"/>
+			<xs:element name="collectionValue" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="mapValue" type="mapElement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="code" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="mapElement" final="extension restriction">
+		<xs:sequence>
+			<xs:element name="collectionValue" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="childElements" type="mapElement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="key" type="xs:string"/>
+		<xs:attribute name="value" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="schoolFlatData" final="extension restriction">
+		<xs:complexContent>
+			<xs:extension base="questionnaireFlatData">
+				<xs:sequence>
+					<xs:element name="passportItem" type="questionnaireValue" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="bin" type="xs:string" minOccurs="0"/>
+					<xs:element name="typeCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="areaCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="regionCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="locationCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="ruName" type="xs:string" minOccurs="0"/>
+					<xs:element name="kkName" type="xs:string" minOccurs="0"/>
+					<xs:element name="enName" type="xs:string" minOccurs="0"/>
+					<xs:element name="ruShortName" type="xs:string" minOccurs="0"/>
+					<xs:element name="kkShortName" type="xs:string" minOccurs="0"/>
+					<xs:element name="enShortName" type="xs:string" minOccurs="0"/>
+					<xs:element name="ruFullName" type="xs:string" minOccurs="0"/>
+					<xs:element name="kkFullName" type="xs:string" minOccurs="0"/>
+					<xs:element name="enFullName" type="xs:string" minOccurs="0"/>
+					<xs:element name="currentStudents" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="completedStudents" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="leftStudents" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="currentTeachers" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="leftTeachers" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="studentFlatData" final="extension restriction">
+		<xs:complexContent>
+			<xs:extension base="questionnaireFlatData">
+				<xs:sequence>
+					<xs:element name="passportItem" type="questionnaireValue" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="schoolBin" type="xs:string" minOccurs="0"/>
+					<xs:element name="schoolNameRu" type="xs:string" minOccurs="0"/>
+					<xs:element name="schoolNameKk" type="xs:string" minOccurs="0"/>
+					<xs:element name="iin" type="xs:string" minOccurs="0"/>
+					<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+					<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+					<xs:element name="middleName" type="xs:string" minOccurs="0"/>
+					<xs:element name="birthDate" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="status" type="xs:int" minOccurs="0"/>
+					<xs:element name="moveDate" type="xs:dateTime" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="teacherFlatData" final="extension restriction">
+		<xs:complexContent>
+			<xs:extension base="questionnaireFlatData">
+				<xs:sequence>
+					<xs:element name="passportItem" type="questionnaireValue" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="schoolId" type="xs:string" minOccurs="0"/>
+					<xs:element name="iin" type="xs:string" minOccurs="0"/>
+					<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+					<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+					<xs:element name="middleName" type="xs:string" minOccurs="0"/>
+					<xs:element name="birthDate" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="status" type="xs:int" minOccurs="0"/>
+					<xs:element name="isStaff" type="xs:boolean" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="educationAgencyFlatData" final="extension restriction">
+		<xs:complexContent>
+			<xs:extension base="questionnaireFlatData">
+				<xs:sequence>
+					<xs:element name="passportItem" type="questionnaireValue" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="typeCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="areaCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="regionCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="locationCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="ruName" type="xs:string" minOccurs="0"/>
+					<xs:element name="kkName" type="xs:string" minOccurs="0"/>
+					<xs:element name="enName" type="xs:string" minOccurs="0"/>
+					<xs:element name="parentAgencyId" type="xs:string" minOccurs="0"/>
+					<xs:element name="parentAgencyLocationCode" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="educationAgencyEmployeeFlatData" final="extension restriction">
+		<xs:complexContent>
+			<xs:extension base="questionnaireFlatData">
+				<xs:sequence>
+					<xs:element name="passportItem" type="questionnaireValue" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="iin" type="xs:string" minOccurs="0"/>
+					<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+					<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+					<xs:element name="middleName" type="xs:string" minOccurs="0"/>
+					<xs:element name="birthDate" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="educationAgencyLocationCode" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
